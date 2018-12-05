@@ -1,0 +1,77 @@
+{#
+@name:          contact.twig
+@description:   Contact page template.
+#}
+
+{% extends 'front.base.twig' %}
+{% block bodyClass %}contact{% endblock %}
+{% set active = 'contact' %}
+{% block main %}
+	<h1 class='title has-text-grey-dark'>Lets get in touch!</h1>
+	<form>
+		<div class="field is-horizontal">
+			<div class='field-label is-normal'>
+  			<label class="label has-text-light">From</label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" name='fname' type="text" placeholder="Full Name">
+						<span class="icon is-small is-left">
+							<i class="fa fa-user"></i>
+						</span>
+						<span class="icon is-small is-right">
+							<i class="fa fa-check"></i>
+						</span>
+					</div>
+				</div>
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input class="input" type="email" name='email' placeholder="Email Address">
+						<span class="icon is-small is-left">
+							<i class="fa fa-envelope"></i>
+    				</span>
+						<span class="icon is-small is-right">
+							<i class="fa fa-check"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>			
+		<div class="field is-horizontal">
+			<div class='field-label is-normal'>
+  			<label class="label has-text-light">Subject</label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+  				<div class="control has-icons-left has-icons-right">
+    				<input class="input" name='subject' type="text" placeholder="Subject">
+    				<span class="icon is-small is-left">
+      				<i class="fa fa-chevron-right"></i>
+    				</span>
+    				<span class="icon is-small is-right">
+							<i class="fa fa-check"></i>
+    				</span>
+  				</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class='field-label is-normal has-text-light'>
+  			<label class="label has-text-light">Message</label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control">
+    				<textarea class="textarea" name='message' placeholder="Textarea"></textarea>
+  				</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-pulled-right">
+  		<div class="control">
+    		<button class="button is-danger">Submit</button>
+  		</div>
+		</div>
+	</form>
+{% endblock %}

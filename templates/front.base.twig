@@ -1,0 +1,74 @@
+{#
+@name:          front.base.twig
+@description:   Base template for the entire front portion of the site.
+#}
+
+<!DOCTYPE html>
+<html lang="en">	
+<head>	
+  <title>{% block title %}ToDo!{% endblock %}</title>
+  <meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="images/favicon.png">
+  {% block assets %}
+    <link rel="stylesheet" href="build/front.css">
+		{% block pageAssets %}{% endblock %}
+	{% endblock %}
+</head>
+<body class='front {% block bodyClass %}{% endblock %}'>
+<section class="hero {% block background %}is-primary{% endblock %} is-fullheight">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item active">
+           	<span class='has-text-weight-bold is-size-3'>ToDo!</span>
+          </a>
+          <span class="navbar-burger burger" data-target="frontNav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="frontNav" class="navbar-menu">
+          <div class="navbar-end">
+            <a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
+            <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
+            <a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
+						<a href='/demo' class="navbar-item {% if active == 'demo' %}is-active{% endif %}">Demo</a>
+            <span class="navbar-item">
+              <a class="button is-primary is-inverted">
+                <span class="icon"><i class="fa fa-plus"></i></span>
+                <span>Sign In/Up</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+	<div class="hero-body">
+    <div class="container">
+			{% block main %}
+			{% endblock %}
+    </div>
+  </div>
+	<div class="hero-foot">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li class="is-active"><a>Made with <span class='fa fa-heart has-text-danger'></span>by Brennan Walsh</a> </li>
+          <li><a>Privacy Policy</a></li>
+          <li><a>Terms and Conditions</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+{% block scripts %}
+	<script src="build/front.js"></script>
+	{% block pageScripts %}{% endblock %}
+{% endblock %}
+</body>	
+</html>

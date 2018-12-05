@@ -1,0 +1,15 @@
+{#
+@name:          home.twig
+@description:   Home page template.
+#}
+
+{% extends 'front.base.twig' %}
+{% block bodyClass %}home{% endblock %}
+{% set active = 'home' %}
+{% block main %}
+<div id="slider" class='has-text-centered'>
+	<h1 v-text="heading[current % heading.length]" class="title has-text-grey-dark"></h1>
+	<p v-text="paragraph[current % paragraph.length]" class="subtitle"></p>
+	<button class='button is-danger has-text-weight-bold' type="button">We know you'll <span class='fa fa-heart'></span> our demo</button>
+</div>
+{% endblock %}

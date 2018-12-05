@@ -1,0 +1,10 @@
+/.env
+/.env.test
+/public/build/
+/var/
+/vendor/
+/node_modules/
+/composer.json
+/package.json
+/phpunit.xml.dist
+/.brackets.json

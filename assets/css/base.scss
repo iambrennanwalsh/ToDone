@@ -1,0 +1,13 @@
+/**
+* @name:          base.scss
+* @description:   This stylesheet imports all of the globally required scss files. Anything used across the entire site is imported here.
+*/
+
+// base.scss
+@import 'styles.base.scss';
+
+// Bulma SCSS
+@import '~bulma/bulma.sass';
+
+// Font Awesome CSS
+@import '~font-awesome/css/font-awesome.css';

@@ -1,0 +1,11 @@
+Home:
+    path: /
+    controller: App\Controller\FrontController::home
+
+About:
+    path: /about
+    controller: App\Controller\FrontController::about
+
+Contact:
+    path: /contact
+    controller: App\Controller\FrontController::contact
