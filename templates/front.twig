@@ -1,5 +1,5 @@
 {#
-@name:          front.base.twig
+@name:          front.twig
 @description:   Base template for the entire front portion of the site.
 #}
 
@@ -13,11 +13,10 @@
 	<link rel="shortcut icon" href="images/favicon.png">
   {% block assets %}
 			<link rel="stylesheet" href="build/front.css">
-			{% block pageAssets %}{% endblock %}
 	{% endblock %}
 </head>
 <body class='front {% block bodyClass %}{% endblock %}'>
-<section class="hero {% block background %}is-primary{% endblock %} is-fullheight">
+<section class="hero is-primary is-fullheight">
   <div class="hero-head">
     <nav class="navbar">
       <div class="container">
@@ -37,7 +36,7 @@
             <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
             <a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
             <a href='/demo' class="navbar-item {% if active == 'demo' %}is-active{% endif %}">Demo</a>
-						{% if is_granted('ROLE_USER') %}
+{% if is_granted('ROLE_USER') %}
 						<div class="dropdown m-top-15 m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary is-inverted" @click="showDropdown">
@@ -53,7 +52,7 @@
                 </div>
               </div>
             </div>
-						{% else %}
+{% else %}
 						<div class="dropdown m-top-15 m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary is-inverted" @click="showDropdown">
@@ -69,7 +68,7 @@
                 </div>
               </div>
             </div>
-						{% endif %}
+{% endif %}
           </div>
         </div>
       </div>
@@ -95,7 +94,6 @@
 </section>
 {% block scripts %}
 	<script src="build/front.js"></script>
-	{% block pageScripts %}{% endblock %}
 {% endblock %}
 </body>	
 </html>

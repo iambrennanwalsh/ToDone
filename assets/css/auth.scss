@@ -1,0 +1,10 @@
+/**
+* @name:          auth.scss
+* @description:   This stylesheet imports the required scss files for the front portion of the site. This file is imported from front.js.
+*/
+
+// base.scss
+@import 'base.scss';
+
+// styles.front.scss
+@import 'auth/styles.auth.scss';

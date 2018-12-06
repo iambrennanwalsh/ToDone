@@ -1,41 +1,40 @@
 # ToDo!
 Another to do list app. Elegantly made to be simple and easy to use. Sign up and start crossing off your list.
 
-## Built on
-1. Symfony 4
-2. Vue.js 2
-3. Bootstrap 4
+**Built on**:
+- Symfony 4
+- Vue.js
+- Bulma
 
+## To Do List
+- Create privacy policy and terms and conditions text.
+- Create proper form validation for contact, signup, and login.
+- Implement forgot password function.
+- Implement confirm email function.
+- Implement responsive styling.
 
-## Sections
-- Frontend
-- Authentication
-- Dashboard
-
-
-## To Do
+## Checklist
 
 ### Frontend
-[x] Home
-[ ] About
-[ ] Contact
-[ ] Privacy
-[ ] Terms and Conditions
+- [x] Home
+- [x] About
+- [x] Contact
+- [~] Privacy
+- [~] Terms and Conditions
 
 ### Authentication
-[ ] Sign In
-[ ] Log Out
-[ ] Sign Up
-[ ] Forgot Password
-[ ] Change Password
-[ ] Confirm Email
+- [~] Sign In
+- [x] Log Out
+- [~] Sign Up
+- [ ] Forgot Password
+- [ ] Change Password
+- [ ] Confirm Email
 
 ### Dashboard
-[ ] Account Settings
-[ ] Profile
-[ ] Lists
-[ ] List
-
+- [ ] Account Settings
+- [ ] Profile
+- [ ] Lists
+- [ ] List
 
 ## Assets
  

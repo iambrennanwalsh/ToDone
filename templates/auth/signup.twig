@@ -1,36 +1,136 @@
 {#
-@name:          login.twig
+@name:          signup.twig
 @description:   Base template for the entire front portion of the site.
 #}
 
-<!DOCTYPE html>
-<html lang="en">	
-<head>	
-  <title>{% block title %}ToDo!{% endblock %}</title>
-  <meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
-  <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="images/favicon.png">
-  {% block assets %}
-			<link rel="stylesheet" href="build/front.css">
-			{% block pageAssets %}{% endblock %}
-	{% endblock %}
-</head>
-<body class='auth {% block bodyClass %}{% endblock %}'>
+{% extends 'auth.twig' %}
+{% block bodyClass %}signup{% endblock %}
+{% set active = '' %}
+{% block main %}
+	<div class='columns'>
+	<div class='column is-4'>
+		<h1 class="title has-text-grey-dark">Sign Up</h1>
+		<p class='subtitle'>Welcome! We're going to be great friends!</p>
+	</div>
+	<div class='column is-7 is-offset-1'>
+
 		{{ form_start(signup, {'attr': {'id': 'signup'}}) }}
-			{{ form_widget(signup.username, {'attr': {'placeholder': 'Username', 'class': 'input' }}) }}
-			{{ form_widget(signup.email, {'attr': {'placeholder': 'Email', 'class': 'input' }}) }}
-			{{ form_widget(signup.password.first, {'attr': {'placeholder': 'Password', 'class': 'input' }}) }}
-			{{ form_widget(signup.password.second, {'attr': {'placeholder': 'Repeat Password', 'class': 'input' }}) }}
-			{{ form_widget(signup.fname, {'attr': {'placeholder': 'First Name', 'class': 'input' }}) }}
-			{{ form_widget(signup.lname, {'attr': {'placeholder': 'Last Name', 'class': 'input' }}) }}
-			{{ form_widget(signup.gender, {'attr': {'class': 'select' }}) }}
-			{{ form_widget(signup.country, {'attr': {'class': 'select' }}) }}
-			{{ form_widget(signup.submit, {'attr': {'class': 'button is-danger' }}) }}
+		<div class="field is-horizontal">
+			<div class='field-label is-normal'>
+  			<label class="label has-text-light">Username<sup>*</sup></label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(signup.username, {'attr': {'placeholder': 'Username', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>			
+		<div class="field is-horizontal">
+			<div class='field-label is-normal'>
+  			<label class="label has-text-light">Email<sup>*</sup></label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+  				<div class="control has-icons-left">
+							{{ form_widget(signup.email, {'attr': {'placeholder': 'Email', 'class': 'input' }}) }}
+    				<span class="icon is-small is-left">
+      				<i class="fa fa-envelope"></i>
+    				</span>
+  				</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class='field-label is-normal has-text-light'>
+  			<label class="label has-text-light">Password<sup>*</sup></label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(signup.password.first, {'attr': {'placeholder': 'Password', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-key"></i>
+    				</span>
+					</div>
+				</div>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(signup.password.second, {'attr': {'placeholder': 'Repeat Password', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-key"></i>
+    				</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class='field-label is-normal has-text-light'>
+  			<label class="label has-text-light">Password<sup>*</sup></label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(signup.fname, {'attr': {'placeholder': 'First Name', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-user"></i>
+    				</span>
+					</div>
+				</div>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(signup.lname, {'attr': {'placeholder': 'Last Name', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-user"></i>
+    				</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class='field-label is-normal has-text-light'>
+  			<label class="label has-text-light">Country<sup>*</sup></label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						<div class="select is-rounded">
+						{{ form_widget(signup.country, {'attr': {'class': 'select' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-globe"></i>
+    				</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class='field-label is-normal has-text-light'>
+  			<label class="label has-text-light">Gender<sup>*</sup></label>
+			</div>
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						<div class="select is-rounded">
+						{{ form_widget(signup.gender, {'attr': {'class': 'select' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-venus"></i>
+    				</span>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-pulled-right">
+  		<div class="control">
+				{{ form_widget(signup.submit, {'attr': {'class': 'button is-danger' }}) }}
+  		</div>
+		</div>
 		{{ form_end(signup) }}
-{% block scripts %}
-	<script src="build/front.js"></script>
-	{% block pageScripts %}{% endblock %}
+		</div>
+</div>
 {% endblock %}	
-</body>
-</html>

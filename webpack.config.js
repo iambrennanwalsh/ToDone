@@ -12,7 +12,8 @@ module.exports = {
 		devtool: 'eval',
 	
     entry: {
-				front: './assets/js/front.js' },
+				front: './assets/js/front.js',
+				auth: './assets/js/auth.js'},
     
 		output: {
         path: __dirname + '/public/build'},
