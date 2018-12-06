@@ -12,8 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="images/favicon.png">
   {% block assets %}
-    <link rel="stylesheet" href="build/front.css">
-		{% block pageAssets %}{% endblock %}
+			<link rel="stylesheet" href="build/front.css">
+			{% block pageAssets %}{% endblock %}
 	{% endblock %}
 </head>
 <body class='front {% block bodyClass %}{% endblock %}'>
@@ -36,20 +36,47 @@
             <a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
             <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
             <a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
-						<a href='/demo' class="navbar-item {% if active == 'demo' %}is-active{% endif %}">Demo</a>
-            <span class="navbar-item">
-              <a class="button is-primary is-inverted">
-                <span class="icon"><i class="fa fa-plus"></i></span>
-                <span>Sign In/Up</span>
-              </a>
-            </span>
+            <a href='/demo' class="navbar-item {% if active == 'demo' %}is-active{% endif %}">Demo</a>
+						{% if is_granted('ROLE_USER') %}
+						<div class="dropdown m-top-15 m-left-15 is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button is-primary is-inverted" @click="showDropdown">
+                  <span class="icon"><i class="fa fa-user"></i></span>
+                  <span>{{ app.user.username }}</span>
+                </button>
+              </div>
+              <div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
+                <div class="dropdown-content">
+                  <a href="/dashboard" class="dropdown-item">Dashboard</a>
+                  <hr class="dropdown-divider">
+                  <a href="/logout" class="dropdown-item">Logout</a>
+                </div>
+              </div>
+            </div>
+						{% else %}
+						<div class="dropdown m-top-15 m-left-15 is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button is-primary is-inverted" @click="showDropdown">
+                  <span class="icon"><i class="fa fa-plus"></i></span>
+                  <span>Sign In/Up</span>
+                </button>
+              </div>
+              <div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
+                <div class="dropdown-content">
+                  <a href="/login" class="dropdown-item">Log In</a>
+                  <hr class="dropdown-divider">
+                  <a href="/signup" class="dropdown-item">Sign Up</a>
+                </div>
+              </div>
+            </div>
+						{% endif %}
           </div>
         </div>
       </div>
     </nav>
-  </div>
+  </div>	
 	<div class="hero-body">
-    <div class="container">
+    <div id="container" class="container">
 			{% block main %}
 			{% endblock %}
     </div>
@@ -59,8 +86,8 @@
       <div class="container">
         <ul>
           <li class="is-active"><a>Made with <span class='fa fa-heart has-text-danger'></span>by Brennan Walsh</a> </li>
-          <li><a>Privacy Policy</a></li>
-          <li><a>Terms and Conditions</a></li>
+          <li><a href='/privacy'>Privacy Policy</a></li>
+          <li><a href='/terms'>Terms and Conditions</a></li>
         </ul>
       </div>
     </nav>

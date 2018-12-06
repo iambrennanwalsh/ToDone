@@ -3,7 +3,58 @@
 * @description:   This stylesheet is for any globally required scss.
 */
 
+/* Bulma Variable Modifications
+----------------------------------------------------------------------*/
+$input-hover-border-color: hsl(0, 0%, 86%);
+$input-focus-border-color: hsl(0, 0%, 86%);
+$box-padding: 1.25rem !important;
+
+
+/* Sitewide Class Additions and Modifications
+----------------------------------------------------------------------*/
+$sizing: (0,10,15,20,30,50, 100);
+$positions: ('top','left','bottom','right');
+@each $size in $sizing {
+	@each $position in $positions {
+		.m-#{$position}-#{$size} {
+			margin-#{$position}: $size + px !important;
+  	}
+  	.p-#{$position}-#{$size} {
+			padding-#{$position}: $size + px !important;}}}
+
+.h-100 {
+	height: 100%;}
+
 .fa {
 	margin-left: 10px;
-	margin-right: 10px;
+	margin-right: 10px;}
+
+.fixed {
+	position: fixed;}
+
+.dropdown {
+	
+	.dropdown-content {
+		padding-bottom: 0px;
+		padding-top: 0px;
+	
+		.dropdown-item {
+			padding-top: .7rem;
+			padding-bottom: .7rem;}
+		
+		.dropdown-item:first-child {
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;}
+		
+		.dropdown-item:last-child {
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;}
+		
+		.dropdown-divider {
+			margin: 0;}
+	}
+}
+
+.button.is-primary.is-inverted:hover {
+	background-color: #fff !important;
 }

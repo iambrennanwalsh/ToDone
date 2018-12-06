@@ -1,0 +1,36 @@
+{#
+@name:          login.twig
+@description:   Base template for the entire front portion of the site.
+#}
+
+<!DOCTYPE html>
+<html lang="en">	
+<head>	
+  <title>{% block title %}ToDo!{% endblock %}</title>
+  <meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="images/favicon.png">
+  {% block assets %}
+			<link rel="stylesheet" href="build/front.css">
+			{% block pageAssets %}{% endblock %}
+	{% endblock %}
+</head>
+<body class='auth {% block bodyClass %}{% endblock %}'>
+		{{ form_start(signup, {'attr': {'id': 'signup'}}) }}
+			{{ form_widget(signup.username, {'attr': {'placeholder': 'Username', 'class': 'input' }}) }}
+			{{ form_widget(signup.email, {'attr': {'placeholder': 'Email', 'class': 'input' }}) }}
+			{{ form_widget(signup.password.first, {'attr': {'placeholder': 'Password', 'class': 'input' }}) }}
+			{{ form_widget(signup.password.second, {'attr': {'placeholder': 'Repeat Password', 'class': 'input' }}) }}
+			{{ form_widget(signup.fname, {'attr': {'placeholder': 'First Name', 'class': 'input' }}) }}
+			{{ form_widget(signup.lname, {'attr': {'placeholder': 'Last Name', 'class': 'input' }}) }}
+			{{ form_widget(signup.gender, {'attr': {'class': 'select' }}) }}
+			{{ form_widget(signup.country, {'attr': {'class': 'select' }}) }}
+			{{ form_widget(signup.submit, {'attr': {'class': 'button is-danger' }}) }}
+		{{ form_end(signup) }}
+{% block scripts %}
+	<script src="build/front.js"></script>
+	{% block pageScripts %}{% endblock %}
+{% endblock %}	
+</body>
+</html>

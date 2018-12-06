@@ -8,8 +8,8 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-    mode: 'production',
-		devtool: 'none',
+    mode: 'development',
+		devtool: 'eval',
 	
     entry: {
 				front: './assets/js/front.js' },

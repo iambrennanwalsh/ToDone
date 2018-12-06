@@ -3,4 +3,25 @@
 * @description:   This stylesheet is for any custom scss required for the front portion of the site.
 */
 
-
+.terms, .privacy {
+	
+	#container {
+		max-height: 500px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		
+		> .blurPage {
+			height: 60px;
+			width: 65%;
+			right: 0%;}
+	
+		> .blurPage:nth-child(1) {
+			box-shadow: 0px 30px 30px rgba(0,209,178,1) inset;
+			top: 124px;}
+		
+		> .blurPage:nth-child(2) {
+			box-shadow: 0px -30px 30px rgba(0,209,178,1) inset;
+			bottom: 103px;}
+	
+	}	
+}
