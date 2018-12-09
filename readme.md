@@ -19,13 +19,13 @@ Another to do list app. Elegantly made to be simple and easy to use. Sign up and
 - [x] Home
 - [x] About
 - [x] Contact
-- [~] Privacy
-- [~] Terms and Conditions
+- [x] Privacy
+- [x] Terms and Conditions
 
 ### Authentication
-- [~] Sign In
+- [x] Sign In
 - [x] Log Out
-- [~] Sign Up
+- [x] Sign Up
 - [ ] Forgot Password
 - [ ] Change Password
 - [ ] Confirm Email
@@ -36,8 +36,15 @@ Another to do list app. Elegantly made to be simple and easy to use. Sign up and
 - [ ] Lists
 - [ ] List
 
-## Assets
- 
+## Build
+
+**Step 1**: Run NPM and Composer.
+**Step 2**: Build the assets.
+
+### Step 1: Run NPM and Composer
+
+
+### Step 2: Build the assets
  Our assets are contained within the root level /assets folder. This folder contains all of our .scss and .js files, waiting to be built into /public/build. The assets work through a simple templating system.
  
  - There are only 3 entries called for by webpack. One entry for each section. front.js, auth.js, and dash.js.

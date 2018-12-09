@@ -16,13 +16,13 @@
 	{% endblock %}
 </head>
 <body class='auth {% block bodyClass %}{% endblock %}'>
-<section class="hero is-primary is-fullheight">
+<section class="hero is-light is-fullheight">
   <div class="hero-head">
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item active">
-           	<span class='has-text-weight-bold is-size-3'>ToDo!</span>
+           	<span class='has-text-weight-bold has-text-grey-dark is-size-3'>ToDo!</span>
           </a>
           <span class="navbar-burger burger" data-target="frontNav">
             <span></span>
@@ -39,8 +39,8 @@
 						<div class="dropdown m-top-15 m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary is-inverted" @click="showDropdown">
-                  <span class="icon"><i class="fa fa-plus"></i></span>
-                  <span>Sign In/Up</span>
+                  <span class="icon"><i class="fa fa-user-plus"></i></span>
+                  <span>Login</span>
                 </button>
               </div>
               <div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
@@ -66,7 +66,7 @@
     <nav class="tabs is-boxed is-fullwidth">
       <div class="container">
         <ul>
-          <li class="is-active"><a>Made with <span class='fa fa-heart has-text-danger'></span>by Brennan Walsh</a> </li>
+          <li class="is-active"><a class='has-background-grey-dark' href='https://www.brennanwal.sh'>Made with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
           <li><a href='/privacy'>Privacy Policy</a></li>
           <li><a href='/terms'>Terms and Conditions</a></li>
         </ul>

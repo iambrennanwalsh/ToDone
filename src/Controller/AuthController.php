@@ -32,7 +32,7 @@ class AuthController extends AbstractController {
       $token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
       $this->get('security.token_storage')->setToken($token);
    		$this->get('session')->set('_security_main', serialize($token));
-    	return $this->redirectToRoute('Login');}
+    	return $this->redirectToRoute('Lists');}
             		
 		return $this->render('auth/signup.twig', ['signup' => $form->createView()]);}
 

@@ -3,11 +3,55 @@
 * @description:   This stylesheet imports all of the globally required scss files. Anything used across the entire site is imported here.
 */
 
-// base.scss
-@import 'styles.base.scss';
+@charset "utf-8";
 
-// Bulma SCSS
-@import '~bulma/bulma.sass';
+
+/* Fonts + Icons
+-----------------------------------------------*/
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
 
 // Font Awesome CSS
 @import '~font-awesome/css/font-awesome.css';
+
+
+/* Bulma + Variable Overides
+------------------------------------------------*/
+// Bulma - Initial Variables
+
+// Utilities Overides
+$primary: #EB5E28;
+$light: #EFF0EB;
+$dark: #757763;
+$grey-dark: #403d39;
+$family-primary: 'Quicksand', sans-serif; 
+
+// Forms Overides
+$input-hover-border-color: hsl(0, 0%, 86%);
+$input-focus-border-color: hsl(0, 0%, 86%);
+
+// Elements Overides
+$box-padding: 1.25rem !important;
+
+// Component Overides
+$menu-item-active-background-color: $primary;
+$menu-item-hover-background-color: $dark; 
+$menu-item-color: #bbb;
+$menu-item-hover-color: $light;
+$menu-item-active-color: $light;
+$menu-label-color: $light;
+
+// Bulma
+@import "~bulma/sass/utilities/_all";
+@import "~bulma/sass/base/_all";
+@import "~bulma/sass/elements/_all";
+@import "~bulma/sass/components/_all";
+@import "~bulma/sass/grid/_all";
+@import "~bulma/sass/layout/_all";
+
+
+/* Sitewide Custom Stylesheet
+------------------------------------------------*/
+
+// styles.base.scss
+@import 'styles.base.scss';

@@ -33,3 +33,14 @@ Signup:
 
 Logout:
     path: /logout
+
+
+# Dashboard
+
+Lists:
+    path: /dashboard
+    controller: App\Controller\DashController::lists
+
+Profile:
+    path: /dashboard/profile
+    controller: App\Controller\DashController::profile

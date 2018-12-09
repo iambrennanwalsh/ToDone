@@ -13,7 +13,8 @@ module.exports = {
 	
     entry: {
 				front: './assets/js/front.js',
-				auth: './assets/js/auth.js'},
+				auth: './assets/js/auth.js',
+				dash: './assets/js/dash.js'},
     
 		output: {
         path: __dirname + '/public/build'},

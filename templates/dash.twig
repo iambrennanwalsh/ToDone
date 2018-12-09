@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>{% block title %}ToDo!{% endblock %}</title>
+	<meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/images/favicon.png">
+	{% block assets %}
+	<link rel="stylesheet" href="/build/dash.css">
+	{% endblock %}
+</head>
+<body class='dash {% block bodyClass %}{% endblock %}'>
+	<section id='topbar'>
+		<nav class="navbar has-background-grey-dark is-fixed-top">
+			<div class='container is-fluid'>
+			<div class="navbar-brand">
+				<a class="navbar-item" href="/dashboard/">
+					<span class='has-text-weight-bold has-text-light is-size-3'>ToDo!</span>
+				</a>
+				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
+			<div class="navbar-menu">
+          <div class="navbar-end">
+						<div class="dropdown m-top-15 m-left-15 is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button is-primary" @click="showDropdown">
+                  <span class="icon"><i class="fa fa-user"></i></span>
+                  <span>{{ app.user.username }}</span>
+                </button>
+              </div>
+              <div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
+                <div class="dropdown-content">
+                  <a href="/logout" class="dropdown-item">Logout</a>
+                </div>
+              </div>
+           </div>
+			</div>
+		</div>
+		</div>
+	</nav>
+</section>
+<section id="main">
+	<div class='columns'>
+	<aside id='sidebar' class="menu p-left-30 p-top-30 p-right-20 column is-2 has-background-grey-dark h-100">
+  	<p class="menu-label">
+			Navigation
+  	</p>
+		<ul class="menu-list">
+    	<li><a href='/dashboard/' class='{% if active == "lists" %}is-active{% endif %}'>Lists</a></li>
+			<li><a href='/dashboard/profile' class='{% if active == "profile" %}is-active{% endif %}'>Profile</a></li>
+		</ul>
+		<p class="menu-label">
+    	Your Lists
+  	</p>
+  	<ul class="menu-list">
+			<li><a>To Do</a></li>
+			<li><a>Management of Team</a></li>
+    	<li><a>Invitations</a></li>
+    	<li><a>Cloud Storage Environment Settings</a></li>
+			<li><a>Authentication</a></li>
+  	</ul>
+</aside>
+	<div class='column is-10 has-background-light'>
+	{% block main %}
+	{% endblock %}
+	</div>
+	</div>
+</section>
+{% block scripts %}
+<script src="/build/dash.js"></script>
+{% endblock %}
+</body>
+</html>
