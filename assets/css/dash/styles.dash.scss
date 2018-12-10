@@ -53,3 +53,8 @@
 		}
 	}
 }
+#list > li > .taskdelete {
+	visibility: hidden;
+}
+#list > li:hover > .taskdelete {
+	visibility: visible;}

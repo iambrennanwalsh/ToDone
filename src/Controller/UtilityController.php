@@ -25,11 +25,27 @@ class UtilityController extends AbstractController {
 	
 	public function deleteList(Request $request) {
 		$data = json_decode($request->getContent(), true);
-		dump($data['id']);
 		$user = $this->getUser();
 		$list = $this->getDoctrine()->getRepository(Lists::class)->find($data['id']);
 		$entityManager = $this->getDoctrine()->getManager();
     $entityManager->remove($list);
+    $entityManager->flush();
+		return new JsonResponse($_REQUEST);
+	}
+	
+	public function addTask(Request $request) {
+		$task = $request->request->get('newtask');
+		$id = $request->request->get('id');
+		$modified = $request->request->get('modified');
+		dump($task);
+		dump($id);
+		dump($modified);
+		$list = $this->getDoctrine()->getRepository(Lists::class)->find($id);
+		$currentTasks = $list->getTasks();
+		$tasks = $currentTasks . ',' . $task;
+		$list->setTasks($tasks);
+		$entityManager = $this->getDoctrine()->getManager();
+    $entityManager->persist($list);
     $entityManager->flush();
 		return new JsonResponse($_REQUEST);
 	}

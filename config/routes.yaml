@@ -1,4 +1,5 @@
-# Frontend
+#   Frontend
+# ----------------------------------#
 
 Home:
     path: /
@@ -21,7 +22,8 @@ Privacy:
     controller: App\Controller\FrontController::privacy
 
 
-# Authentication
+#   Authentication
+# ----------------------------------#
 
 Login:
     path: /login
@@ -35,18 +37,24 @@ Logout:
     path: /logout
 
 
-# Dashboard
+#   Dashboard
+# ----------------------------------#
 
 Lists:
     path: /dashboard
     controller: App\Controller\DashController::lists
+
+List:
+    path: list/{slug}
+    controller: App\Controller\DashController::list
 
 Profile:
     path: /dashboard/profile
     controller: App\Controller\DashController::profile
 
 
-# Utilities
+#   Utilities
+# ----------------------------------#
 
 AddList: 
     path: /addlist
@@ -55,3 +63,7 @@ AddList:
 DeleteList: 
     path: /deletelist
     controller: App\Controller\UtilityController::deleteList
+
+AddTask:
+    path: /addtask
+    controller: App\Controller\UtilityController::addTask

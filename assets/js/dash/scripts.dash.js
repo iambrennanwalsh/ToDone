@@ -60,7 +60,7 @@ if (document.querySelector('body.lists') !== null) {
     			var xhr = new XMLHttpRequest();
 					xhr.addEventListener("load", event => {
 						var json = JSON.parse(event.target.responseText);
-						var response = '<div class="list column box is-6"><p class="is-size-3"><strong>' + json.title + '</strong></p><p class="m-bottom-10 has-text-dark">' + json.message + '</p><p class="m-bottom-10"><span class="tag is-info m-right-10">9/10  Completed</span><span class="tag is-dark">Created: ' + json.created + '</span></p><progress class="progress is-primary" value="90" max="100">90%</progress></div>';
+						var response = '<div class="list column box is-6"><p class="is-size-3">' + json.title + '</p><p class="m-bottom-10 has-text-dark">' + json.message + '</p><p class="m-bottom-10"><span class="tag is-info m-right-10">9/10  Completed</span><span class="tag is-dark">Created: ' + json.created + '</span></p><progress class="progress is-primary" value="90" max="100">90%</progress></div>';
         		var li = '<li><a>' + json.title + '</a></li>';
 						var newel = document.createElement("div");
 						var newli = document.createElement("div");
@@ -88,5 +88,39 @@ if (document.querySelector('body.lists') !== null) {
 			
 	}
 });
-	
 }
+	
+	if (document.querySelector('body.list') !== null) {
+	
+	var list = new Vue({
+		el: "#root",
+		data: {
+			
+		},
+		methods: {
+			addTask: function(event) {
+				var form = document.getElementById('addtask');
+				var data = new FormData(form);
+				var url = window.location.pathname.split("/").pop()
+				var modified = new Date();
+				var dd = modified.getDate();
+				var mm = modified.getMonth()+1;
+				var yyyy = modified.getFullYear();
+				if(dd<10) {dd = '0'+dd;} 
+				if(mm<10) {mm = '0'+mm;} 
+				modified = mm + '/' + dd + '/' + yyyy;
+				data.set('modified', modified);
+				data.set('id', url);
+    		var xhr = new XMLHttpRequest();
+				xhr.addEventListener("load", event => {
+					var task = document.getElementById('newtask').value;
+					var response = "<li class='has-text-dark'><span deleteTask class='taskdelete delete'></span> " + task + "</li>";
+					var newtask = document.createElement("li");
+					document.getElementById('list').appendChild(newtask);
+					newtask.outerHTML = response;
+					document.getElementById('newtask').value = "";});
+				xhr.open("POST", "https://bizplan.local/addtask");
+				xhr.send(data);}
+		}
+	});
+}								 

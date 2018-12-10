@@ -3,7 +3,7 @@
 /var/
 /vendor/
 /node_modules/
-/composer.lock
-/package.lock
+/composer.json
+/package.json
 /phpunit.xml.dist
 /.brackets.json

@@ -31,15 +31,22 @@ Another to do list app. Elegantly made to be simple and easy to use. Sign up and
 - [ ] Confirm Email
 
 ### Dashboard
-- [ ] Account Settings
 - [ ] Profile
-- [ ] Lists
+- [x] Lists
 - [ ] List
+
+### Functions
+- [ ] Form Validation.
+- [ ] Oauth2(Facebook, Google, Twitter, Github, etc login).
 
 ## Build
 
-**Step 1**: Run NPM and Composer.
-**Step 2**: Build the assets.
+**Step 1**: Download this repository or git clone it. 
+**Step 2**: Open your command line and run 'cd' into the project. 
+**Step 3**: Run 'composer install' to download the PHP dependencies.
+**Step 4**: Run 'npm install' to download the node_modules black hole (front end dependencies).
+**Step 5**: Now run npm start to compile all of the assets into public/build.
+**Step 6**: Start a server, and your good to go.
 
 ### Step 1: Run NPM and Composer
 

@@ -1,0 +1,38 @@
+{#
+@name:          lists.twig
+@description:   Template for the overview page.
+#}
+
+{% extends 'dash.twig' %}
+{% block bodyClass %}list{% endblock %}
+{% set active = list.id %}
+{% block main %}
+	<div class='columns'>
+		<div class='column'>
+			<h1 class='title'>{{list.name}}</h1>
+			<p class='subtitle has-text-dark'>{{list.description}}</p>
+		</div>
+	</div>
+	<div class='columns'>
+		<ul id="list" class='column'>
+		{% set tasks = list.tasks|split(',') %}
+		{% for task in tasks %}
+			<li class='has-text-dark'><span class='taskdelete delete'></span> {{task}}</li>
+		{% endfor %}
+			</ul>
+	</div>
+	<div class='columns'>
+			<form id="addtask" v-on:submit.prevent="addTask" method='post' class="column">
+				<div class="field has-addons">
+					<div class="control">
+    				<input id="newtask" class="input" name="newtask" type="text" placeholder="Go to grocery store..">
+					</div>
+					<div class="control">
+						<button type='submit' class="button is-info">
+							Add Task to List
+						</button>
+					</div>
+				</div>
+			</form>
+	</div>	
+{% endblock %}

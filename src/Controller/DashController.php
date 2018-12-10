@@ -16,6 +16,16 @@ class DashController extends AbstractController {
 		$lists = $user->getLists();
 		return $this->render('dash/lists.twig', ['lists' => $lists]);}
 	
+	public function list($slug) {
+		
+		if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+    	return $this->redirectToRoute('Home');}
+		
+		$list = $this->getDoctrine()->getRepository(Lists::class)->find($slug);
+		
+		$this->denyAccessUnlessGranted('view', $list);
+		return $this->render('dash/list.twig', ['list' => $list]);}
+	
 	public function profile() {
 		if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
     	return $this->redirectToRoute('Home');}

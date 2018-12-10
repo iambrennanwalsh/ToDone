@@ -56,11 +56,11 @@
 			<li><a href='/dashboard/profile' class='{% if active == "profile" %}is-active{% endif %}'>Profile</a></li>
 		</ul>
 		<p class="menu-label">
-    	<a v-on:click='renderModal' data-render='add' class='hoverable has-text-primary is-pulled-left'><span class='fa fa-plus m-left-0 m-right-0'></span> New List</a> Your Lists
+    	<a data-render='add' class='hoverable has-text-primary is-pulled-left'><span class='fa fa-plus m-left-0 m-right-0'></span> New List</a> Your Lists
   	</p>
   	<ul id='sidelists' class="menu-list">
 			{% for list in app.user.lists %}
-			<li data-listid="{{ list.id }}"><a>{{ list.name }}</a></li>
+			<li data-listid="{{ list.id }}"><a href='/list/{{ list.id }}' class='{% if active == list.id %}is-active{% endif %}'>{{ list.name }}</a></li>
 			{% endfor %}
   	</ul>
 </aside>
