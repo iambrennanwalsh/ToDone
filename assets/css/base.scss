@@ -21,6 +21,7 @@
 
 // Utilities Overides
 $primary: #EB5E28;
+$info: #503d39;
 $light: #EFF0EB;
 $dark: #757763;
 $grey-dark: #403d39;
@@ -31,7 +32,7 @@ $input-hover-border-color: hsl(0, 0%, 86%);
 $input-focus-border-color: hsl(0, 0%, 86%);
 
 // Elements Overides
-$box-padding: 1.25rem !important;
+$box-padding: 1rem !important;
 
 // Component Overides
 $menu-item-active-background-color: $primary;

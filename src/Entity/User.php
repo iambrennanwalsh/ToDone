@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -57,6 +59,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $gender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Lists", mappedBy="userid")
+     */
+    private $lists;
+
+    public function __construct()
+    {
+        $this->lists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -187,6 +199,37 @@ class User implements UserInterface
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Lists[]
+     */
+    public function getLists(): Collection
+    {
+        return $this->lists;
+    }
+
+    public function addList(Lists $list): self
+    {
+        if (!$this->lists->contains($list)) {
+            $this->lists[] = $list;
+            $list->setUserid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeList(Lists $list): self
+    {
+        if ($this->lists->contains($list)) {
+            $this->lists->removeElement($list);
+            // set the owning side to null (unless already changed)
+            if ($list->getUserid() === $this) {
+                $list->setUserid(null);
+            }
+        }
 
         return $this;
     }

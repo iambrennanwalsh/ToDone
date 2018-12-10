@@ -8,7 +8,8 @@
 	height: 65px;
 	
 	.navbar{
-	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);}
+	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	background-color: #503d39;}
 	
 }
 
@@ -16,4 +17,39 @@
 	
 	box-shadow: -3px 0px 3px rgba(0,0,0,0.2) inset;
 	
+	.hoverable {
+		visibility: hidden;
+		transition: all 0s .2s ease-in;
+	}
+	
+	&:hover .hoverable {
+		visibility: visible;
+		transition: all 0s .2s ease-in;
+	}
+	
+}
+
+
+.main {
+	
+	background-image: linear-gradient(141deg, #dedeca 0%, #EFF0EB 71%, #fafbf9 100%);
+	
+}
+
+#lists {
+
+	flex-wrap: wrap;
+	
+	.list {
+		margin-bottom: 0px !important;
+		margin-top: 20px !important;
+		border-left: 2px solid #503d39;
+		background: whitesmoke !important;
+		height: 100%;
+		width: 49%;
+	
+		&:nth-child(even) {
+			margin-left: 20px;
+		}
+	}
 }

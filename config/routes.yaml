@@ -44,3 +44,14 @@ Lists:
 Profile:
     path: /dashboard/profile
     controller: App\Controller\DashController::profile
+
+
+# Utilities
+
+AddList: 
+    path: /addlist
+    controller: App\Controller\UtilityController::addList
+
+DeleteList: 
+    path: /deletelist
+    controller: App\Controller\UtilityController::deleteList

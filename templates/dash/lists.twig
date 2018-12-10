@@ -7,4 +7,53 @@
 {% block bodyClass %}lists{% endblock %}
 {% set active = 'lists' %}
 {% block main %}
+	<div class='columns'>
+		<div class='column'>
+			<button v-on:click='renderModal' data-render='add' class='button is-primary is-inverted is-pulled-right'><span class='fa fa-plus m-left-0'></span>New List</button>
+			<h1 class='title'>Lists</h1>
+		</div>
+	</div>
+	<div id="lists" class='columns'>
+		{% for list in lists %}
+			<div class="list column box is-6" data-listid='{{list.id}}'>
+				<button v-on:click='renderModal' data-render='delete' class="delete is-pulled-right"></button>
+				<p class="is-size-3"><strong>{{list.name}}</strong></p>
+				<p class="m-bottom-10 has-text-dark">{{list.description}}</p>
+				<p class="m-bottom-10"><span class="tag is-info m-right-10">0/10  Completed</span><span class="tag is-dark">Created: {{ list.created|date("m/d/Y") }}</span></p>
+				<progress class="progress is-primary" value="0" max="100">90%</progress>
+			</div>
+			{% endfor %}
+		</div>
+{% endblock %}
+
+{% set content %}
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label has-text-dark">List Title</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" name='title' placeholder="e.g. Meeting Times..">
+      </div>
+		</div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label has-text-dark">List Description</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" name='message' placeholder="What's this list all about?"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+{% endset %}
+
+{% block footer %}
+	{{ include('utilities/modal.twig') }}
 {% endblock %}

@@ -13,7 +13,7 @@
 </head>
 <body class='dash {% block bodyClass %}{% endblock %}'>
 	<section id='topbar'>
-		<nav class="navbar has-background-grey-dark is-fixed-top">
+		<nav class="navbar is-fixed-top">
 			<div class='container is-fluid'>
 			<div class="navbar-brand">
 				<a class="navbar-item" href="/dashboard/">
@@ -45,9 +45,9 @@
 		</div>
 	</nav>
 </section>
-<section id="main">
-	<div class='columns'>
-	<aside id='sidebar' class="menu p-left-30 p-top-30 p-right-20 column is-2 has-background-grey-dark h-100">
+<section id='root' id="main">
+	<div class='columns m-bottom-0'>
+	<aside id='sidebar' class="menu p-left-30 p-right-20 column is-2 has-background-grey-dark h-100">
   	<p class="menu-label">
 			Navigation
   	</p>
@@ -56,20 +56,22 @@
 			<li><a href='/dashboard/profile' class='{% if active == "profile" %}is-active{% endif %}'>Profile</a></li>
 		</ul>
 		<p class="menu-label">
-    	Your Lists
+    	<a v-on:click='renderModal' data-render='add' class='hoverable has-text-primary is-pulled-left'><span class='fa fa-plus m-left-0 m-right-0'></span> New List</a> Your Lists
   	</p>
-  	<ul class="menu-list">
-			<li><a>To Do</a></li>
-			<li><a>Management of Team</a></li>
-    	<li><a>Invitations</a></li>
-    	<li><a>Cloud Storage Environment Settings</a></li>
-			<li><a>Authentication</a></li>
+  	<ul id='sidelists' class="menu-list">
+			{% for list in app.user.lists %}
+			<li data-listid="{{ list.id }}"><a>{{ list.name }}</a></li>
+			{% endfor %}
   	</ul>
 </aside>
-	<div class='column is-10 has-background-light'>
+<div class='main column is-10 main column is-10 p-top-50 p-left-50 p-right-50'>
 	{% block main %}
 	{% endblock %}
+</div>
 	</div>
+	<div id="footer">
+		{% block footer %}
+		{% endblock %}
 	</div>
 </section>
 {% block scripts %}
