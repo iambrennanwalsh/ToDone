@@ -3,7 +3,7 @@
 * @description:   This stylesheet is for any globally required scss.
 */
 
-/* Sitewide Class Additions and Modifications
+/* Sitewide Class Additions
 ----------------------------------------------------------------------*/
 $sizing: (0,10,15,20,30,50, 100);
 $positions: ('top','left','bottom','right');
@@ -15,8 +15,15 @@ $positions: ('top','left','bottom','right');
   	.p-#{$position}-#{$size} {
 			padding-#{$position}: $size + px !important;}}}
 
+m-x-auto {
+	margin-left: auto;
+	margin-right: auto;}
+
 .h-100 {
 	height: 100vh;}
+
+.w-100 {
+	width: 100%;}
 
 .fa {
 	margin-left: 10px;
@@ -24,6 +31,16 @@ $positions: ('top','left','bottom','right');
 
 .fixed {
 	position: fixed;}
+
+.absolute {
+	position: absolute;}
+
+.relative {
+	position: relative;}
+
+
+/* Sitewide Style Modifications
+----------------------------------------------------------------------*/
 
 .dropdown {
 	
@@ -48,30 +65,8 @@ $positions: ('top','left','bottom','right');
 	}
 }
 
-.button.is-primary.is-inverted:hover {
-	background-color: #fff !important;}
-
-.menu {
-	.menu-label {
-		text-align: right;
-		padding-bottom: 5px;
-		border-bottom: 1px solid #757763;
-		margin-top: 30px;}
-	
-	li > a {
-		margin-top: 10px;}}
-
 .button {
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.13);}
 
-.hero {
-	.hero-body {
-		a {
-			color: #eb5e28 !important;
-		}
-	}
-}
-
 .input::placeholder, .textarea::placeholder {
-	 color: rgba(54, 54, 54, 1);
-}
+	 color: rgba(54, 54, 54, 1);}

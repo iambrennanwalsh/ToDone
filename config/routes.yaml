@@ -56,6 +56,10 @@ Profile:
 #   Utilities
 # ----------------------------------#
 
+ContactForm:
+    path: /contactform
+    controller: App\Controller\UtilityController::contactForm
+
 AddList: 
     path: /addlist
     controller: App\Controller\UtilityController::addList

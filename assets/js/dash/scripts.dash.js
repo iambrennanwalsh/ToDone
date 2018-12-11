@@ -95,9 +95,18 @@ if (document.querySelector('body.lists') !== null) {
 	var list = new Vue({
 		el: "#root",
 		data: {
-			
 		},
 		methods: {
+			checkit: function(event) {
+				if (event.target.firstChild.classList.contains('fa-check')) {
+					event.target.firstChild.classList.remove('fa-check');
+					event.target.firstChild.nextElementSibling.style.textDecoration = 'unset';
+					event.target.parentElement.style.background = 'unset';}
+				else {
+					event.target.firstChild.classList.add('fa-check');
+					event.target.firstChild.nextElementSibling.style.textDecoration = 'line-through';
+					event.target.parentElement.style.background = '#e0fae0';}
+			},
 			addTask: function(event) {
 				var form = document.getElementById('addtask');
 				var data = new FormData(form);
@@ -114,9 +123,10 @@ if (document.querySelector('body.lists') !== null) {
     		var xhr = new XMLHttpRequest();
 				xhr.addEventListener("load", event => {
 					var task = document.getElementById('newtask').value;
-					var response = "<li class='has-text-dark'><span deleteTask class='taskdelete delete'></span> " + task + "</li>";
+					var response = '<li class="has-text-dark"><label v-on:click="checkit"><span class="check fa m-left-0"></span><span class="taskname m-left-50">' + task + '</span><span class="delete is-pulled-right"></span></label></li>';
 					var newtask = document.createElement("li");
-					document.getElementById('list').appendChild(newtask);
+					var form = document.getElementById('addtask');
+					document.getElementById('list').insertBefore(newtask, form);
 					newtask.outerHTML = response;
 					document.getElementById('newtask').value = "";});
 				xhr.open("POST", "https://bizplan.local/addtask");

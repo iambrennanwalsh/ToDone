@@ -1,16 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const resolve = relativePath => path.resolve(__dirname, '..', relativePath);
-
 const WebpackNotifierPlugin = require('webpack-notifier');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-    mode: 'development',
-		devtool: 'eval',
-	
     entry: {
 				front: './assets/js/front.js',
 				auth: './assets/js/auth.js',
@@ -27,8 +23,8 @@ module.exports = {
                 options: {
                   loaders: {
                     css: ['vue-style-loader', {loader: 'css-loader'}],
-                    js: ['babel-loader']},
-                  cacheBusting: true}},
+                    js: ['babel-loader']}
+								}},
             {
                 test: /\.js$/,
                 loader: 'babel-loader',

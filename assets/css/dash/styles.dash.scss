@@ -9,24 +9,31 @@
 	
 	.navbar{
 	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	background-color: #503d39;}
-	
-}
+	background-color: #503d39;}}
 
 #sidebar {
 	
 	box-shadow: -3px 0px 3px rgba(0,0,0,0.2) inset;
+	position: fixed;
+	left: 0;
+	padding-left: 15px;
+		
+		.menu-label {
+			text-align: right;
+			padding-bottom: 5px;
+			border-bottom: 1px solid #757763;
+			margin-top: 30px;}
 	
-	.hoverable {
-		visibility: hidden;
-		transition: all 0s .2s ease-in;
-	}
+		li > a {
+			margin-top: 10px;}
 	
-	&:hover .hoverable {
-		visibility: visible;
-		transition: all 0s .2s ease-in;
-	}
-	
+		.hoverable {
+			visibility: hidden;
+			transition: all 0s .2s ease-in;}
+		
+		&:hover .hoverable {
+			visibility: visible;
+			transition: all 0s .2s ease-in;}
 }
 
 
@@ -34,9 +41,7 @@
 	
 	background-image: linear-gradient(141deg, #dedeca 0%, #EFF0EB 71%, #fafbf9 100%);
 	
-}
-
-#lists {
+	#lists {
 
 	flex-wrap: wrap;
 	
@@ -49,12 +54,73 @@
 		width: 49%;
 	
 		&:nth-child(even) {
-			margin-left: 20px;
+			margin-left: 20px;}}}
+
+	#list {
+		
+		border: 1px solid #bbb !important;
+		padding: 0;
+		background: #eee;
+		border-radius: 3px;
+		box-shadow: 0px 0px 3px rgba(0,0,0,0.13);
+		border: 3px solid #ddd !important;
+		cursor: pointer;
+		
+		li {
+			border-bottom: 1px solid #ddd;
+			padding-left: 17px !important;
+			
+			&:hover {
+				background: #e7e7e7;}
+		
+			label {
+				display: block;
+				padding: 10px 10px 10px 0px !important;
+			
+				.taskname {
+					pointer-events: none;}
+				
+				.delete {
+					opacity: 0;
+					margin-top:2px;}
+			
+				&:hover .delete {
+					opacity: 1;
+					transition: all .2s 0s ease;}
+				
+				.check {
+					background: #fff;
+					height: 25px;
+					width: 25px;
+					border: 1px solid #ddd;
+					box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1) inset;
+					font-size: .95em;
+					color: #fff;
+					position: absolute;
+					border-radius: 5px;
+					pointer-events: none;
+					
+					&.fa-check {
+						background: lightgreen;
+					}
+				
+					&::before {
+						position: relative;
+						top: 4px;
+						left: 4px;}
+				}
+			}
+			
+		}
+		
+		form {
+			
+			input {
+				border-bottom-left-radius: 3px;}
+			
+			button {
+				border-top-right-radius: 0px;}
+			
 		}
 	}
 }
-#list > li > .taskdelete {
-	visibility: hidden;
-}
-#list > li:hover > .taskdelete {
-	visibility: visible;}

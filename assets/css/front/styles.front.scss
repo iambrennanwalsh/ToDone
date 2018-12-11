@@ -3,9 +3,13 @@
 * @description:   This stylesheet is for any custom scss required for the front portion of the site.
 */
 
+.button {
+	&.is-primary.is-inverted:hover {
+	background-color: #fff !important;}}
+
 .terms, .privacy {
 	
-	#container {
+	#root {
 		max-height: 500px;
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -22,6 +26,32 @@
 		> .blurPage:nth-child(2) {
 			box-shadow: 0px -30px 30px rgba(0,209,178,1) inset;
 			bottom: 103px;}
-	
 	}	
 }
+
+.hero {
+	.hero-body {
+		a {
+			color: #eb5e28 !important;}}
+}
+
+.input.is-primary, textarea.is-primary {
+	background: #f7c4b0;
+	border: unset;
+	
+	+ .icon {
+		color: rgba(54, 54, 54, 0.3);
+	}
+}
+
+.formsent {
+	width: 250px;
+	padding: 5px;
+	margin-right: 147px;
+	opacity: 0;
+	transition: opacity .2s ease;
+	text-align: center;
+
+	&.show {
+		opacity: 1;
+	}}

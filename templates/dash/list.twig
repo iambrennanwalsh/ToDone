@@ -8,31 +8,35 @@
 {% set active = list.id %}
 {% block main %}
 	<div class='columns'>
-		<div class='column'>
+		<div class='column m-top-20'>
 			<h1 class='title'>{{list.name}}</h1>
 			<p class='subtitle has-text-dark'>{{list.description}}</p>
 		</div>
 	</div>
 	<div class='columns'>
-		<ul id="list" class='column'>
+		<ul id="list" class='column is-6 m-top-20'>
 		{% set tasks = list.tasks|split(',') %}
 		{% for task in tasks %}
-			<li class='has-text-dark'><span class='taskdelete delete'></span> {{task}}</li>
+			<li class='has-text-dark'>
+				<label v-on:click="checkit">
+					<span class="check fa m-left-0"></span>
+					<span class="taskname m-left-50">{{task}}</span>
+					<span class='delete is-pulled-right'></span>
+				</label>
+			</li>
 		{% endfor %}
-			</ul>
-	</div>
-	<div class='columns'>
 			<form id="addtask" v-on:submit.prevent="addTask" method='post' class="column">
 				<div class="field has-addons">
-					<div class="control">
+					<div class="control w-100">
     				<input id="newtask" class="input" name="newtask" type="text" placeholder="Go to grocery store..">
 					</div>
 					<div class="control">
 						<button type='submit' class="button is-info">
-							Add Task to List
+							<span class='fa fa-plus'></span>
 						</button>
 					</div>
 				</div>
 			</form>
-	</div>	
+			</ul>
+	</div>
 {% endblock %}

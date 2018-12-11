@@ -14,63 +14,7 @@
 		<p>Alternatively, you may email me directly at <a href='mailto:mail@brennanwal.sh'>mail@brennanwal.sh</a>.</p>
 	</div>
 	<div class='column is-7 is-offset-1'>
-	{{ form_start(contact, {'attr': {'id': 'form'}}) }}
-		<div class="field is-horizontal">
-			<div class='field-label is-normal'>
-  			<label class="label has-text-light">From<sup>*</sup></label>
-			</div>
-			<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
-						{{ form_widget(contact.fname, {'attr': {'placeholder': 'Full Name', 'v-model': 'fname', 'v-on:blur': 'missingName', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-				</div>
-				<div class="field">
-					<div class="control has-icons-left">
-						{{ form_widget(contact.email, {'attr': {'placeholder': 'Email', 'v-model': 'email', 'v-on:blur': 'missingEmail', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-							<i class="fa fa-envelope"></i>
-    				</span>
-					</div>
-				</div>
-			</div>
-		</div>			
-		<div class="field is-horizontal">
-			<div class='field-label is-normal'>
-  			<label class="label has-text-light">Subject<sup>*</sup></label>
-			</div>
-			<div class='field-body'>
-				<div class='field'>
-  				<div class="control has-icons-left">
-						{{ form_widget(contact.subject, {'attr': {'placeholder': 'Subject', 'v-model': 'subject', 'v-on:blur': 'missingSubject', 'class': 'input' }}) }}	
-    				<span class="icon is-small is-left">
-      				<i class="fa fa-chevron-right"></i>
-    				</span>
-  				</div>
-				</div>
-			</div>
-		</div>
-		<div class="field is-horizontal">
-			<div class='field-label is-normal has-text-light'>
-  			<label class="label has-text-light">Message<sup>*</sup></label>
-			</div>
-			<div class='field-body'>
-				<div class='field'>
-					<div class="control">
-						{{ form_widget(contact.message, {'attr': {'placeholder': 'Message', 'v-model': 'message', 'v-on:blur': 'missingMessage', 'class': 'textarea' }}) }}	
-  				</div>
-				</div>
-			</div>
-		</div>
-		<div class="field is-pulled-right">
-  		<div class="control">
-				{{ form_widget(contact.submit, {'attr': {'value': 'submit', 'v-on:click': 'validateForm', 'class': 'button is-primary' }}) }}	
-  		</div>
-		</div>
-	{{ form_end(contact) }}
+	<contact></contact>
 	</div>
 </div>
 {% endblock %}

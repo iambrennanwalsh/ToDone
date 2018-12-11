@@ -50,5 +50,15 @@ class UtilityController extends AbstractController {
 		return new JsonResponse($_REQUEST);
 	}
 
-
+	public function contactForm(Request $request, \Swift_Mailer $mailer) {
+		
+		$message = (new \Swift_Message('Hello Email'))
+				->setSubject($request->request->get('subject'))
+				->setFrom($request->request->get('email'))
+				->setTo('videncrypt@gmail.com')
+				->setBody($request->request->get('message'), 'text/html');
+			$mailer->send($message);
+		
+		return new JsonResponse($_REQUEST);
+	}
 }
