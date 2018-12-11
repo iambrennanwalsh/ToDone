@@ -47,7 +47,6 @@ class Lists
      */
     private $tasks;
 
-
     public function getId(): ?int
     {
         return $this->id;

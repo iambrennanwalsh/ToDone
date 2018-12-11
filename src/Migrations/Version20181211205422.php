@@ -8,14 +8,14 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20181206115155 extends AbstractMigration
+final class Version20181211205422 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user ADD email VARCHAR(255) NOT NULL, ADD fname VARCHAR(255) NOT NULL, ADD lname VARCHAR(255) NOT NULL, ADD country VARCHAR(255) NOT NULL, ADD gender VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE lists DROP ghh');
     }
 
     public function down(Schema $schema) : void
@@ -23,6 +23,6 @@ final class Version20181206115155 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user DROP email, DROP fname, DROP lname, DROP country, DROP gender');
+        $this->addSql('ALTER TABLE lists ADD ghh VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci');
     }
 }

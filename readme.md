@@ -1,105 +1,145 @@
 # ToDo!
-Another to do list app. Elegantly made to be simple and easy to use. Sign up and start crossing off your list.
+Just another to do list app.
 
-**Built on**:
-- Symfony 4
-- Vue.js
-- Bulma
+## About
+ToDo! Is a learning experience. I wanted to build a complex web application all by myself to stimulate and grow my coding abilites in PHP and JavaScript.
 
-## To Do List
-- Create privacy policy and terms and conditions text.
-- Create proper form validation for contact, signup, and login.
-- Implement forgot password function.
-- Implement confirm email function.
-- Implement responsive styling.
+----
+
+What ToDo! does is provide users with simple lists, where they can check off tasks. It's a strong boilerplate for future expansion, and ideas.
+
+ToDo utilizes the following technologies..
+
+**Symfony 4**: Server Side PHP Framework
+**Vue.js**: Client Side JavaScript Framework
+**Bulma**: CSS Framework
+**Webpack**: Build Tool
+**Sass**: CSS Preprocessing
+**NPM**: Frontend Dependencies
+**Composer**: Server Side Dependencies
+**Twig**: Templating
+
+
+## Sections
+ToDo! Is split into multiple 'sections' simply for better code and idea organization. There are 4 sections. Frontend, Authentication, Dashboard, and Utility. Lets break them down.
+
+----
+
+**1. Frontend**:
+- The public facing section of the site. IE the home, about us, and contact routes, are the main entry points of the frontend section.
+
+**2. Authentication**:
+- The authentication section of ToDo! handles all of the user authenticating. That is the signing in, signing up, and signing out of our users. 
+
+**3. Dashboard**:
+- The dashboard is the meat of the app. It contains each users lists, and their profile information.
+
+**4. Utility**:
+- The utility section isn't so much a section. What it really is, is a collection of methods. Methods mainly for the server side handling of the apps ajax requests.
+
+
+## Assets
+Here I cover the proper development procedure for our assets. 
+
+--------
+
+ToDo! uses webpack to compile all of our assets and dependencies into bundled files. Webpack builds one bundled css and js file,  per site section(front, auth, dash). It takes 3 entry points (within /assets/js)..
+
+- front.js 
+- auth.js
+- dash.js
+
+Each of these files will  look like the following..
+
+require('../css/front.scss'); 
+require('./base.js');
+require('../vue/front.vue');
+require('./front/scripts.front.js');
+
+Starting from the 1st line..
+
+**1. require('../css/front.scss');**
+- This is the equivelant SCSS file within the /assets/css folder. This Scss file then imports all of it's own scss dependencies following the same logic as the javascript side does. 
+
+**2. require('./base.js');**
+- Base.js contains all of the sitewide javascript dependencies. Any js that is implemented across all sections should go in here. 
+
+**3. require('../vue/front.vue');**
+- This is the equivelant .vue file within the /assets/vue folder. This .vue file then imports all of it's own dependencies following the same logic as the javascript side does. 
+
+**4. require('./front/scripts.front.js');**
+- script.front.js is where you would put all of your js that is specific to the front end of the site. It is only loaded in front.js. Auth.js loads in scripts.auth.js.
+
+To run webpack and bundle our assets open your command line and cd into the root. Then run the following command.
+
+**npm run webpack**
+
+That will  compile the files. You'll find these bundled files within the /public/build folder. This is within the web root and so accessible via the browser, unlike /assets.
+
+
+## Deployment
+An overview of the proper deployment guidelines.
+
+---
+
+We run ToDo! on **Heroku**. Heroku makes the deployment process a breeze.  Before I explain,  you have to first understand the diffrrent enviroments ToDo! exists in..
+
+**Development**
+- This is where I build the app. The local enviroment. My mac. 
+
+**Staging**
+- The staging enviroment is for testing how the app performs on a  production server. The staging and production enviroments are nearly identical. So It allows us to test how the production app will perform before we deploy it to production. 
+
+**Production**
+- The live, published enviroment. We deploy to  production once we've tested the staging  enviroment thoroughly.
+
+So heres how the deployment process works..
+
+### Github + Heroku
+
+Our apps git repository is made up of 3 main branches. Development, Staging, and Primary. The development branch is pretty much always checked out. 
+
+Once our development enviroment is ready for staging. We stage and commit all new file changes, and run **git push origin staging**. 
+
+This will update the staging branch on github. Heres where it gets cool..
+
+Heroku is watching both the staging and production branches, When it detects a new commit, it automatically pulls the repository the changed enviroment. 
+
+So basically deploying is as easy as running **git push origin production**. Or as easy as clicking a button in GitKraken.
+
+
+
+## Templating
+Not written yet..
+
+---
+
+
+## Routing
+Not written yet..
+
+---
+
 
 ## Checklist
+A simple overview of my progress in building the app. 
+
+---
 
 ### Frontend
 - [x] Home
 - [x] About
 - [x] Contact
-- [x] Privacy
-- [x] Terms and Conditions
+- [ ] Privacy
+- [ ] Terms and Conditions
 
 ### Authentication
-- [x] Sign In
-- [x] Log Out
-- [x] Sign Up
+- [ ] Sign In
+- [ ] Log Out
+- [ ] Sign Up
 - [ ] Forgot Password
-- [ ] Change Password
-- [ ] Confirm Email
 
 ### Dashboard
 - [ ] Profile
-- [x] Lists
+- [ ] Lists
 - [ ] List
-
-### Functions
-- [ ] Form Validation.
-- [ ] Oauth2(Facebook, Google, Twitter, Github, etc login).
-
-## Build
-
-**Step 1**: Download this repository or git clone it. 
-**Step 2**: Open your command line and run 'cd' into the project. 
-**Step 3**: Run 'composer install' to download the PHP dependencies.
-**Step 4**: Run 'npm install' to download the node_modules black hole (front end dependencies).
-**Step 5**: Now run npm start to compile all of the assets into public/build.
-**Step 6**: Start a server, and your good to go.
-
-### Step 1: Run NPM and Composer
-
-
-### Step 2: Build the assets
- Our assets are contained within the root level /assets folder. This folder contains all of our .scss and .js files, waiting to be built into /public/build. The assets work through a simple templating system.
- 
- - There are only 3 entries called for by webpack. One entry for each section. front.js, auth.js, and dash.js.
- - These javascript files will require every dependency required for its section of the site. IE: front.js contains all frontend dependencies.
- - All three javascript files require the central base.js file. This contains all of the sitewide dependencies.
- - Custom javascript is written within the scripts files located in /front/scripts.front.js, /auth/scripts.auth.js, etc. 
- - Each entry requires it's own respective .scss file. IE: front.js requires front.scss.
- - These .scss files utilize the same templating idea.
- 
- ### Webpack Entries
- 1. front.js (Becomes front.js, and front.css).
- 2. auth.js (Becomes auth.js, and auth.css) 
- 3. dash.js (Becomes dash.js, and dash.css) 
-
- ### JS Files
- - base.js (Sitewide dependencies; required by front/auth/dash/.js)
- - scripts.js (Sitewide custom js; required by base.js)
- 
- - front.js (Front end dependencies; directly called on in webpack config)
- - auth.js (Auth dependencies; directly called on in webpack config)
- - dash.js (Dash dependencies; directly called on in webpack config)
- 
- - /front/scripts.front.js (Front end custom js; required by front.js)
- - /auth/scripts.auth.js (Auth custom js; required by auth.js)
- - /dash/scripts.dash.js (Dash custom js; required by dash.js)
- 
- 
- ### CSS Files
-  - base.scss (Sitewide css dependencies; required by front/auth/dash/.scss)
-  - styles.scss (Sitewide custom css; required by base.scss)
-  
-  - front.scss (Front end css dependencies; required by front.js)
-  - auth.scss (Auth css dependencies; required by auth.js)
-  - dash.scss (Dash css dependencies; required by dash.js)
-  
-  - /front/styles.front.js (Front end custom css; required by front.scss)
-  - /auth/styles.auth.js (Auth custom css; required by auth.scss)
-  - /dash/styles.dash.js (Dash custom css; required by dash.scss)
-  
-  
-  ### Results
-  This results in just 6 files. Each section gets one css file, and one js file. These files contain just what they need. Nothing more. Nothing less. The beauty of bundling.
-  
-  - front.css
-  - front.js
-  
-  - auth.css
-  - auth.js
-  
-  - dash.css
-  - dash.js
