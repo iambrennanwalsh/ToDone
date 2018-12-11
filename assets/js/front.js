@@ -13,4 +13,4 @@ require('./base.js');
 require('./front/scripts.front.js');
 
 // Frontend Vue Components (front.vue);
-require('../vue/Front.vue');
+require('./../vue/Front.vue');
