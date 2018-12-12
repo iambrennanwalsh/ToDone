@@ -15,12 +15,13 @@
 	</div>
 	<div class='columns'>
 		<ul id="list" class='column is-6 m-top-20'>
-		{% set tasks = list.tasks|split(',') %}
+		{% set tasks = list.tasks|split(' - ') %}
 		{% for task in tasks %}
-			<li class='has-text-dark'>
+		{% set subtask = task|split(' => ') %}	
+			<li style='{% if subtask.1 == 1 %}background: #e0fae0{% endif %}' class='has-text-dark'>
 				<label v-on:click="checkit">
-					<span class="check fa m-left-0"></span>
-					<span class="taskname m-left-50">{{task}}</span>
+					<span class="check fa m-left-0 {% if subtask.1 == 1 %}fa-check{% endif %}"></span>
+					<span style='{% if subtask.1 == 1 %}text-decoration: line-through{% endif %}' class="taskname m-left-50">{{subtask.0}}</span>
 					<span class='delete is-pulled-right'></span>
 				</label>
 			</li>

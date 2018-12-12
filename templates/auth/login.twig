@@ -1,6 +1,6 @@
 {#
-@name:          login.twig
-@description:   Base template for the entire front portion of the site.
+@name: login.twig
+@description: Base template for the entire front portion of the site.
 #}
 
 {% extends 'auth.twig' %}
@@ -10,46 +10,18 @@
 <div class='columns'>
 	<div class='column is-4'>
 		<h1 class="title has-text-grey-dark">Sign In</h1>
-		<p class='subtitle'>You may use the username or password you created at signup.</p>
+		<p class='subtitle'>You may login using either your username or email along with the password you created at signup.</p>
 	</div>
 	<div class='column is-7 is-offset-1'>
-		<form method="post">
-			
-			
-	<div class="field is-horizontal">		
-		<div class='field-label is-normal'>
-			<label class="label has-text-light">Username</label>
-		</div>
-		<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
-			<input type="text" name="username" class="input" placeholder="Username" required>
-						<span class="icon is-small is-left">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-				</div>
-		</div>
-	</div>
-		<div class="field is-horizontal">		
-		<div class='field-label is-normal'>
-			<label class="label has-text-light">Password</label>
-		</div>
-		<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
-						<input type="password" name="password" class="input" placeholder="Password" required>
-						<span class="icon is-small is-left">
-							<i class="fa fa-key"></i>
-						</span>
-					</div>
-				</div>
-		</div>
-	</div>
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    	<button class="button is-primary is-pulled-right" type="submit">Sign In!</button>
-		</form>
+		<login>
+			<template slot="token">
+				{% if error %}
+				<div class="show formsent notification is-primary is-pulled-left">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			</template>
+		</login>
 	</div>
 </div>
-	
+
 {% endblock %}

@@ -32,7 +32,7 @@ class SignupType extends AbstractType {
          	'Male' => 'Male',
            'Female' => 'Female',
            'Other' => 'Other')))
-      ->add('country', CountryType::class)
+			->add('country', CountryType::class, ["preferred_choices" => array('US')])
 			->add('submit', SubmitType::class);
 }
 	

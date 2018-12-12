@@ -3,4 +3,4 @@ framework:
     translator: false
         #default_path: '%kernel.project_dir%/translations'
         #fallbacks:
-        #    - '%locale%'
+        #   - '%locale%'

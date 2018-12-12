@@ -15,26 +15,42 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AuthController extends AbstractController {
    	
 	public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
-            		
   	if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-    	return $this->redirectToRoute('Home');}
-            		
+    	return $this->redirectToRoute('Home');
+		}        		
     $user = new User();
     $form = $this->createForm(SignupType::class, $user);
-    $form->handleRequest($request);
-            		
+    $form->handleRequest($request);	
     if($form->isSubmitted() && $form->isValid()){
-    	$password = $passwordEncoder->encodePassword($user, $user->getPassword());
-      $user->setPassword($password);
-      $entityManager = $this->getDoctrine()->getManager();
-      $entityManager->persist($user);
-      $entityManager->flush();
-      $token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
-      $this->get('security.token_storage')->setToken($token);
-   		$this->get('session')->set('_security_main', serialize($token));
-    	return $this->redirectToRoute('Lists');}
-            		
-		return $this->render('auth/signup.twig', ['signup' => $form->createView()]);}
+			$entityManager = $this->getDoctrine()->getManager();
+			$username = $entityManager->getRepository(User::class)->findOneBy(['username' => $user->getUsername()]);
+			$email = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+      if ($username && $email) {
+				return $this->render('auth/signup.twig', 
+														 ['signup' => $form->createView(), 
+															'errors' => 'The provided username and email are already in use.']);
+			} elseif ($username) {
+				return $this->render('auth/signup.twig', 
+														 ['signup' => $form->createView(), 
+															'errors' => 'The chosen username is taken.']);
+			} elseif ($email) {
+				return $this->render('auth/signup.twig', 
+														 ['signup' => $form->createView(), 
+															'errors' => 'The provided email is already in use.']);
+			} else {
+    		$password = $passwordEncoder->encodePassword($user, $user->getPassword());
+				$user->setPassword($password);
+				$entityManager->persist($user);
+				$entityManager->flush();
+				$token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
+				$this->get('security.token_storage')->setToken($token);
+				$this->get('session')->set('_security_main', serialize($token));
+    		return $this->redirectToRoute('Lists');
+			}
+		}
+		return $this->render('auth/signup.twig', 
+												 ['signup' => $form->createView()]);
+	}
 
 	public function login(AuthenticationUtils $authenticationUtils): Response {
 
@@ -42,8 +58,7 @@ class AuthController extends AbstractController {
       return $this->redirectToRoute('Home');}
 			
 		$error = $authenticationUtils->getLastAuthenticationError();
-    $lastUsername = $authenticationUtils->getLastUsername();
 
-    return $this->render('auth/login.twig', ['last_username' => $lastUsername, 'error' => $error]);}
+    return $this->render('auth/login.twig', ['error' => $error]);}
 	
 }

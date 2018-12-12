@@ -19,7 +19,16 @@
 				<button v-on:click='renderModal' data-render='delete' class="delete is-pulled-right"></button>
 				<p class="is-size-3"><a href='/list/{{list.id}}'>{{list.name}}</a></p>
 				<p class="m-bottom-10 has-text-dark">{{list.description}}</p>
-				<p class="m-bottom-10"><span class="tag is-info m-right-10">0/10  Completed</span><span class="tag is-dark">Created: {{ list.created|date("m/d/Y") }}</span></p>
+				{% set tasks = list.tasks|split(' - ') %}
+				{% set total = tasks|length %}
+				{% set completed = 0 %}
+				{% for task in tasks %}
+					{% set subtask = task|split(' => ') %}
+					{% if subtask.1 == 1 %}
+						{% set completed = completed + 1%}
+					{% endif %}
+				{% endfor %}
+				<p class="m-bottom-10"><span class="tag is-info m-right-10">{{completed}}/{{total}}  Completed</span><span class="tag is-dark">Created: {{ list.created|date("m/d/Y") }}</span></p>
 				<progress class="progress is-primary" value="0" max="100">90%</progress>
 			</div>
 			{% endfor %}

@@ -43,9 +43,9 @@ class Lists
     private $modified;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $tasks;
+    private $tasks = [];
 
     public function getId(): ?int
     {
@@ -123,5 +123,4 @@ class Lists
 
         return $this;
     }
-
 }

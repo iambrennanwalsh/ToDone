@@ -3,13 +3,23 @@
 * @description:   This stylesheet imports the required scss files for the front portion of the site. This file is imported from front.js.
 */
 
+#confirm {
+	padding: 4px;
+  font-size: .9rem;}
+
 #topbar {
 	
 	height: 65px;
 	
 	.navbar{
 	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	background-color: #503d39;}}
+	background-color: #503d39;
+	
+		&.confirm {
+			box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -2px 3px rgba(0, 0, 0, 0.1);
+			top: 30px;}
+	}
+}
 
 #sidebar {
 	

@@ -38,6 +38,10 @@ m-x-auto {
 .relative {
 	position: relative;}
 
+.sticky {
+	position: -webkit-sticky;
+	position: sticky;}
+
 
 /* Sitewide Style Modifications
 ----------------------------------------------------------------------*/
@@ -70,3 +74,25 @@ m-x-auto {
 
 .input::placeholder, .textarea::placeholder {
 	 color: rgba(54, 54, 54, 1);}
+
+.input.is-primary, textarea.is-primary {
+	background: #f7c4b0;
+	border: unset;
+	
+	+ .icon {
+		color: rgba(54, 54, 54, 0.3);
+	}
+}
+
+
+.formsent {
+	width: 300px;
+	padding: 5px;
+	margin-left: 132px;
+	opacity: 0;
+	transition: opacity .2s ease;
+	text-align: center;
+
+	&.show {
+		opacity: 1;
+	}}

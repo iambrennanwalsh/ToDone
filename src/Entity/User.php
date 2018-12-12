@@ -36,7 +36,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -65,9 +65,15 @@ class User implements UserInterface
      */
     private $lists;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $confirmed;
+
     public function __construct()
     {
         $this->lists = new ArrayCollection();
+				$this->confirmed = false;
     }
 
     public function getId(): ?int
@@ -230,6 +236,18 @@ class User implements UserInterface
                 $list->setUserid(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getConfirmed(): ?bool
+    {
+        return $this->confirmed;
+    }
+
+    public function setConfirmed(bool $confirmed): self
+    {
+        $this->confirmed = $confirmed;
 
         return $this;
     }
