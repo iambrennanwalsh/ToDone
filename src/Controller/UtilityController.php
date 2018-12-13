@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Lists;
+use App\Entity\User;
+use App\Service\EmailVerifier;
 
 class UtilityController extends AbstractController {
 
@@ -60,5 +62,15 @@ class UtilityController extends AbstractController {
 			$mailer->send($message);
 		
 		return new JsonResponse($_REQUEST);
+	}
+	
+	public function confirmEmail(Request $request, EmailVerifier $verifier) {
+		if(null !== $request->query->get('id') && null !== $request->query->get('hash')) {
+			$id = $request->query->get('id');
+			$hash = $request->query->get('hash');
+			$response = $verifier->confirm($id, $hash);
+			if ($response) {
+				return $this->redirectToRoute('Home', array('confirm' => 'true'));}}
+		return $this->redirectToRoute('Home', array('confirm' => 'false'));
 	}
 }

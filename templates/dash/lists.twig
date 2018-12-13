@@ -29,7 +29,7 @@
 					{% endif %}
 				{% endfor %}
 				<p class="m-bottom-10"><span class="tag is-info m-right-10">{{completed}}/{{total}}  Completed</span><span class="tag is-dark">Created: {{ list.created|date("m/d/Y") }}</span></p>
-				<progress class="progress is-primary" value="0" max="100">90%</progress>
+				<progress class="progress is-primary" value="{{ (completed / total) * 100}}" max="100">{{ (completed / total) * 100}}</progress>
 			</div>
 			{% endfor %}
 		</div>

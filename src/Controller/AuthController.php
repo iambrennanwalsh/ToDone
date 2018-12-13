@@ -11,10 +11,11 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use App\Form\SignupType;
 use App\Entity\User;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Service\EmailVerifier;
 
 class AuthController extends AbstractController {
    	
-	public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+	public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder, EmailVerifier $verifier) {
   	if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
     	return $this->redirectToRoute('Home');
 		}        		
@@ -42,6 +43,7 @@ class AuthController extends AbstractController {
 				$user->setPassword($password);
 				$entityManager->persist($user);
 				$entityManager->flush();
+				$verifier->email($user->getId());
 				$token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
 				$this->get('security.token_storage')->setToken($token);
 				$this->get('session')->set('_security_main', serialize($token));

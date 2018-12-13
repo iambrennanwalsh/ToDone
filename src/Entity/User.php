@@ -66,14 +66,14 @@ class User implements UserInterface
     private $lists;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
     private $confirmed;
 
     public function __construct()
     {
         $this->lists = new ArrayCollection();
-				$this->confirmed = false;
+				$this->confirmed = mt_rand(1000000000, 10000000000);
     }
 
     public function getId(): ?int
@@ -240,12 +240,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getConfirmed(): ?bool
+    public function getConfirmed(): ?string
     {
         return $this->confirmed;
     }
 
-    public function setConfirmed(bool $confirmed): self
+    public function setConfirmed(string $confirmed): self
     {
         $this->confirmed = $confirmed;
 

@@ -12,7 +12,7 @@
 	{% endblock %}
 </head>
 <body class='dash {% block bodyClass %}{% endblock %}'>
-	{% if app.user.confirmed == 0 %}
+	{% if app.user.confirmed != 1 %}
 	<section id="confirm" class='fixed has-background-grey-dark has-text-centered w-100'>
 		<div class="container">
 			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="#">Click here to resend it</a>.</p>
@@ -75,10 +75,6 @@
 	{% block main %}
 	{% endblock %}
 </div>
-	</div>
-	<div id="footer">
-		{% block footer %}
-		{% endblock %}
 	</div>
 </section>
 {% block scripts %}

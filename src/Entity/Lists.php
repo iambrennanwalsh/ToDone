@@ -43,9 +43,9 @@ class Lists
     private $modified;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $tasks = [];
+    private $tasks;
 
     public function getId(): ?int
     {
@@ -117,7 +117,7 @@ class Lists
         return $this->tasks;
     }
 
-    public function setTasks(string $tasks): self
+    public function setTasks(?string $tasks): self
     {
         $this->tasks = $tasks;
 

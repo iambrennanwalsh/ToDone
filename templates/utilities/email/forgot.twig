@@ -1,0 +1,14 @@
+{% extends 'util/email.twig' %} 
+
+{% block title %}Change your password!{% endblock %}
+
+{% block content %}
+Hello {{ fname }}, sorry to hear youre having trouble logging in. But let's get your password reset. Simply click the link below, follow the instructions, and use your new password to sign in. If you need more help or have any questions, you may reply directly to this email! Monday thru Friday, I'll do my best to respond within 1 hour. If your email is recieved after 5pm PDT, I will respond first thing in the morning. Saturday and Sunday, give me up to 4 hours to respond. If your matter is urgent, write 'URGENT - ' as a prefix to your email's subject so I know to get back to you asap.
+
+Thanks,
+Brennan from VidEncrypt
+
+--
+
+<a href='{{url}}'>Click this link to confirm your email</a>.
+{% endblock %}

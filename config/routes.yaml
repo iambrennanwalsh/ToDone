@@ -60,6 +60,10 @@ ContactForm:
     path: /contactform
     controller: App\Controller\UtilityController::contactForm
 
+ConfirmEmail:
+    path: /confirm
+    controller: App\Controller\UtilityController::confirmEmail
+
 AddList: 
     path: /addlist
     controller: App\Controller\UtilityController::addList

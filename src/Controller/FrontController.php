@@ -8,7 +8,12 @@ use App\Form\ContactType;
 
 class FrontController extends AbstractController {
 
-	public function home() {
+	public function home(Request $request) {
+		if(null !== $request->query->get('confirm') && false !== $request->query->get('confirm')) {
+			return $this->render('front/home.twig', [
+				'modal' => true,
+				'value'=> $request->query->get('confirm')]);}
+		
 		return $this->render('front/home.twig');}
 	
 	public function about() {
