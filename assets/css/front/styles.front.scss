@@ -6,8 +6,8 @@
 .button {
 	&.is-primary.is-inverted:hover {
 	background-color: #fff !important;}}
-
-.terms, .privacy {
+@include tablet {
+.terms, .privacy, .about {
 	
 	#front {
 		max-height: 400px;
@@ -21,18 +21,25 @@
 		background-repeat: no-repeat;
 		background-size: 60% 14px;
 		background-attachment: local, local, scroll, scroll;
-		background-position-x: right;
-		
-		p, li {
+		background-position-x: right;}	
+}
+
+#aboutfix {
+	position: fixed;
+	width: 300px;
+	}
+}
+
+.terms, .privacy {
+	#front {
+	p, li {
 			margin-bottom: 20px;}
 		
 		li {
 			padding-left: 30px;}
-	}	
+	}
 }
-
 .hero {
 	.hero-body {
 		a {
-			color: #eb5e28 !important;}}
-}
+			color: #eb5e28 !important;}}}

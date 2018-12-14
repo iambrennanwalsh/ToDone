@@ -16,12 +16,12 @@
 	{% endblock %}
 </head>
 <body class='auth {% block bodyClass %}{% endblock %}'>
-<section class="hero is-light is-fullheight">
+<section class="hero is-light is-bold is-fullheight">
   <div class="hero-head">
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item active">
+          <a href='/' class="navbar-item active">
            	<span class='has-text-weight-bold has-text-grey-dark is-size-3'>ToDo!</span>
           </a>
           <span class="navbar-burger burger" data-target="frontNav">
@@ -35,7 +35,14 @@
             <a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
             <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
             <a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
-            <a href='/demo' class="navbar-item {% if active == 'demo' %}is-active{% endif %}">Demo</a>
+						{% if is_granted('ROLE_USER') %}
+						<a href="/dashboard" class="respond navbar-item">Dashboard</a>
+		        <a href="/logout" class="respond navbar-item">Log out</a>
+						{% else %}
+						<a href="/login" class="respond navbar-item">Login</a>
+		        <a href="/signup" class="respond navbar-item">Signup</a>
+						{% endif %}
+	          <hr class="respond m-top-0 m-bottom-0">
 						<div class="dropdown m-top-15 m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary is-inverted" @click="showDropdown">

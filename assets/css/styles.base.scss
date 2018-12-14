@@ -42,6 +42,8 @@ m-x-auto {
 	position: -webkit-sticky;
 	position: sticky;}
 
+.none {
+	display: none;}
 
 /* Sitewide Style Modifications
 ----------------------------------------------------------------------*/
@@ -83,8 +85,6 @@ m-x-auto {
 		color: rgba(54, 54, 54, 0.3);
 	}
 }
-
-
 .formsent {
 	width: 300px;
 	padding: 5px;
@@ -96,3 +96,80 @@ m-x-auto {
 	&.show {
 		opacity: 1;
 	}}
+
+
+/* Sitewide Media Queries
+----------------------------------------------------------------------*/
+.hero-foot {
+	
+	nav ul > li:nth-child(n+2) {
+	display: none;}
+	
+	@include tablet {
+		
+		nav ul > li:nth-child(n+2) {
+		display: block;}
+		
+	}
+}
+
+@include mobile {
+	
+	
+	.contact .hero-body, .about .hero-body, .auth .hero-body {
+		display: block !important;
+	}
+}
+	.contact .field-label, .auth .field-label {
+		display: none;
+	}
+
+
+
+@include tablet-only {
+	.contact #front > .columns {
+		display: block;
+	
+		.column:nth-child(1) {
+			width: 100%;
+			margin-bottom: 30px;}
+		.column:nth-child(2) {
+			width: 100%;
+			margin: 0;}
+	}
+}
+
+.respond {display: none;}
+@include touch {
+	
+.burger {
+ background-color: rgba(0, 0, 0, 0.05) !important;}
+
+.opensesame {
+		display: block;}	
+	
+#frontNav {
+	background: unset;
+	box-shadow: unset;
+
+	a {
+		padding-left: 30px;
+			
+	&.is-active, &:hover {
+		background: rgba(0, 0, 0, 0.05) !important;
+		font-weight: bold;}}
+	
+	.respond {
+		display: block;
+	}
+	hr.respond {
+			background: rgba(0, 0, 0, 0.05) !important;
+		}
+	.dropdown {
+		display: none;}}}
+
+
+	.title {
+		font-size: 1.5rem !important;}
+	.subtitle {
+		font-size: 1rem !important;}

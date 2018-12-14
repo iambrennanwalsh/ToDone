@@ -7,9 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="/images/favicon.png">
-	{% block assets %}
 	<link rel="stylesheet" href="/build/dash.css">
-	{% endblock %}
 </head>
 <body class='dash {% block bodyClass %}{% endblock %}'>
 	{% if app.user.confirmed != 1 %}
@@ -20,7 +18,7 @@
 	</section>
 	{% endif %}
 	<section id='topbar'>
-		<nav class="navbar is-fixed-top	{% if app.user.confirmed == 0 %}confirm	{% endif %}">
+		<nav class="navbar is-fixed-top	{% if app.user.confirmed != 1 %}confirm	{% endif %}">
 			<div class='container is-fluid'>
 			<div class="navbar-brand">
 				<a class="navbar-item" href="/dashboard/">
@@ -34,7 +32,7 @@
 			</div>
 			<div class="navbar-menu">
           <div class="navbar-end">
-						<div class="dropdown m-top-15 m-left-15 is-hoverable">
+						<div class="dropdown is-right m-top-15 m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary" @click="showDropdown">
                   <span class="icon"><i class="fa fa-user"></i></span>
@@ -52,7 +50,7 @@
 		</div>
 	</nav>
 </section>
-<section id='root' class='{% if app.user.confirmed == 0 %}m-top-30{% endif %}'>
+<section id='root' class='{% if app.user.confirmed != 1 %}m-top-30{% endif %}'>
 	<div class='columns m-bottom-0'>
 	<aside id='sidebar' class="menu p-right-20 column is-2 has-background-grey-dark h-100">
   	<p class="menu-label">
@@ -77,8 +75,6 @@
 </div>
 	</div>
 </section>
-{% block scripts %}
 <script src="/build/dash.js"></script>
-{% endblock %}
 </body>
 </html>

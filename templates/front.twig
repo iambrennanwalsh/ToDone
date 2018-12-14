@@ -21,10 +21,10 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item active">
+          <a href='/' class="navbar-item active">
            	<span class='has-text-weight-bold has-text-grey-dark is-size-3'>ToDo!</span>
           </a>
-          <span class="navbar-burger burger" data-target="frontNav">
+          <span id="burger" class="navbar-burger burger" data-target="frontNav">
             <span></span>
             <span></span>
             <span></span>
@@ -35,9 +35,16 @@
             <a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
             <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
             <a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
-            <a href='/demo' class="navbar-item {% if active == 'demo' %}is-active{% endif %}">Demo</a>
+						{% if is_granted('ROLE_USER') %}
+						<a href="/dashboard" class="respond navbar-item">Dashboard</a>
+		        <a href="/logout" class="respond navbar-item">Log out</a>
+						{% else %}
+						<a href="/login" class="respond navbar-item">Login</a>
+		        <a href="/signup" class="respond navbar-item">Signup</a>
+						{% endif %}
+	          <hr class="respond m-top-0 m-bottom-0">
 {% if is_granted('ROLE_USER') %}
-						<div class="dropdown m-top-15 m-left-15 is-hoverable">
+						<div class="dropdown is-right m-top-15 m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary" @click="showDropdown">
                   <span class="icon"><i class="fa fa-user"></i></span>
@@ -84,7 +91,7 @@
     <nav class="tabs is-boxed is-fullwidth">
       <div class="container">
         <ul>
-          <li class="is-active"><a href='https://www.brennanwal.sh' class='has-background-grey-dark'>Made with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
+          <li class="is-active"><a href='https://www.brennanwal.sh' class='has-background-grey-dark'>Built with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
           <li><a href='/privacy'>Privacy Policy</a></li>
           <li><a href='/terms'>Terms and Conditions</a></li>
         </ul>

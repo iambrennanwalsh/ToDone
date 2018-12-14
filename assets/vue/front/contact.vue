@@ -42,7 +42,7 @@
   <form id='contactform' method="post" novalidate v-on:submit.prevent="validateForm">
 		<div class="field is-horizontal">
 			<div class='field-label is-normal'>
-  			<label class="label has-text-light">From<sup>*</sup></label>
+  			<label class="label has-text-grey-dark">From<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
 				<div class='field'>
@@ -65,7 +65,7 @@
 		</div>			
 		<div class="field is-horizontal">
 			<div class='field-label is-normal'>
-  			<label class="label has-text-light">Subject<sup>*</sup></label>
+  			<label class="label has-text-grey-dark">Subject<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
 				<div class='field'>
@@ -80,7 +80,7 @@
 		</div>
 		<div class="field is-horizontal">
 			<div class='field-label is-normal has-text-light'>
-  			<label class="label has-text-light">Message<sup>*</sup></label>
+  			<label class="label has-text-grey-dark">Message<sup>*</sup></label>
 			</div>
 			<div class="field-body">
 				<div class="field">
