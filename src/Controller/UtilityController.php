@@ -73,4 +73,5 @@ class UtilityController extends AbstractController {
 				return $this->redirectToRoute('Home', array('confirm' => 'true'));}}
 		return $this->redirectToRoute('Home', array('confirm' => 'false'));
 	}
-}
+	
+		}

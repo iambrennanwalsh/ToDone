@@ -49,6 +49,7 @@
 				</div>
 		</div>
 	</div>
+	<a id="forgotmypass" class="has-text-primary" href="/forgot">I Forgot my password.</a>
 	<button v-on:click="validateForm" class="button is-primary is-pulled-right" type="submit">Sign In!</button>
 	<slot name="token"></slot>
 </form>`

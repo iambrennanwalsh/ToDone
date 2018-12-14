@@ -1,0 +1,33 @@
+{#
+@name: forgot.twig
+@description: The template for the forgot page.
+#}
+
+{% extends 'auth.twig' %}
+{% block bodyClass %}forgot{% endblock %}
+{% set active = '' %}
+{% block main %}
+<div class='columns'>
+	<div class='column is-4'>
+		<h1 class="title has-text-grey-dark">Forgot Password</h1>
+		<p class='subtitle'>Don't worry about it. We'll get it changed for you. Simply provide the email you used to sign up with, and we'll email you further instructions.</p>
+	</div>
+	<div class='column is-6 is-offset-2'>
+	<form id="forgotpassword" method="post">
+		<div class="field">		
+				<div class="control has-icons-left">
+						<input type="email" name="email" class="input" placeholder="The email you signed up with." required>
+						<span class="icon is-small is-left">
+							<i class="fa fa-envelope"></i>
+						</span>
+					</div>
+				</div>
+		{% if response != null %}
+				<div class="show formsent notification is-primary is-pulled-left m-left-0">{{ response }}</div>
+		{% endif %}
+	<input type='submit' value="submit" id="forgotsubmit" class="button is-primary is-pulled-right">
+</form>
+	</div>
+</div>
+
+{% endblock %}

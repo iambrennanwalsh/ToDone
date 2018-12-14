@@ -15,8 +15,10 @@
 	<div class='column is-6 is-offset-2'>
 		<login>
 			<template slot="token">
-				{% if error %}
+				{% if error is defined%}
+					{% if error %}
 				<div class="show formsent notification is-primary is-pulled-left">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
 				{% endif %}
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 			</template>

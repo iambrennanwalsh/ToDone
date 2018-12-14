@@ -40,6 +40,10 @@ Forgot:
     path: /forgot
     controller: App\Controller\AuthController::forgot
 
+Change:
+    path: /change
+    controller: App\Controller\AuthController::change
+
 
 #   Dashboard
 # ----------------------------------#
@@ -79,3 +83,7 @@ DeleteList:
 AddTask:
     path: /addtask
     controller: App\Controller\UtilityController::addTask
+
+ForgotPassword:
+    path: /ajax/forgotpassword
+    controller: App\Controller\UtilityController::forgotPassword
