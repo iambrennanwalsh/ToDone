@@ -130,11 +130,15 @@
 				{{ form_widget(signup.submit, {'attr': {'v-on:click': "validateForm", 'class': 'button is-primary' }}) }}
   		</div>
 		</div>
-			{% if errors is defined %}
-		<div class="show formsent notification is-primary is-pulled-left">
-			{{ errors }}
+		<div class="show formsent is-pulled-left">
+			{{ form_errors(signup.username) }}
+			{{ form_errors(signup.email) }}
+			{{ form_errors(signup.password) }}
+			{{ form_errors(signup.fname) }}
+	  	{{ form_errors(signup.lname) }}
+		  {{ form_errors(signup.country) }}
+			{{ form_errors(signup.gender) }}
 		</div>
-			{% endif %}
 
 		{{ form_end(signup) }}
 		</signup>

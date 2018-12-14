@@ -9,8 +9,8 @@
     	}
 		},
 		computed: {
-			userStatus: function() {return this.user === ""},
-			passStatus: function() {return this.pass === ""},
+			userStatus: function() {return this.user === "" || this.user.length > 30},
+			passStatus: function() {return this.pass === "" || this.pass.length > 30},
 		},
 		methods: {
 			validateForm: function(event) {	

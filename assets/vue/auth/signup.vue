@@ -14,12 +14,12 @@
     	}
 		},
 		computed: {
-			userStatus: function() {return this.user === ""},
-			emailStatus: function() {return this.email === ""},
-			passStatus: function() {return this.pass === ""},
-			rpassStatus: function() {return this.rpass === ""},
-			fnameStatus: function() {return this.fname === ""},
-			lnameStatus: function() {return this.lname === ""},
+			userStatus: function() {return this.user === "" || this.user.length < 5 || this.user.length > 30},
+			emailStatus: function() {return this.email === "" || this.email.length > 30},
+			passStatus: function() {return this.pass === "" || this.pass.length < 5 || this.pass.length > 30},
+			rpassStatus: function() {return this.rpass === "" || this.rpass.length > 30},
+			fnameStatus: function() {return this.fname === "" || this.fname.length > 30},
+			lnameStatus: function() {return this.lname === "" || this.lname.length > 30},
 			identical: function() {return this.pass !== this.rpass}
 		},
 		methods: {

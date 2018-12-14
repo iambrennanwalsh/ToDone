@@ -1,0 +1,54 @@
+App\Entity\User: 
+  constraints: 
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+        fields: username
+        message: "- That username is already in use!"
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+        fields: email
+        message: "- That email is already in use!"
+  properties: 
+    username: 
+      - NotBlank: 
+          message: "- Username cannot be blank."
+      - Length:
+          min: 5
+          max: 30
+          minMessage: '- Usernames cannot be under 5 characters.'
+          maxMessage: '- Usernames cannot be over 30 characters.'
+    email: 
+      - NotBlank: 
+          message: "- Email cannot be blank."
+      - Email:
+          message: "- The provided email wasn't a valid email."
+    password: 
+      - NotBlank: 
+          message: "- Password cannot be blank."
+      - Length:
+          min: 5
+          minMessage: '- Passwords cannot be under 5 characters.'
+          max: 30
+          maxMessage: '- Passwords cannot be over 30 characters.'
+    fname: 
+      - NotBlank: 
+          message: "- First name cannot be blank."
+      - Length:
+          max: 30
+          maxMessage: '- First name cannot be over 30 characters.'
+    lname: 
+      - NotBlank: 
+          message: "- Last name cannot be blank."
+      - Length:
+          max: 30
+          maxMessage: '- Last name cannot be over 30 characters.'
+    country: 
+      - NotBlank: 
+          message: "- Country cannot be blank."
+      - Length:
+          max: 30
+          maxMessage: '- Country cannot be over 30 characters.'
+    gender: 
+      - NotBlank: 
+          message: "- Gender cannot be blank."
+      - Length:
+          max: 30
+          maxMessage: '- Gender cannot be over 30 characters.'

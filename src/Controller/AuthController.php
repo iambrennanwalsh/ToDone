@@ -24,21 +24,6 @@ class AuthController extends AbstractController {
     $form->handleRequest($request);	
     if($form->isSubmitted() && $form->isValid()){
 			$entityManager = $this->getDoctrine()->getManager();
-			$username = $entityManager->getRepository(User::class)->findOneBy(['username' => $user->getUsername()]);
-			$email = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
-      if ($username && $email) {
-				return $this->render('auth/signup.twig', 
-														 ['signup' => $form->createView(), 
-															'errors' => 'The provided username and email are already in use.']);
-			} elseif ($username) {
-				return $this->render('auth/signup.twig', 
-														 ['signup' => $form->createView(), 
-															'errors' => 'The chosen username is taken.']);
-			} elseif ($email) {
-				return $this->render('auth/signup.twig', 
-														 ['signup' => $form->createView(), 
-															'errors' => 'The provided email is already in use.']);
-			} else {
     		$password = $passwordEncoder->encodePassword($user, $user->getPassword());
 				$user->setPassword($password);
 				$entityManager->persist($user);
@@ -49,7 +34,7 @@ class AuthController extends AbstractController {
 				$this->get('session')->set('_security_main', serialize($token));
     		return $this->redirectToRoute('Lists');
 			}
-		}
+		
 		return $this->render('auth/signup.twig', 
 												 ['signup' => $form->createView()]);
 	}
