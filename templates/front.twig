@@ -18,7 +18,7 @@
 <body class='front {% block bodyClass %}{% endblock %}'>
 <section class="hero is-light is-bold is-fullheight">
   <div class="hero-head">
-    <nav class="navbar">
+    <nav class="navbar fixed w-100">
       <div class="container">
         <div class="navbar-brand">
           <a href='/' class="navbar-item active">
@@ -42,9 +42,8 @@
 						<a href="/login" class="respond navbar-item">Login</a>
 		        <a href="/signup" class="respond navbar-item">Signup</a>
 						{% endif %}
-	          <hr class="respond m-top-0 m-bottom-0">
 {% if is_granted('ROLE_USER') %}
-						<div class="dropdown is-right m-top-15 m-left-15 is-hoverable">
+						<div class="dropdown is-right m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary" @click="showDropdown">
                   <span class="icon"><i class="fa fa-user"></i></span>
@@ -60,7 +59,7 @@
               </div>
             </div>
 {% else %}
-						<div class="dropdown m-top-15 m-left-15 is-hoverable">
+						<div class="dropdown is-right m-left-15 is-hoverable">
               <div class="dropdown-trigger">
                 <button class="button is-primary is-inverted" @click="showDropdown">
                   <span class="icon"><i class="fa fa-user-plus"></i></span>

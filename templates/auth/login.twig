@@ -8,20 +8,52 @@
 {% set active = '' %}
 {% block main %}
 <div class='columns'>
-	<div class='column is-4'>
+	<div class='headingbox column is-4'>
 		<h1 class="title has-text-grey-dark">Sign In</h1>
 		<p class='subtitle'>You may login using either your username or email along with the password you created at signup.</p>
 	</div>
 	<div class='column is-6 is-offset-2'>
-		<login>
-			<template slot="token">
-				{% if error is defined%}
-					{% if error %}
-				<div class="show formsent notification is-primary is-pulled-left">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-					{% endif %}
-				{% endif %}
-				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			</template>
+		<login inline-template>
+			{{ form_start(login) }}
+	<div class="field is-horizontal">		
+		<div class='field-label is-normal'>
+			<label class="label has-text-light">Username/Email</label>
+		</div>
+		<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(login.username, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attempted && userStatus}" }}) }}
+						<span class="icon is-small is-left">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+				</div>
+		</div>
+	</div>
+		<div class="field is-horizontal">		
+		<div class='field-label is-normal'>
+			<label class="label has-text-light">Password</label>
+		</div>
+		<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(login.password, {'attr': {'v-model': "pass", 'v-bind:class': "{'is-primary': attempted && passStatus}" }}) }}
+						<span class="icon is-small is-left">
+							<i class="fa fa-key"></i>
+						</span>
+					</div>
+				</div>
+		</div>
+	</div>
+	<a id="forgotmypass" class="has-text-primary" href="/forgot">I Forgot my password.</a>
+	{{ form_widget(login.login, {'attr': {'v-on:click': "validateForm"}}) }}
+	{% if error is defined%}
+			{% if error %}
+			<div class="show formsent notification is-primary is-pulled-left">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+	{% endif %}
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			{{ form_end(login) }}
 		</login>
 	</div>
 </div>

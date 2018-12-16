@@ -7,16 +7,14 @@
 {% block bodyClass %}terms{% endblock %}
 {% set active = '' %}
 {% block main %}
-<div class='blurPage fixed'></div>
-<div class='blurPage fixed'></div>
 	<div class="columns">
-		<div class='column is-5'>
-			<div id="aboutfix">
+		<div class='headingbox column is-5'>
 			<h1 class='title has-text-grey-dark'>Terms and Conditions</h1>
 			<p class='subtitle'>The house rules.</p>
-			</div>
 		</div>
-		<div class='column m-bottom-10 m-top-30'>
+		<div class='scrollbox column'>
+			<div class='columns block'>
+			<div class='column is-12 m-bottom-10'>
 			<h2 class='is-size-4 m-bottom-10 has-text-grey-dark'>Welcome to ToDo!</h2>
 			<p>By accessing this website we assume you accept these terms and conditions in full. Do not continue to use ToDo!'s website 
 	if you do not accept all of the terms and conditions stated on this page.</p>
@@ -36,25 +34,19 @@
 	to enable the functionality of this area and ease of use for those people visiting. Some of our 
 	affiliate / advertising partners may also use cookies.</p>
 		</div>	
-</div>
-<div class='columns'>
-	<div class='column is-7 is-offset-5 m-bottom-10'>
+	<div class='column is-12 m-bottom-10'>
 		<h2 class='is-size-4 m-bottom-10 has-text-grey-dark'>Iframes</h2>
 	<p>Without prior approval and express written permission, you may not create frames around our Web pages or
 	use other techniques that alter in any way the visual presentation or appearance of our Web site.</p>
 		</div>
-	</div>
-	<div class='columns'>
-	<div class='column is-7 is-offset-5 m-bottom-10'>
+	<div class='column is-12 m-bottom-10'>
 			<h2 class='is-size-4 m-bottom-10 has-text-grey-dark'>Reservation of Rights</h2>
 	<p>We reserve the right at any time and in its sole discretion to request that you remove all links or any particular
 	link to our Web site. You agree to immediately remove all links to our Web site upon such request. We also
 	reserve the right to amend these terms and conditions and its linking policy at any time. By continuing
 	to link to our Web site, you agree to be bound to and abide by these linking terms and conditions.</p>
 	</div>
-</div>
-<div class='columns'>
-	<div class='column is-7 is-offset-5 m-bottom-10'>
+	<div class='column is-12 m-bottom-10'>
 		<h2 class='is-size-4 m-bottom-10 has-text-grey-dark'>Removal of links from our website</h2>
 	<p>If you find any link on our Web site or any linked web site objectionable for any reason, you may contact
 	us about this. We will consider requests to remove links but will have no obligation to do so or to respond
@@ -63,19 +55,15 @@
 	or accuracy; nor do we commit to ensuring that the website remains available or that the material on the
 	website is kept up to date.</p>
 		</div>
-	</div>
-	<div class='columns'>
-	<div class='column is-7 is-offset-5 m-bottom-10'>
-			<h2 class='is-size-4 m-bottom-10 has-text-grey-dark'>Content Liability</h2>
+	<div class='column is-12 m-bottom-10'>
+			<h2 class='is-size-4 is-12 m-bottom-10 has-text-grey-dark'>Content Liability</h2>
 	<p>We shall have no responsibility or liability for any content appearing on your Web site. You agree to indemnify
 	and defend us against all claims arising out of or based upon your Website. No link(s) may appear on any
 	page on your Web site or within any context containing content or materials that may be interpreted as
 	libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or
 	other violation of, any third party rights.</p>
 	</div>
-</div>
-<div class='columns'>
-	<div class='column is-7 is-offset-5 m-bottom-10 m-bottom-50'>
+	<div class='column is-12 m-bottom-10 m-bottom-50'>
 		<h2 class='is-size-4 m-bottom-10 has-text-grey-dark'>Disclaimer</h2>
 	<p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website (including, without limitation, any warranties implied by law in respect of satisfactory quality, fitness for purpose and/or the use of reasonable care and skill). Nothing in this disclaimer will:</p>
 	<ol>
@@ -92,4 +80,6 @@
 	we will not be liable for any loss or damage of any nature.</p>
 		</div>
 	</div>
+		</div>
+</div>
 {% endblock %}

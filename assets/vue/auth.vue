@@ -1,6 +1,7 @@
 <script>
 import login from './auth/login.vue'
 import signup from './auth/signup.vue'
+import forgot from './auth/forgot.vue'
 import change from './auth/change.vue'
 
 export default {}	

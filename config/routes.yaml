@@ -83,7 +83,3 @@ DeleteList:
 AddTask:
     path: /addtask
     controller: App\Controller\UtilityController::addTask
-
-ForgotPassword:
-    path: /ajax/forgotpassword
-    controller: App\Controller\UtilityController::forgotPassword

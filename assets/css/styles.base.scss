@@ -42,8 +42,11 @@ m-x-auto {
 	position: -webkit-sticky;
 	position: sticky;}
 
+.block {
+	display: block !important;}
+
 .none {
-	display: none;}
+	display: none !important;}
 
 /* Sitewide Style Modifications
 ----------------------------------------------------------------------*/
@@ -172,7 +175,51 @@ body {
 		display: none;}}}
 
 
-	.title {
+	/*.title {
 		font-size: 1.5rem !important;}
 	.subtitle {
-		font-size: 1rem !important;}
+		font-size: 1rem !important;}*/
+
+
+.headingbox {
+	margin-bottom: 30px;
+	border-bottom: 2px solid rgba(117, 119, 99, 0.05) !important;
+
+	h1, p:last-child {
+    margin-bottom: 27px;
+    padding-right: 10px;
+    text-align: right;}
+	
+	p {
+		padding-right: 10px;
+		text-align: right;}
+}
+
+@include tablet {
+	.headingbox {
+		margin-bottom: 0px !important;
+		border-bottom: 0px !important;
+		
+		h1, p {
+			text-align: left !important;}
+	} 
+}
+
+.hero-head {
+	height: 60px;
+
+.navbar {
+	background: rgba(214, 214, 198, 1) !important;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	
+	.navbar-brand .navbar-item {
+		padding-top: 0px;
+		padding-bottom: 0px;}
+	
+	.dropdown {
+		margin-top: 9px;
+	}
+	
+	}
+	
+}
