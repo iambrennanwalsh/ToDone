@@ -13,7 +13,7 @@
 	{% if app.user.confirmed != 1 %}
 	<section id="confirm" class='fixed has-background-grey-dark has-text-centered w-100'>
 		<div class="container">
-			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="#">Click here to resend it</a>.</p>
+			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="https://bizplan.local/confirm?resend=true">Click here to resend it</a>.</p>
 		</div>
 	</section>
 	{% endif %}
@@ -50,7 +50,7 @@
 		</div>
 	</nav>
 </section>
-<section id='root' class='{% if app.user.confirmed != 1 %}m-top-30{% endif %}'>
+<section id='dash' class='{% if app.user.confirmed != 1 %}m-top-30{% endif %}'>
 	<div class='columns m-bottom-0'>
 	<aside id='sidebar' class="menu p-right-20 column is-2 has-background-grey-dark h-100">
   	<p class="menu-label">
@@ -60,9 +60,7 @@
     	<li><a href='/dashboard/' class='{% if active == "lists" %}is-active{% endif %}'>Lists</a></li>
 			<li><a href='/dashboard/profile' class='{% if active == "profile" %}is-active{% endif %}'>Profile</a></li>
 		</ul>
-		<p class="menu-label">
-    	<a data-render='add' class='hoverable has-text-primary is-pulled-left'><span class='fa fa-plus m-left-0 m-right-0'></span> New List</a> Your Lists
-  	</p>
+		<p class="menu-label"><a @click="initModal()" class='hoverable has-text-primary is-pulled-left'><span class='fa fa-plus m-left-0 m-right-0'></span> New List</a> Your Lists</p>
   	<ul id='sidelists' class="menu-list">
 			{% for list in app.user.lists %}
 			<li data-listid="{{ list.id }}"><a href='/list/{{ list.id }}' class='{% if active == list.id %}is-active{% endif %}'>{{ list.name }}</a></li>
@@ -72,7 +70,48 @@
 <div class='main h-100 column is-10 is-offset-2 p-bottom-50 main column is-10 p-top-50 p-left-50 p-right-50'>
 	{% block main %}
 	{% endblock %}
-</div>
+	{% if app.request.query.get('sent') is not empty %}
+	<notice state title="Sent." content="Check your email address, we've resent the confirmation email!" button="okay"></notice>
+	{% endif %}
+<transition name="fade"><modal v-show="addModal" cancel-it add-it>
+	<template slot="title">Create a new list</template>
+	<template slot="content">
+			Choose a name for your new list and then write a description of it.
+			<div class="m-top-20 field is-horizontal">
+				<div class="field-label is-normal">
+					<label class="label has-text-dark">List Title</label>
+				</div>
+				<div class="field-body">
+					<div class="field">
+						<div class="control">
+							<input class="input" type="text" name="title" placeholder="e.g. Meeting Times..">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="field is-horizontal">
+				<div class="field-label is-normal">
+					<label class="label has-text-dark">List Description</label>
+				</div>
+				<div class="field-body">
+					<div class="field">
+						<div class="control">
+							<textarea class="textarea" name="message" placeholder="What's this list all about?"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+	<template slot="add">Create List</template>
+	<template slot="cancel">Nevermind</template>
+	</modal></transition>
+<transition name="fade"><modal v-show="deleteModal" :active-list="activeList" delete-it cancel-it>
+	<template slot="title">Delete list</template>
+	<template slot="content">Are you absolutely sure you'd like to delete this list? It cannot be recovered!</template>
+	<template slot="delete">Delete List</template>
+	<template slot="cancel">Nevermind</template>
+</modal></transition>
+	</div>
 	</div>
 </section>
 <script src="/build/dash.js"></script>

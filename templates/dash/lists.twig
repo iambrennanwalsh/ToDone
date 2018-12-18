@@ -1,40 +1,21 @@
 {#
-@name:          lists.twig
-@description:   Template for the overview page.
+@name: lists.twig
+@description: This template renders entrypoint of the dashboard, where users can find all of their created lists.
+@route: /dashboard/
+defined and subtask.1 is
 #}
+
 
 {% extends 'dash.twig' %}
 {% block bodyClass %}lists{% endblock %}
 {% set active = 'lists' %}
 {% block main %}
-	<div class='columns'>
-		<div class='column'>
-			<button v-on:click='renderModal' data-render='add' class='button is-primary is-inverted is-pulled-right'><span class='fa fa-plus m-left-0'></span>New List</button>
-			<h1 class='title'>Lists</h1>
-		</div>
+<div class='columns'>
+	<div class='column'>
+		<button @click="$root.$emit('init-modal')" class="button is-primary is-inverted is-pulled-right"><span class="fa fa-plus m-left-0"></span> Add List</button>
+		<h1 class='title'>Lists</h1>
 	</div>
-	<div id="lists" class='columns'>
-		{% for list in lists %}
-			<div class="list column box is-6" data-listid='{{list.id}}'>
-				<button v-on:click='renderModal' data-render='delete' class="delete is-pulled-right"></button>
-				<p class="is-size-3"><a href='/list/{{list.id}}'>{{list.name}}</a></p>
-				<p class="m-bottom-10 has-text-dark">{{list.description}}</p>
-				{% set tasks = list.tasks|split(' - ') %}
-				{% set total = tasks|length %}
-				{% set completed = 0 %}
-				{% for task in tasks %}
-					{% set subtask = task|split(' => ') %}
-					{% if subtask.1 == 1 %}
-						{% set completed = completed + 1%}
-					{% endif %}
-				{% endfor %}
-				<p class="m-bottom-10"><span class="tag is-info m-right-10">{{completed}}/{{total}}  Completed</span><span class="tag is-dark">Created: {{ list.created|date("m/d/Y") }}</span></p>
-				<progress class="progress is-primary" value="{{ (completed / total) * 100}}" max="100">{{ (completed / total) * 100}}</progress>
-			</div>
-			{% endfor %}
-		</div>
-{% endblock %}
-
-{% block footer %}
-	{{ include('utilities/modal.twig') }}
+</div>
+<lists id="lists" v-bind:lists-obj="listsObj" class='columns'>
+</lists>
 {% endblock %}

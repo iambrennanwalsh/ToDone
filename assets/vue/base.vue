@@ -1,9 +1,9 @@
 <script>
-import modal from './base/modal.vue'
+import notice from './base/notice.vue'
 
 export default {
 	components: {
-    modal}
+    notice}
 }	
 
 </script>

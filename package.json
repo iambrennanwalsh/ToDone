@@ -8,14 +8,15 @@
   },
   "scripts": {
     "dev": "webpack --config config/webpack/webpack.dev.js",
-		"watch": "webpack --config config/webpack/webpack.dev.js --watch",
-		"prod": "webpack --config config/webpack/webpack.prod.js",
-		"heroku-postbuild": "webpack --config config/webpack/webpack.prod.js" 
+    "watch": "webpack --config config/webpack/webpack.dev.js --watch",
+    "prod": "webpack --config config/webpack/webpack.prod.js",
+    "heroku-postbuild": "webpack --config config/webpack/webpack.prod.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",

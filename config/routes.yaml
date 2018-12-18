@@ -83,3 +83,15 @@ DeleteList:
 AddTask:
     path: /addtask
     controller: App\Controller\UtilityController::addTask
+
+CheckIt:
+    path: /checkit
+    controller: App\Controller\UtilityController::checkIt
+
+DeleteIt:
+    path: /deleteit
+    controller: App\Controller\UtilityController::deleteIt
+
+GetLists:
+    path: /getlists
+    controller: App\Controller\UtilityController::getLists

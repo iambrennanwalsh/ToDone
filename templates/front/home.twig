@@ -10,10 +10,10 @@
 <slider class='has-text-centered'></slider>
 {% if modal is defined %}
 	{% if value == "true" %}
-	<modal state title="Your email has been confirmed!" content="Thanks! We've verified your email, and your'e now ready to get doin'. Have fun!" button="Coolio"></modal>
+	<notice state title="Your email has been confirmed!" content="Thanks! We've verified your email, and your'e now ready to get doin'. Have fun!" button="Coolio"></notice>
 	{% endif %}
 	{% if value == "false" %}
-	<modal state title="Something didn't match up!" content="We weren't able to verify your email address using that link. <br><br>This may be a problem on our end. Go ahead and try it again, and if you are still seeing this error, go ahead and request a new email. <br><br> If it still won't verify, hold tight this is probably a problem on our end. We probably already know, and will fix it soon, but it doesn't hurt to <a href='/contact'>contact us</a>. <br><br> We apologize and thank you for your patience." button="Yall suck"></modal>
+	<notice state title="Something didn't match up!" content="We weren't able to verify your email address using that link. <br><br>This may be a problem on our end. Go ahead and try it again, and if you are still seeing this error, go ahead and request a new email. <br><br> If it still won't verify, hold tight this is probably a problem on our end. We probably already know, and will fix it soon, but it doesn't hurt to <a href='/contact'>contact us</a>. <br><br> We apologize and thank you for your patience." button="Yall suck"></notice>
 	{% endif %}
 {% endif %}
 {% endblock %}

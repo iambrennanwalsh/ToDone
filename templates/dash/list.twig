@@ -14,30 +14,36 @@
 		</div>
 	</div>
 	<div class='columns'>
-		<ul id="list" class='column is-6 m-top-20'>
+		<list inline-template>
+		<ul id="list" data-id="{{list.id}}" class='column is-6 m-top-20'>
+
+
+{% if list.tasks is not null and list.tasks is not empty %}
 		{% set tasks = list.tasks|split(' - ') %}
 		{% for task in tasks %}
-		{% set subtask = task|split(' => ') %}	
-			<li style='{% if subtask.1 == 1 %}background: #e0fae0{% endif %}' class='has-text-dark'>
+					{% set subtask = task|split(' => ') %}
+			<li data-taskid="{{loop.index0}}" style='{% if subtask.1 == 1 %}background: #e0fae0{% endif %}' class='has-text-dark'>
 				<label v-on:click="checkit">
 					<span class="check fa m-left-0 {% if subtask.1 == 1 %}fa-check{% endif %}"></span>
 					<span style='{% if subtask.1 == 1 %}text-decoration: line-through{% endif %}' class="taskname m-left-50">{{subtask.0}}</span>
-					<span class='delete is-pulled-right'></span>
 				</label>
+				<span v-on:click="deleteit" class='delete is-pulled-right'></span>
 			</li>
 		{% endfor %}
+{% endif %}
 			<form id="addtask" v-on:submit.prevent="addTask" method='post' class="column">
 				<div class="field has-addons">
 					<div class="control w-100">
     				<input id="newtask" class="input" name="newtask" type="text" placeholder="Go to grocery store..">
 					</div>
 					<div class="control">
-						<button type='submit' class="button is-info">
+						<button type='submit' v-bind:class="{'is-loading': loader}" class="button is-info">
 							<span class='fa fa-plus'></span>
 						</button>
 					</div>
 				</div>
 			</form>
 			</ul>
+			</list>
 	</div>
 {% endblock %}

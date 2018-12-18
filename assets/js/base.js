@@ -5,8 +5,12 @@
 
 
 // Vue.js
-import Vue from 'vue'
+import Vue from 'vue';
 window.Vue = Vue;
+
+// Axios
+import axios from 'axios';
+window.axios = axios;
 
 // Globally required custom scripts.js
 require('./scripts.base.js');

@@ -90,14 +90,6 @@
 				.taskname {
 					pointer-events: none;}
 				
-				.delete {
-					opacity: 0;
-					margin-top:2px;}
-			
-				&:hover .delete {
-					opacity: 1;
-					transition: all .2s 0s ease;}
-				
 				.check {
 					background: #fff;
 					height: 25px;
@@ -120,6 +112,16 @@
 						left: 4px;}
 				}
 			}
+				.delete {
+					right: 20px;
+					top: -32px;
+					opacity: 0;
+					margin-top:2px;}
+			
+				&:hover .delete {
+					opacity: 1;
+					transition: all .2s 0s ease;}
+				
 			
 		}
 		
@@ -134,3 +136,18 @@
 		}
 	}
 }
+
+.tag {
+	padding: 4px 10px !important;
+	display: inline !important;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.outermodal {
+	z-index: 40;
+	position: fixed;
+} 

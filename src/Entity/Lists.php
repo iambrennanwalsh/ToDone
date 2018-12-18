@@ -47,6 +47,16 @@ class Lists
      */
     private $tasks;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $total;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $completed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +130,30 @@ class Lists
     public function setTasks(?string $tasks): self
     {
         $this->tasks = $tasks;
+
+        return $this;
+    }
+
+    public function getTotal(): ?int
+    {
+        return $this->total;
+    }
+
+    public function setTotal(int $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getCompleted(): ?int
+    {
+        return $this->completed;
+    }
+
+    public function setCompleted(int $completed): self
+    {
+        $this->completed = $completed;
 
         return $this;
     }
