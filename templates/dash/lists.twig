@@ -10,12 +10,11 @@ defined and subtask.1 is
 {% block bodyClass %}lists{% endblock %}
 {% set active = 'lists' %}
 {% block main %}
-<div class='columns'>
-	<div class='column'>
-		<button @click="$root.$emit('init-modal')" class="button is-primary is-inverted is-pulled-right"><span class="fa fa-plus m-left-0"></span> Add List</button>
-		<h1 class='title'>Lists</h1>
+	<div class='columns'>
+		<div class='column'>
+			<button @click="triggerAddModal" class="button is-primary is-inverted is-pulled-right"><span class="fa fa-plus m-left-0"></span> Add List</button>
+			<h1 class='title'>Lists</h1>
+		</div>
 	</div>
-</div>
-<lists id="lists" v-bind:lists-obj="listsObj" class='columns'>
-</lists>
+<lists ref="listref" id="lists" class='column'></lists>
 {% endblock %}

@@ -72,26 +72,19 @@ ConfirmEmail:
     path: /confirm
     controller: App\Controller\UtilityController::confirmEmail
 
-AddList: 
-    path: /addlist
-    controller: App\Controller\UtilityController::addList
 
-DeleteList: 
-    path: /deletelist
-    controller: App\Controller\UtilityController::deleteList
 
-AddTask:
-    path: /addtask
-    controller: App\Controller\UtilityController::addTask
+#   Rest API
+# ----------------------------------#
 
-CheckIt:
-    path: /checkit
-    controller: App\Controller\UtilityController::checkIt
+GetList:
+    path: /api/getlist
+    controller: App\Controller\RestController::getList
 
-DeleteIt:
-    path: /deleteit
-    controller: App\Controller\UtilityController::deleteIt
+ModList:
+    path: /api/modlist
+    controller: App\Controller\RestController::modList
 
-GetLists:
-    path: /getlists
-    controller: App\Controller\UtilityController::getLists
+ModTask:
+    path: /api/modtask
+    controller: App\Controller\RestController::modTask

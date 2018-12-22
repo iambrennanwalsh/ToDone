@@ -9,8 +9,5 @@ require('../css/auth.scss');
 // base.scss
 require('./base.js');
 
-// scripts.front.js
-require('./auth/scripts.auth.js');
-
 // Frontend Vue Components (front.vue);
 require('../vue/auth.vue');

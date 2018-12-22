@@ -12,5 +12,13 @@ window.Vue = Vue;
 import axios from 'axios';
 window.axios = axios;
 
-// Globally required custom scripts.js
-require('./scripts.base.js');
+
+if (document.querySelector('body.front') !== null || document.querySelector('body.auth') !== null) {
+	
+	document.querySelector('.burger').addEventListener('click', openNav);
+
+	function openNav() {
+		document.getElementById('frontNav').classList.toggle('opensesame');
+	}
+	
+}

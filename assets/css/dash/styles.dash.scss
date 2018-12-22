@@ -48,10 +48,8 @@
 
 
 .main {
-	
-	background-image: linear-gradient(141deg, #dedeca 0%, #EFF0EB 71%, #fafbf9 100%);
-	
-	#lists {
+		
+	#lists .wrapem {
 
 	flex-wrap: wrap;
 	
@@ -88,7 +86,8 @@
 				padding: 10px 10px 10px 0px !important;
 			
 				.taskname {
-					pointer-events: none;}
+					pointer-events: none;
+					vertical-align: middle;}
 				
 				.check {
 					background: #fff;
@@ -98,7 +97,7 @@
 					box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1) inset;
 					font-size: .95em;
 					color: #fff;
-					position: absolute;
+					vertical-align: middle;
 					border-radius: 5px;
 					pointer-events: none;
 					
@@ -151,3 +150,15 @@
 	z-index: 40;
 	position: fixed;
 } 
+
+.underline {
+	text-decoration: line-through;
+}
+.greenit {
+	background: #e0fae0 !important;
+}
+
+body {
+	height: 100vh;
+  background-image: linear-gradient(141deg, #dedeca 0%, #EFF0EB 71%, #fafbf9 100%);
+}

@@ -9,8 +9,5 @@ require('../css/dash.scss');
 // base.scss
 require('./base.js');
 
-// scripts.front.js
-require('./dash/scripts.dash.js');
-
 // Dashboard Vue Components (dash.vue);
 require('../vue/dash.vue');
