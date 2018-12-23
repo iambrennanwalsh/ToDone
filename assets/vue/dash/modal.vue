@@ -12,13 +12,10 @@
 					<slot name="content"></slot>
 				</section>
 				<footer class="modal-card-foot has-background-light">
-					<button type="button" v-show='deleteIt' v-on:click.prevent="delmodal" class="is-primary button">
-						<slot name="delete"></slot>
+					<button type="button" v-on:click.prevent="confirm" :class="{'is-loading': loadin}" class="is-primary button">
+						<slot name="confirm"></slot>
 					</button>
-					<button type="button" v-show='addIt' v-on:click.prevent="addmodal" :class="{'is-loading': loadin}" class="is-primary button">
-						<slot name="add"></slot>
-					</button>
-					<button v-show='closeIt' v-on:click.prevent="closemodal" class="button">
+					<button v-show='closebutton' type="button" v-on:click.prevent="closemodal" class=" button">
 						<slot name="close"></slot>
 					</button>
 				</footer>
@@ -29,18 +26,16 @@
 <script>
 	export default {
 		props: {
-			deleteIt: Boolean,
-			addIt: Boolean,
-			closeIt: Boolean,
-			loadin: Boolean},
+			closebutton: Boolean,
+			loadin: Boolean
+		},
 
 		methods: {
 			closemodal: function() {
-				this.$emit('close-modal');},
-			delmodal: function() {
-				this.$emit('del-modal');},
-			addmodal: function() {
-				this.$emit('add-modal');}}
+				this.$emit('closemodal');},
+			confirm: function() {
+				this.$emit('confirm');}
+	}
 	}
 
 </script>

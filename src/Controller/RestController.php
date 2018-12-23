@@ -16,7 +16,7 @@ class RestController extends AbstractController {
 	public function getList(Request $request) {
 		$user = $this->getUser();
 		$do = $request->query->get('do');
-		
+
 		if ($do == 'list') {
 			$list = $request->query->get('list');
 			$list = explode('/', $list);
@@ -25,7 +25,7 @@ class RestController extends AbstractController {
 		
 		elseif($do == 'lists') {
 			$return = $this->getDoctrine()->getRepository(Lists::class)->findBy(array('userid' => $user->getId()));}
-		
+
 		$normalizer = new ObjectNormalizer();
 		$normalizer->setIgnoredAttributes(array('userid'));
 		$encoder = new JsonEncoder();
@@ -55,10 +55,20 @@ class RestController extends AbstractController {
 			$list->setModified(date("F j, Y"));
 			$list->setTotal(0);
 			$list->setCompleted(0);
+			$list->setTasklist(array());
 			$entityManager->persist($list);
     	$entityManager->flush();
 			$list = ['id' => $list->getId(), 'name' => $data['title'], 'description' => $data['desc'], 'created' => date("F j, Y"), 'modified' => date("F j, Y"), 'total' => 0, 'completed' => 0];
 			return new JsonResponse($list);}
+		
+		elseif ($do == 'edit') {
+			$list = $this->getDoctrine()->getRepository(Lists::class)->find($data['list']);
+			$list->setName($data['title']);
+			$list->setDescription($data['desc']);
+			$entityManager->persist($list);
+			$entityManager->flush();
+			return new JsonResponse($list);
+		}
 	}
 	
 	public function modTask(Request $request) {
@@ -66,52 +76,50 @@ class RestController extends AbstractController {
 		$entityManager = $this->getDoctrine()->getManager();
 		$do = $data['do'];
 		$list = $this->getDoctrine()->getRepository(Lists::class)->find($data['list']);
-		$tasks = $list->getTasks();
-		$tasksarray = explode(' - ', $tasks);
-		
+		$tasklist = $list->getTasklist();
+
 		if($do == 'check') {
-			$task = $tasksarray[$data['task']];
+			$task = $tasklist[$data['task']];
 			$replacement = $data['change'];
-			$v = $list->getCompleted();
+			$tasklist[$data['task']]['status'] = $replacement; 
+			$completed = $list->getCompleted();
 			if ($replacement == 1) {
-				$list->setCompleted($v + 1);}
+				$list->setCompleted($completed + 1);}
 			else {
-				$list->setCompleted($v - 1);}
-			$replacement = substr($task, 0, -1).$replacement;
-			$tasksarray[$data['task']] = $replacement;
-			$replacement = implode(' - ', $tasksarray);
-			$replacement = trim($replacement, " - ");
-			$list->setTasks($replacement);
+				$list->setCompleted($completed - 1);}
+			$list->setTasklist($tasklist);
 			$entityManager->persist($list);
 			$entityManager->flush();	
 			return new JsonResponse($data);}
 		
 		elseif($do == 'delete') {
-			$status = $tasksarray[$data['task']][-1];
+			$status = $tasklist[$data['task']]['status'];
 			if($status == 1) {
-				$v = $list->getCompleted();
-				$list->setCompleted($v - 1);}
-			$v = $list->getTotal();
-			$list->setTotal($v - 1);
-			unset($tasksarray[$data['task']]);
-			$replacement = implode(' - ', $tasksarray);
-			$replacement = trim($replacement, " - ");
-			$list->setTasks($replacement);
+				$completed = $list->getCompleted();
+				$list->setCompleted($completed - 1);}
+			$total = $list->getTotal();
+			$list->setTotal($total - 1);
+			unset($tasklist[$data['task']]);
+			$list->setTasklist($tasklist);
 			$entityManager->persist($list);
 			$entityManager->flush();
 			return new JsonResponse($data);}
 		
 		elseif($do == 'add') {
-			$tasksarray[] =  $data['task'] . ' => 0';
-			$replacement = implode(' - ', $tasksarray);
-			$replacement = trim($replacement, " - ");
-			$list->setTasks($replacement);
-			$v = $list->getTotal();
-			$list->setTotal($v + 1);
+			$tasklist[] = ["name" => $data['task'], "status" => 0];	
+			$list->setTasklist($tasklist);
+			$total = $list->getTotal();
+			$list->setTotal($total + 1);
 			$entityManager->persist($list);
 			$entityManager->flush();
-			$return = [$data['task'], 0];
+			$return = ['name' => $data['task'], 'status' => 0];
 			return new JsonResponse($return);}
 		
+		elseif($do == 'sort') {
+			$list->setTasklist($data['new']);
+			$entityManager->persist($list);
+			$entityManager->flush();
+			return new JsonResponse(' ');
+		}
 	}
 }

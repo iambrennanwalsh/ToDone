@@ -14,8 +14,10 @@
 		
 		methods: {
 			triggerAddModal: function() {
-				this.$refs.listref.triggerAddModal();}
-			},
+				this.$refs.listref.triggerAddModal();},
+			triggerEditModal: function() {
+			 	this.$refs.list.triggerEditModal();}
+		 },
 		
 });
 </script>

@@ -43,11 +43,6 @@ class Lists
     private $modified;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $tasks;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $total;
@@ -56,6 +51,11 @@ class Lists
      * @ORM\Column(type="integer")
      */
     private $completed;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $tasklist = [];
 
     public function getId(): ?int
     {
@@ -122,18 +122,6 @@ class Lists
         return $this;
     }
 
-    public function getTasks(): ?string
-    {
-        return $this->tasks;
-    }
-
-    public function setTasks(?string $tasks): self
-    {
-        $this->tasks = $tasks;
-
-        return $this;
-    }
-
     public function getTotal(): ?int
     {
         return $this->total;
@@ -154,6 +142,18 @@ class Lists
     public function setCompleted(int $completed): self
     {
         $this->completed = $completed;
+
+        return $this;
+    }
+
+    public function getTasklist(): ?array
+    {
+        return $this->tasklist;
+    }
+
+    public function setTasklist(?array $tasklist): self
+    {
+        $this->tasklist = $tasklist;
 
         return $this;
     }
