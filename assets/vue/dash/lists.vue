@@ -131,7 +131,8 @@
 				}).then(this.$delete(this.lists, this.activeList[1]));
 				let link = document.querySelector('#sidelists li[data-listid="' + this.activeList[0].id + '"]');
 				link.outerHTML = '';
-				this.closemodal();},
+				this.closemodal();
+			},
 
 			addlist: function() {
 				this.attempted = true;
@@ -150,23 +151,23 @@
 					this.loadin = true;
 				}
 			},
-			
+
 			editlist: function() {
 				this.attempted = true;
 				if (this.titleStatus !== true) {
-				axios.post('/api/modlist', {
-					do: 'edit',
-					title: this.title,
-					desc: this.description,
-					list: this.activeList[0].id
-				}).then(response => {
-					this.activeList[0].name = this.title;
-					this.activeList[0].description = this.description;
-					let link = document.querySelector('#sidelists li[data-listid="' + this.activeList[0].id + '"]');
-					link.firstChild.textContent = this.title;
-					this.closemodal();
-					this.loadin = false;
-					this.attempted = false;
+					axios.post('/api/modlist', {
+						do: 'edit',
+						title: this.title,
+						desc: this.description,
+						list: this.activeList[0].id
+					}).then(response => {
+						this.activeList[0].name = this.title;
+						this.activeList[0].description = this.description;
+						let link = document.querySelector('#sidelists li[data-listid="' + this.activeList[0].id + '"]');
+						link.firstChild.textContent = this.title;
+						this.closemodal();
+						this.loadin = false;
+						this.attempted = false;
 					});
 					this.loadin = true;
 				}
@@ -178,14 +179,15 @@
 				this.title = list.name;
 				this.description = list.description;
 			},
-			
+
 			triggerDelModal(list, index) {
 				this.showDelModal = true;
 				this.activeList = [list, index];
 			},
 
 			triggerAddModal() {
-				this.showAddModal = true;},
+				this.showAddModal = true;
+			},
 
 			closemodal() {
 				this.showDelModal = false;
@@ -198,7 +200,11 @@
 		},
 
 		created: function() {
-			axios.get('/api/getlist', {params: {do: 'lists'}}).then(response => {
+			axios.get('/api/getlist', {
+				params: {
+					do: 'lists'
+				}
+			}).then(response => {
 				this.lists = response.data;
 			});
 		}

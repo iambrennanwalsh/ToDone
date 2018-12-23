@@ -30,6 +30,10 @@ class DashController extends AbstractController {
 		if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
     	return $this->redirectToRoute('Home');}
 		
-		return $this->render('dash/profile.twig');}
+		$user = $this->getUser();
+		$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->getEmail() ) ) ) . "?s=500";
+		return $this->render('dash/profile.twig', [
+			'grav' => $grav_url
+		]);}
 	
 }

@@ -1,11 +1,194 @@
 {#
-@name:          account.twig
-@description:   Template for the account page.
+@name: account.twig
+@description: Template for the account page.
 #}
 
 {% extends 'dash.twig' %}
 {% block bodyClass %}profile{% endblock %}
 {% set active = 'profile' %}
 {% block main %}
+<div class='columns m-bottom-30'>
+		<div class='column is-9'>
+			<div>
+			<h1 class='title'>Profile</h1>
+			<p class='subtitle has-text-dark'>You may edit your account information below.</p>
+			</div>
+			<div class=' m-top-30 p-right-30'>
+			<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Full Name: </label>
+  </div>
+  <div class="field-body">
+    <div class="field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-user'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="text" placeholder="Username">
+      </p>
+    </div>
+       <div class="field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-user'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="email" placeholder="Your email address">
+      </p>
+    </div>
+  </div>
+</div>
+		
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Your Info: </label>
+  </div>
+  <div class="field-body">
+    <div class="field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-at'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="text" placeholder="Username">
+      </p>
+    </div>
+       <div class="field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-envelope'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="email" placeholder="Your email address">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Change Password: </label>
+  </div>
+  <div class="field-body">
+    <div class="field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-lock'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="password" placeholder="New password">
+      </p>
+    </div>
+       <div class="field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-lock'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="password" placeholder="Confirm new password">
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <label class="label">About You</label>
+  </div>
+  <div class="field-body">
+		<div class="field">
+  <div class="control has-icons-left">
+    <div class="select is-rounded w-100">
+      <select class='w-100'>
+        <option selected>Country</option>
+        <option>Select dropdown</option>
+        <option>With options</option>
+      </select>
+    </div>
+    <div class="icon is-small is-left">
+      <i class="fa fa-globe"></i>
+    </div>
+  </div>
+</div>
+		<div class="field">
+  <div class="control has-icons-left">
+    <div class="select is-rounded w-100">
+      <select class='w-100'>
+        <option selected>Gender</option>
+        <option>Select dropdown</option>
+        <option>With options</option>
+      </select>
+    </div>
+    <div class="icon is-small is-left">
+      <i class="fa fa-venus"></i>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label"></label>
+  </div>
+  <div class="field-body">
+    <div class="field has-addons">
+			<p class="control">
+          <a class="button is-static">
+            <span class='fa fa-lock'></span>
+          </a>
+        </p>
+      <div class="control is-expanded">
+        <input class="input" type="password" placeholder="Your current password">
+      </div>
+    </div>
+		 <div class="field">
+      <div class="control is-pulled-right">
+        <button class="button is-primary">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+			</div>
+			<hr class='m-top-50 m-bottom-50'>
+			<div class='m-top-30 box '>
+			<h3 class='is-size-4 m-bottom-20'>Close account.</h3>
+				<p class='has-text-dark'>Are you sure you want to close this account? All lists will be deleted with no way of being recovered. To close your account, enter your password below.</p>
+				<div class="m-top-30 field has-addons">
+			  <p class="control">
+          <a class="button is-static">
+            <span class='fa fa-lock'></span>
+          </a>
+        </p>
+      <p class="control is-expanded">
+        <input class="input" type="password" placeholder="New password">
+      </p>
+			<p class="control">
+    		<a class="is-primary button">
+      Continue <span class='is-pulled-right fa fa-chevron-right m-right-0'></span>
+    </a>
+  </p>
+    </div>
+			</div>
+		</div>
+	<div class='column is-3 m-top-20'>
+		<figure class="image is-1by1">
+			<img class='portrait' src="{{grav}}" alt="Placeholder image">
+		</figure>
+		<div class='content is-medium has-text-centered'>
+			<h2 class='m-top-20 m-bottom-10 is-size-4'>{{ app.user.fname }} {{ app.user.lname }}</h2>
+			<p class='tag is-primary'>{{ app.user.email }}</p>
+		</div>
+	</div>
+</div>
 
 {% endblock %}
