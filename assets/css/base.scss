@@ -9,7 +9,14 @@
 /* Fonts + Icons
 -----------------------------------------------*/
 // Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+
+body,
+button,
+input,
+select,
+textarea {
+	font-family:'Assistant', sans-serif; }
 
 // Font Awesome CSS
 @import '~font-awesome/css/font-awesome.css';
@@ -19,13 +26,15 @@
 ------------------------------------------------*/
 // Bulma - Initial Variables
 
-// Utilities Overides
-$primary: #EB5E28;
-$info: #503d39;
-$light: #EFF0EB;
-$dark: #757763;
-$grey-dark: #403d39;
-$family-primary: 'Quicksand', sans-serif; 
+$primary: #f14e32; // Primary
+$info: #309db6; // Secondary
+$light: #f0efe7; // Light
+$dark: #757763; // Text
+$grey-dark: #403f4c; // Dark
+$black: #353535; // Darkkk
+$grey: #999; // Light Text
+
+$family-primary: 'Assistant', sans-serif; 
 
 // Forms Overides
 $input-hover-border-color: hsl(0, 0%, 86%);
@@ -36,7 +45,7 @@ $box-padding: 1rem !important;
 
 // Component Overides
 $menu-item-active-background-color: $primary;
-$menu-item-hover-background-color: $dark; 
+$menu-item-hover-background-color: $info; 
 $menu-item-color: #bbb;
 $menu-item-hover-color: $light;
 $menu-item-active-color: $light;

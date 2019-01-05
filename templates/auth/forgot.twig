@@ -5,7 +5,7 @@
 
 {% extends 'auth.twig' %}
 {% block bodyClass %}forgot{% endblock %}
-{% set active = '' %}
+{% set active = 'login' %}
 {% block main %}
 <div class='columns'>
 	<div class='headingbox column is-4'>
@@ -15,12 +15,14 @@
 	<div class='column is-6 is-offset-2'>
 		<forgot inline-template>
 		{{ form_start(forgot) }}
-		<div class="field">		
-				<div class="control has-icons-left">
+		<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-envelope'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(forgot.email, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attempted && userStatus}" }}) }}
-						<span class="icon is-small is-left">
-							<i class="fa fa-envelope"></i>
-						</span>
 					</div>
 				</div>
 		{% if response != null %}

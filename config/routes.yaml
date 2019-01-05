@@ -77,6 +77,10 @@ ConfirmEmail:
 #   Rest API
 # ----------------------------------#
 
+GetUsers:
+    path: /api/getusers
+    controller: App\Controller\RestController::getUsers
+
 GetList:
     path: /api/getlist
     controller: App\Controller\RestController::getList

@@ -5,7 +5,7 @@
 
 {% extends 'auth.twig' %}
 {% block bodyClass %}login{% endblock %}
-{% set active = '' %}
+{% set active = 'login' %}
 {% block main %}
 <div class='columns'>
 	<div class='headingbox column is-4'>
@@ -19,13 +19,18 @@
 		<div class='field-label is-normal'>
 			<label class="label has-text-light">Username/Email</label>
 		</div>
+		
+		
 		<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<a class="button is-static">
+            <span class='fa fa-user'></span>
+          </a>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(login.username, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attempted && userStatus}" }}) }}
-						<span class="icon is-small is-left">
-							<i class="fa fa-user"></i>
-						</span>
+						
 					</div>
 				</div>
 		</div>
@@ -35,17 +40,19 @@
 			<label class="label has-text-light">Password</label>
 		</div>
 		<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<a class="button is-static">
+            <span class='fa fa-lock'></span>
+          </a>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(login.password, {'attr': {'v-model': "pass", 'v-bind:class': "{'is-primary': attempted && passStatus}" }}) }}
-						<span class="icon is-small is-left">
-							<i class="fa fa-key"></i>
-						</span>
 					</div>
 				</div>
 		</div>
 	</div>
-	<a id="forgotmypass" class="has-text-primary" href="/forgot">I Forgot my password.</a>
+	<a id="forgotmypass" class="has-text-info" href="/forgot">I forgot my password.</a>
 	{{ form_widget(login.login, {'attr': {'v-on:click': "validateForm"}}) }}
 	{% if error is defined%}
 			{% if error %}

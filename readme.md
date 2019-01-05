@@ -1,14 +1,14 @@
-# ToDo!
+# ToDone!
 Just another productivity app.
 
 --------
 
 ## About
-ToDo! Is a learning experience. I was learning Vue.js and I wanted some real world experience applying it to a Symfony project. So I thought why not make something useful for myself and maybe others, I'll make a productivity app. The result is ToDo! 
+ToDone! Is a learning experience. I was learning Vue.js and I wanted some real world experience applying it to a Symfony project. So I thought why not make something useful for myself and maybe others, I'll make a productivity app. The result is ToDone! 
 
 --------
 
-ToDo! provides users with the ability to create simple lists, where they can check off tasks. Not exactly complex, but it's a strong boilerplate for future expansion, and ideas.
+ToDone! provides users with the ability to create simple lists, where they can check off tasks. Not exactly complex, but it's a strong boilerplate for future expansion, and ideas.
 
 ToDo utilizes the following technologies..
 
@@ -24,7 +24,7 @@ ToDo utilizes the following technologies..
 --------
 
 ## Sections
-I've split ToDo! into multiple 'sections' simply to better organize the idea and code. These sections are **Frontend**, **Authentication**, **Dashboard**, and **Utility**. Lets break them down.
+I've split ToDone! into multiple 'sections' simply to better organize the idea and code. These sections are **Frontend**, **Authentication**, **Dashboard**, and **Utility**. Lets break them down.
 
 --------
 
@@ -32,7 +32,7 @@ I've split ToDo! into multiple 'sections' simply to better organize the idea and
 - The public facing section of the site. The home page, about us, contact page, plus terms and conditions and privacy policy are all part of the frontend section.
 
 **2. Authentication**:
-- The authentication section of ToDo! handles all of the user authenticating. That is the signing in, signing up, and signing out of our users. 
+- The authentication section of ToDone! handles all of the user authenticating. That is the signing in, signing up, and signing out of our users. 
 
 **3. Dashboard**:
 - The dashboard is the the app. It's where users will create and edit their lists, and alter their profile information.
@@ -47,7 +47,7 @@ Here I cover the proper development procedure for our assets.
 
 --------
 
-ToDo! has three sets of assets..
+ToDone! has three sets of assets..
 
 **1. SCSS**
 **2. JavaScript**
@@ -63,7 +63,7 @@ For each of these sets of assets, you'll find a folder within the /assets direct
 - /dash/
 - base._
 
-ToDo! uses webpack to compile all of our assets and dependencies into bundled files. Webpack takes all of the scss, js, and vue files and then builds one css and js file per site section(front, auth, dash). It takes 3 entry points (within /assets/js)..
+ToDone! uses webpack to compile all of our assets and dependencies into bundled files. Webpack takes all of the scss, js, and vue files and then builds one css and js file per site section(front, auth, dash). It takes 3 entry points (within /assets/js)..
 
 - front.js 
 - auth.js
@@ -115,7 +115,7 @@ An overview of the proper deployment guidelines.
 
 --------
 
-We run ToDo! on **Heroku**. Heroku makes the deployment process a breeze.  Before I explain,  you have to first understand the diffrrent enviroments ToDo! exists in..
+We run ToDone! on **Heroku**. Heroku makes the deployment process a breeze.  Before I explain,  you have to first understand the diffrrent enviroments ToDone! exists in..
 
 **Development**
 - This is where I build the app. The local enviroment. My mac. 
@@ -146,7 +146,7 @@ So basically deploying is as easy as running **git push origin production**. Or 
 
 --------
 
-ToDo!'s templates are built using Twig with a little bit of Vue.js sprinkled around.
+ToDone!'s templates are built using Twig with a little bit of Vue.js sprinkled around.
 
 The templating system follows the asset system for the most part. Three top level templates, front.twig, auth.twig, and dash.twig provide the building blocks that front/contact.twig, and auth/login.twig expand on.
 

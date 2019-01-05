@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">	
 <head>	
-  <title>{% block title %}ToDo!{% endblock %}</title>
+  <title>{% block title %}ToDone!{% endblock %}</title>
   <meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
   <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,21 +16,21 @@
 	{% endblock %}
 </head>
 <body class='front {% block bodyClass %}{% endblock %}'>
-<section class="hero is-light is-bold is-fullheight">
+<section class="hero is-light is-fullheight">
   <div class="hero-head">
-    <nav class="navbar fixed w-100">
+    <nav class="navbar has-background-grey-dark fixed w-100">
       <div class="container">
         <div class="navbar-brand">
           <a href='/' class="navbar-item active">
-           	<span class='has-text-weight-bold has-text-grey-dark is-size-3'>ToDo!</span>
+           	<span class='has-text-weight-bold has-text-light is-size-3'>ToDone!</span>
           </a>
-          <span id="burger" class="navbar-burger burger" data-target="frontNav">
+          <span id="burger" class="navbar-burger burger has-text-primary" data-target="frontNav">
             <span></span>
             <span></span>
             <span></span>
           </span>
         </div>
-        <div id="frontNav" class="navbar-menu">
+        <div id="frontNav" class="navbar-menu has-background-grey-dark has-text-grey">
           <div class="navbar-end">
             <a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
             <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
@@ -91,8 +91,8 @@
       <div class="container">
         <ul>
           <li class="is-active"><a href='https://www.brennanwal.sh' class='has-background-grey-dark'>Built with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
-          <li><a href='/privacy'>Privacy Policy</a></li>
-          <li><a href='/terms'>Terms and Conditions</a></li>
+          <li><a href='/privacy'>Privacy</a></li>
+          <li><a href='/terms'>Terms</a></li>
         </ul>
       </div>
     </nav>

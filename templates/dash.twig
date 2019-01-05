@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>{% block title %}ToDo!{% endblock %}</title>
+	<title>{% block title %}ToDone!{% endblock %}</title>
 	<meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,18 +14,18 @@
 {% if app.user.confirmed != 1 %}
 	<section id="confirm" class='fixed has-background-grey-dark has-text-centered w-100'>
 		<div class="container">
-			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="https://bizplan.local/confirm?resend=true">Click here to resend it</a>.</p>
+			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="https://todone.local/confirm?resend=true">Click here to resend it</a>.</p>
 		</div>
 	</section>
 {% endif %}
 	<section id='topbar'>
-		<nav class="navbar is-fixed-top	{% if app.user.confirmed != 1 %}confirm	{% endif %}">
+		<nav class="navbar has-background-grey-dark fixed w-100	{% if app.user.confirmed != 1 %}confirm	{% endif %}">
 			<div class='container is-fluid'>
 				<div class="navbar-brand">
-					<a class="navbar-item" href="/dashboard/">
-						<span class='has-text-weight-bold has-text-light is-size-3'>ToDo!</span>
+					<a class="navbar-item p-top-0 p-bottom-0" href="/dashboard/">
+						<span class='has-text-weight-bold has-text-light is-size-3'>ToDone!</span>
 					</a>
-					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+					<a role="button" class="navbar-burger burger has-text-primary" data-target="sidebar">
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="navbar-menu">
 					<div class="navbar-end">
-						<div class="dropdown is-right m-top-15 m-left-15 is-hoverable">
+						<div class="dropdown is-right m-left-15 is-hoverable">
 							<div class="dropdown-trigger">
 								<button class="button is-primary" @click="showDropdown">
 									<span class="icon"><i class="fa fa-user"></i></span>
@@ -53,7 +53,7 @@
 	</section>
 	<section id='dash' class='{% if app.user.confirmed != 1 %}m-top-30{% endif %}'>
 		<div class='columns m-bottom-0'>
-			<aside id='sidebar' class="menu p-right-20 column is-2 has-background-grey-dark h-100">
+			<aside id='sidebar' class="menu p-right-20 column is-3 is-2-desktop has-background-black h-100">
 				<p class="menu-label">
 					Navigation
 				</p>
@@ -66,10 +66,10 @@
 					{% for list in app.user.lists %}
 					<li data-listid="{{ list.id }}"><a href='/list/{{ list.id }}' class='{% if active == list.id %}is-active{% endif %}'>{{ list.name }}</a></li>
 					{% endfor %}
-					<!--<li v-for="list in lists" data-listid="list.id"><a :href="'https://bizplan.local/list/' + list.id" v-text='list.name'></a></li>-->
+					<!--<li v-for="list in lists" data-listid="list.id"><a :href="'https://todone.local/list/' + list.id" v-text='list.name'></a></li>-->
 				</ul>
 			</aside>
-			<div class='main column is-10 is-offset-2 p-bottom-50 p-top-50 p-left-50 p-right-50'>
+			<div id="mainsec" class='main column is-12 is-10-desktop is-offset-2-desktop'>
 				{% block main %}
 				{% endblock %}
 				{% if app.request.query.get('sent') is not empty %}

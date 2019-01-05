@@ -8,10 +8,45 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Lists;
 use App\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class RestController extends AbstractController {
+	
+	public function getUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+		$user = $this->getUser();
+	
+		if (null !== $request->query->get('do')) {
+			$normalizer = new ObjectNormalizer();
+			$encoder = new JsonEncoder();
+			$serializer = new Serializer(array($normalizer), array($encoder));
+			$normalizer->setIgnoredAttributes(array('lists'));
+			$jsonContent = $serializer->serialize($user, 'json');		
+			return JsonResponse::fromJsonString($jsonContent);}
+		
+		else {
+			$data = json_decode($request->getContent(), true);
+			
+			$oldpass = $data['oldpass'];
+			if ($passwordEncoder->isPasswordValid($user, $data['oldpass'])) {
+				$user->setUsername($data['user']['username']);
+				$user->setEmail($data['user']['email']);
+				$user->setFname($data['user']['fname']);
+				$user->setLname($data['user']['lname']);
+				$user->setCountry($data['user']['country']);
+				$user->setGender($data['user']['gender']);
+			if ($data['newpass'] !== "") {
+				$user->setPassword($encoder->encodePassword($user, $data['newpass']));
+			}
+				$entityManager = $this->getDoctrine()->getManager();
+				$entityManager->persist($user);
+				$entityManager->flush();	
+			}
+		}
+			return new JsonResponse('');
+	}
 	
 	public function getList(Request $request) {
 		$user = $this->getUser();
@@ -79,47 +114,36 @@ class RestController extends AbstractController {
 		$tasklist = $list->getTasklist();
 
 		if($do == 'check') {
-			$task = $tasklist[$data['task']];
-			$replacement = $data['change'];
-			$tasklist[$data['task']]['status'] = $replacement; 
-			$completed = $list->getCompleted();
-			if ($replacement == 1) {
-				$list->setCompleted($completed + 1);}
+			$tasklist[$data['task']]['status'] = $data['change'];
+			if($data['change'] == 0) {
+				$list->setCompleted($list->getCompleted() - 1);} 
 			else {
-				$list->setCompleted($completed - 1);}
+				$list->setCompleted($list->getCompleted() + 1);}
 			$list->setTasklist($tasklist);
-			$entityManager->persist($list);
 			$entityManager->flush();	
-			return new JsonResponse($data);}
+			return new JsonResponse(true);}
 		
 		elseif($do == 'delete') {
-			$status = $tasklist[$data['task']]['status'];
-			if($status == 1) {
-				$completed = $list->getCompleted();
-				$list->setCompleted($completed - 1);}
-			$total = $list->getTotal();
-			$list->setTotal($total - 1);
+			if($tasklist[$data['task']]['status'] == 1) {
+				$list->setCompleted($list->getCompleted() - 1);}
+			$list->setTotal($list->getTotal() - 1);
 			unset($tasklist[$data['task']]);
 			$list->setTasklist($tasklist);
-			$entityManager->persist($list);
 			$entityManager->flush();
-			return new JsonResponse($data);}
+			return new JsonResponse(true);}
 		
 		elseif($do == 'add') {
-			$tasklist[] = ["name" => $data['task'], "status" => 0];	
-			$list->setTasklist($tasklist);
-			$total = $list->getTotal();
-			$list->setTotal($total + 1);
-			$entityManager->persist($list);
+			$tasklist = new ArrayCollection($tasklist);
+			$tasklist->add(["name" => $data['task'], "status" => 0]);
+			$list->setTasklist($tasklist->toArray());
+			$list->setTotal($list->getTotal() + 1);
 			$entityManager->flush();
-			$return = ['name' => $data['task'], 'status' => 0];
-			return new JsonResponse($return);}
+			return new JsonResponse(true);}
 		
 		elseif($do == 'sort') {
 			$list->setTasklist($data['new']);
 			$entityManager->persist($list);
 			$entityManager->flush();
-			return new JsonResponse(' ');
-		}
+			return new JsonResponse('');}
 	}
 }

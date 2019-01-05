@@ -75,7 +75,7 @@ export default {
 	data: function() {
 		return {
 			list: '',
-			tasks: [],
+			tasks: '',
 			newtask: '',
 			loader: false,
 			showEditModal: false,
@@ -95,19 +95,16 @@ export default {
 	methods: {
 		
 		toggleTask: function(event) {
-			if (event.target.firstChild.classList.contains('fa-check')) {
-				event.target.firstChild.classList.remove('fa-check');
-				event.target.firstChild.nextElementSibling.classList.remove('underline');
-				event.target.parentElement.classList.remove('greenit');
-				axios.post('/api/modtask', {do: 'check',  change: 0, task: event.target.parentElement.dataset.index, list: this.list.id});}
+			let index = event.target.parentElement.dataset.index;
+			if (this.tasks[index].status == 0) {
+				this.tasks[index].status = 1;
+				axios.post('/api/modtask', {do: 'check', change: 1, task: index, list: this.list.id});}
 			else {
-				event.target.firstChild.classList.add('fa-check');
-				event.target.firstChild.nextElementSibling.classList.add('underline');
-				event.target.parentElement.classList.add('greenit');
-				axios.post('/api/modtask', {do: 'check', change: 1, task: event.target.parentElement.dataset.index, list: this.list.id});}},
+				this.tasks[index].status = 0;}
+				axios.post('/api/modtask', {do: 'check', change: 0, task: index, list: this.list.id});},
 		
 		deleteTask: function(event) {
-			event.target.parentElement.outerHTML = '';
+			this.tasks.splice(event.target.parentElement.dataset.index, 1);
 			axios.post('/api/modtask', {do: 'delete',  task: event.target.parentElement.dataset.index, list: this.list.id});},
 		
 		addTask: function(event) {
@@ -115,7 +112,7 @@ export default {
 			else {
 			axios.post('/api/modtask', {do: 'add',  task: this.newtask, list: this.list.id}).then(response => {
 				this.loader = false;
-				this.tasks.push(response.data);
+				this.tasks.push({name: this.newtask, status: 0});
 				this.newtask = '';});
 			this.loader = true;}},
 		
@@ -163,7 +160,7 @@ export default {
 		if(isNaN(url) == false) {
 			axios.get('/api/getlist', {params: {do: 'list', list: url}}).then(response => {
 				this.list = response.data[0];
-				this.tasks = response.data[0]['tasklist'];
+				this.tasks = Object.keys(response.data[0]['tasklist']).map(i => response.data[0]['tasklist'][i]);  
 			});
 		}
 	}

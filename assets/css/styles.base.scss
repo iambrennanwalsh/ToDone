@@ -133,7 +133,7 @@ body {
 
 
 @include tablet-only {
-	.contact #front > .columns {
+	.contact #front > .columns, .privacy #front > .columns, .terms #front > .columns, .auth #auth > .columns {
 		display: block;
 	
 		.column:nth-child(1) {
@@ -143,18 +143,20 @@ body {
 			width: 100%;
 			margin: 0;}
 	}
+	.about #front > .columns {
+		display: block;}
 }
 
 .respond {display: none;}
 @include touch {
 	
 .burger {
- background-color: rgba(0, 0, 0, 0.05) !important;}
+ background-color: rgba(0, 0, 0, 0.15) !important;}
 
 .opensesame {
 		display: block;}	
 	
-#frontNav {
+.navbar {
 	background: unset;
 	box-shadow: unset;
 
@@ -162,7 +164,7 @@ body {
 		padding-left: 30px;
 			
 	&.is-active, &:hover {
-		background: rgba(0, 0, 0, 0.05) !important;
+		background: rgba(0, 0, 0, 0.15) !important;
 		font-weight: bold;}}
 	
 	.respond {
@@ -209,8 +211,9 @@ body {
 	height: 60px;
 
 .navbar {
-	background: rgba(214, 214, 198, 1) !important;
+	background: #403f4c !important;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.05);
 	
 	.navbar-brand .navbar-item {
 		padding-top: 0px;
@@ -223,3 +226,21 @@ body {
 	}
 	
 }
+
+.title {
+	font-size: 1.75rem;
+}
+
+.subtitle {
+	font-size: 1rem;
+}
+
+.navbar {
+
+		.navbar-end > a.is-active, .navbar-end > a:hover {
+			background: rgba(0, 0, 0, 0.15) !important;
+			color: #fff !important;}
+}
+
+form .button.is-static {
+		width: 60px;}

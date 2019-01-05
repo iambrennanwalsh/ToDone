@@ -1,6 +1,7 @@
 <script>
 	import Lists from './dash/lists.vue';
 	import List from './dash/list.vue';
+	import Profile from './dash/profile.vue';
 
 	export default {}
 
@@ -8,7 +9,9 @@
 		
 		components: {
 			'lists': Lists,
-			'list': List},
+			'list': List,
+			'profile': Profile
+			},
 
 		el: "#dash",
 		

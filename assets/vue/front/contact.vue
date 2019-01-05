@@ -44,7 +44,7 @@
 					this.message = "";
 					this.buttton = true;
 				});
-				xhr.open("POST", "https://bizplan.local/contactform");
+				xhr.open("POST", "https://todone.local/contactform");
 				xhr.send(data);
 			}
 		},
@@ -55,20 +55,24 @@
   			<label class="label has-text-grey-dark">From<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-user'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						<input v-model='fname' v-bind:class="{'is-primary': attempted && nameStatus}" name='fname' type='text' placeholder='Full Name' class='input'>
-						<span class="icon is-small is-left">
-							<i class="fa fa-user"></i>
-						</span>
 					</div>
 				</div>
-				<div class="field">
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-envelope'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						<input v-model='email' v-bind:class="{'is-primary': attempted && emailStatus}" name='email' type='email' placeholder='Email' class='input'>
-						<span class="icon is-small is-left">
-							<i class="fa fa-envelope"></i>
-    				</span>
 					</div>
 				</div>
 			</div>
@@ -78,12 +82,14 @@
   			<label class="label has-text-grey-dark">Subject<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
-				<div class='field'>
-  				<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-chevron-right'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						<input v-model='subject' v-bind:class="{'is-primary': attempted && subjectStatus}" name='subject' type='text' placeholder='Subject' class='input'>
-    				<span class="icon is-small is-left">
-      				<i class="fa fa-chevron-right"></i>
-    				</span>
   				</div>
 				</div>
 			</div>

@@ -5,7 +5,7 @@
 
 {% extends 'auth.twig' %}
 {% block bodyClass %}signup{% endblock %}
-{% set active = '' %}
+{% set active = 'signup' %}
 {% block main %}
 	<div class='columns'>
 	<div class='headingbox column is-4'>
@@ -20,12 +20,14 @@
   			<label class="label has-text-light">Username<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-user'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(signup.username, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attemptedSubmit && userStatus}", 'placeholder': 'Username', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-							<i class="fa fa-user"></i>
-						</span>
 					</div>
 				</div>
 			</div>
@@ -35,12 +37,14 @@
   			<label class="label has-text-light">Email<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
-				<div class='field'>
-  				<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-envelope'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 							{{ form_widget(signup.email, {'attr': {'v-model': "email", 'v-bind:class': "{'is-primary': attemptedSubmit && emailStatus}", 'placeholder': 'Email', 'class': 'input' }}) }}
-    				<span class="icon is-small is-left">
-      				<i class="fa fa-envelope"></i>
-    				</span>
   				</div>
 				</div>
 			</div>
@@ -50,20 +54,24 @@
   			<label class="label has-text-light">Password<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-key'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(signup.password.first, {'attr': {'v-model': "pass", 'v-bind:class': "{'is-primary': attemptedSubmit && passStatus}", 'placeholder': 'Password', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-      				<i class="fa fa-key"></i>
-    				</span>
 					</div>
 				</div>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-key'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(signup.password.second, {'attr': {'v-model': "rpass",'v-on:blur': "validatePasswords", 'v-bind:class': "{'is-primary': identical && attemptedRpass || attemptedSubmit && rpassStatus}", 'placeholder': 'Repeat Password', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-      				<i class="fa fa-key"></i>
-    				</span>
 					</div>
 				</div>
 			</div>
@@ -73,20 +81,24 @@
   			<label class="label has-text-light">Your name<sup>*</sup></label>
 			</div>
 			<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-user'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(signup.fname, {'attr': {'v-model': "fname", 'v-bind:class': "{'is-primary': attemptedSubmit && fnameStatus}", 'placeholder': 'First Name', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-      				<i class="fa fa-user"></i>
-    				</span>
 					</div>
 				</div>
-				<div class='field'>
-					<div class="control has-icons-left">
+				<div class='field has-addons'>
+					<div class="control">
+						<span class="button is-static">
+            <span class='fa fa-user'></span>
+          </span>
+					</div>
+					<div class='control is-expanded'>
 						{{ form_widget(signup.lname, {'attr': {'v-model': "lname", 'v-bind:class': "{'is-primary': attemptedSubmit && lnameStatus}", 'placeholder': 'Last Name', 'class': 'input' }}) }}
-						<span class="icon is-small is-left">
-      				<i class="fa fa-user"></i>
-    				</span>
 					</div>
 				</div>
 			</div>
@@ -127,7 +139,7 @@
 		</div>
 		<div class="field is-pulled-right">
   		<div class="control">
-				{{ form_widget(signup.submit, {'attr': {'v-on:click': "validateForm", 'class': 'button is-primary' }}) }}
+				<button v-on:click="validateForm" class='button is-primary'>Sign Up</button>
   		</div>
 		</div>
 		<div class="show formsent is-pulled-left">
