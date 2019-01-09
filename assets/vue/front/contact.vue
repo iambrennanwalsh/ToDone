@@ -1,55 +1,5 @@
-<script>
-	Vue.component('contact', {
-		data: function() {
-			return {
-				fname: "",
-				email: "",
-				subject: "",
-				message: "",
-				attempted: false,
-				show: false
-			}
-		},
-		computed: {
-			nameStatus: function() {
-				return this.fname === ""
-			},
-			emailStatus: function() {
-				return this.email === ""
-			},
-			subjectStatus: function() {
-				return this.subject === ""
-			},
-			messageStatus: function() {
-				return this.message === ""
-			}
-		},
-		methods: {
-			validateForm: function(event) {
-				this.attempted = true;
-				if (this.nameStatus || this.emailStatus || this.subjectStatus || this.messageStatus) {} else {
-					this.sendit(event)
-				}
-			},
-			sendit: function(event) {
-				var form = document.getElementById('contactform');
-				var data = new FormData(form);
-				var xhr = new XMLHttpRequest();
-				xhr.addEventListener("load", event => {
-					this.show = true;
-					this.attempted = false;
-					this.fname = "";
-					this.email = "";
-					this.subject = "";
-					this.message = "";
-					this.buttton = true;
-				});
-				xhr.open("POST", "https://todone.local/contactform");
-				xhr.send(data);
-			}
-		},
-		template: `
-  <form id='contactform' method="post" v-on:submit.prevent="validateForm">
+<template>
+<form id='contactform' method="post" v-on:submit.prevent="validateForm">
 		<div class="field is-horizontal">
 			<div class='field-label is-normal'>
   			<label class="label has-text-grey-dark">From<sup>*</sup></label>
@@ -112,7 +62,59 @@
   		</div>
 		</div>
 		<div v-bind:class='{show: show}' class='formsent notification is-success is-pulled-left'>Your message has been sent.</div>
-	</form>`
-	});
+	</form>
+</template>
+
+<script>
+export default {
+		data: function() {
+			return {
+				fname: "",
+				email: "",
+				subject: "",
+				message: "",
+				attempted: false,
+				show: false
+			}
+		},
+		computed: {
+			nameStatus: function() {
+				return this.fname === ""
+			},
+			emailStatus: function() {
+				return this.email === ""
+			},
+			subjectStatus: function() {
+				return this.subject === ""
+			},
+			messageStatus: function() {
+				return this.message === ""
+			}
+		},
+		methods: {
+			validateForm: function(event) {
+				this.attempted = true;
+				if (this.nameStatus || this.emailStatus || this.subjectStatus || this.messageStatus) {} else {
+					this.sendit(event)
+				}
+			},
+			sendit: function(event) {
+				var form = document.getElementById('contactform');
+				var data = new FormData(form);
+				var xhr = new XMLHttpRequest();
+				xhr.addEventListener("load", event => {
+					this.show = true;
+					this.attempted = false;
+					this.fname = "";
+					this.email = "";
+					this.subject = "";
+					this.message = "";
+					this.buttton = true;
+				});
+				xhr.open("POST", "/contactform");
+				xhr.send(data);
+			}
+		}
+	}
 
 </script>

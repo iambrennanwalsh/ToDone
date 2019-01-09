@@ -22,7 +22,7 @@ class EmailVerifier {
 		$user = $entityManager->getRepository(User::class)->findOneBy(['id' => $id]);
 		//if ($user) {
 			$code = $user->getConfirmed();
-			$url = 'https://todone.local/confirm?id=' . $id . '&hash=' . $code;
+			$url = '/confirm?id=' . $id . '&hash=' . $code;
 			$message = (new \Swift_Message('Thanks for joining.'))
 				->setSubject('Welcome to ToDone!. Confirm your email.')
 				->setFrom('mail@videncrypt.com')

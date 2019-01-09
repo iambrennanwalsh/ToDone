@@ -4,7 +4,7 @@
 			<div v-for="(list, index) in lists" class='list column box is-6'>
 				<button @click="triggerDelModal(list, index)" class="delete is-pulled-right"></button>
 				<span @click="triggerEditModal(list, index)" class="fa fa-edit editbutton is-pulled-right"></span>
-				<p class="is-size-4 m-bottom-10"><a v-text='list.name' class='has-text-info' :href="'https://todone.local/list/' + list.id"></a></p>
+				<p class="is-size-4 m-bottom-10"><a v-text='list.name' class='has-text-info' :href="'/list/' + list.id"></a></p>
 				<p class="m-bottom-20 has-text-dark" v-text="list.description"></p>
 				<p class="m-bottom-10">
 					<span class="tag is-primary m-right-10"><span v-text="list.completed"></span>/<span v-text="list.total"></span> Completed</span>

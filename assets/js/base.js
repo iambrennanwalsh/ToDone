@@ -29,11 +29,11 @@ if (document.querySelector('body.front') !== null || document.querySelector('bod
 
 if (document.querySelector('body.dash') !== null) {
 	
-	document.querySelector('#mainsec').addEventListener('click', closeDash);
 	document.querySelector('.burger').addEventListener('click', openDash);
 
 	function openDash() {
-		document.getElementById('sidebar').classList.toggle('opensesame');}
+		document.getElementById('sidebar').classList.toggle('opensesame');
+	}
 	
 	function closeDash() {
 		document.getElementById('sidebar').classList.remove('opensesame');}

@@ -74,7 +74,7 @@ class AuthController extends AbstractController {
 				
 				$id = $user->getId();
 				$password = $user->getPassword();
-				$url = "<a href='https://todone.local/change?id=$id&hash=$password'>Click this link to reset your password.</a>";
+				$url = "<a href='/change?id=$id&hash=$password'>Click this link to reset your password.</a>";
 				
 				$message = (new \Swift_Message('Forgot Password'))
 					->setSubject('Account Recovery')

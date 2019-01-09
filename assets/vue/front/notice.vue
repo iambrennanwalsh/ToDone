@@ -1,22 +1,4 @@
-<script>
-	Vue.component('notice', {
-		props: {
-			title: String,
-			content: String,
-			state: Boolean,
-			button: String,
-		},
-		methods: {
-			stateChange: function(event) {
-				event.preventDefault();
-				if (this.state === true) {
-					this.state = false;
-				} else {
-					this.state = true;
-				}
-			},
-		},
-		template: `
+<template>
 <div>
 	<div v-bind:class="{'is-active': state}" class="modal">
   <div v-on:click='stateChange' class="modal-background"></div>
@@ -35,7 +17,25 @@
   	</div>
 	</div>
 </div>
-`
-	});
+</template>
 
+<script>
+export default {
+	props: {
+		title: String,
+		content: String,
+		state: Boolean,
+		button: String,
+	},
+	methods: {
+		stateChange: function(event) {
+			event.preventDefault();
+			if (this.state === true) {
+				this.state = false;
+			} else {
+				this.state = true;
+			}
+		},
+	},
+}
 </script>

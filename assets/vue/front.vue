@@ -8,7 +8,9 @@ export default {}
 new Vue({
 	
 	components: {
-		'slider': slider},
+		'slider': slider,
+		'notice': notice,
+		'contact': contact},
 	
 	el: "#front"
 	

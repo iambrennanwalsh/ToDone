@@ -136,7 +136,7 @@
 				<div class="field" style="height: 37px">
 					<div class="control is-pulled-right">
 						<button type="submit" v-on:submit.prevent="validateForm" :class="{'is-loading': loader}" class="button is-primary">
-							Submit
+							Update Info
 						</button>
 					</div>
 				</div>

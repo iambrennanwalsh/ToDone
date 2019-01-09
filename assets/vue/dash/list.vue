@@ -75,7 +75,7 @@ export default {
 	data: function() {
 		return {
 			list: '',
-			tasks: '',
+			tasks: [],
 			newtask: '',
 			loader: false,
 			showEditModal: false,
@@ -96,12 +96,13 @@ export default {
 		
 		toggleTask: function(event) {
 			let index = event.target.parentElement.dataset.index;
+			console.log(index);
 			if (this.tasks[index].status == 0) {
 				this.tasks[index].status = 1;
 				axios.post('/api/modtask', {do: 'check', change: 1, task: index, list: this.list.id});}
 			else {
-				this.tasks[index].status = 0;}
-				axios.post('/api/modtask', {do: 'check', change: 0, task: index, list: this.list.id});},
+				this.tasks[index].status = 0;
+				axios.post('/api/modtask', {do: 'check', change: 0, task: index, list: this.list.id});}},
 		
 		deleteTask: function(event) {
 			this.tasks.splice(event.target.parentElement.dataset.index, 1);

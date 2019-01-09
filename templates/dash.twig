@@ -14,7 +14,7 @@
 {% if app.user.confirmed != 1 %}
 	<section id="confirm" class='fixed has-background-grey-dark has-text-centered w-100'>
 		<div class="container">
-			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="https://todone.local/confirm?resend=true">Click here to resend it</a>.</p>
+			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="/confirm?resend=true">Click here to resend it</a>.</p>
 		</div>
 	</section>
 {% endif %}
@@ -23,7 +23,7 @@
 			<div class='container is-fluid'>
 				<div class="navbar-brand">
 					<a class="navbar-item p-top-0 p-bottom-0" href="/dashboard/">
-						<span class='has-text-weight-bold has-text-light is-size-3'>ToDone!</span>
+           	<span class='has-text-weight-bold has-text-info is-size-3'>to<span class='has-text-primary'>done</span></span>
 					</a>
 					<a role="button" class="navbar-burger burger has-text-primary" data-target="sidebar">
 						<span aria-hidden="true"></span>
@@ -53,7 +53,7 @@
 	</section>
 	<section id='dash' class='{% if app.user.confirmed != 1 %}m-top-30{% endif %}'>
 		<div class='columns m-bottom-0'>
-			<aside id='sidebar' class="menu p-right-20 column is-3 is-2-desktop has-background-black h-100">
+			<aside id='sidebar' class="menu p-left-0 p-right-0 column is-3 is-2-desktop has-background-black h-100">
 				<p class="menu-label">
 					Navigation
 				</p>
@@ -66,7 +66,7 @@
 					{% for list in app.user.lists %}
 					<li data-listid="{{ list.id }}"><a href='/list/{{ list.id }}' class='{% if active == list.id %}is-active{% endif %}'>{{ list.name }}</a></li>
 					{% endfor %}
-					<!--<li v-for="list in lists" data-listid="list.id"><a :href="'https://todone.local/list/' + list.id" v-text='list.name'></a></li>-->
+					<!--<li v-for="list in lists" data-listid="list.id"><a :href="'/list/' + list.id" v-text='list.name'></a></li>-->
 				</ul>
 			</aside>
 			<div id="mainsec" class='main column is-12 is-10-desktop is-offset-2-desktop'>

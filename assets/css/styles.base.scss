@@ -5,7 +5,7 @@
 
 /* Sitewide Class Additions
 ----------------------------------------------------------------------*/
-$sizing: (0,10,15,20,30,50, 100);
+$sizing: (0,5,10,15,20,30,50,100);
 $positions: ('top','left','bottom','right');
 @each $size in $sizing {
 	@each $position in $positions {
@@ -90,16 +90,20 @@ body {
 		color: rgba(54, 54, 54, 0.3);
 	}
 }
+
 .formsent {
 	width: 300px;
 	padding: 5px;
 	opacity: 0;
-	transition: opacity .2s ease;
+	transition: .2s;
 	text-align: center;
 
 	&.show {
 		opacity: 1;
-	}}
+		transition: .2s;
+	}
+}
+
 .login .formsent, #forgotmypass {
 	clear: both;
 }
@@ -161,7 +165,7 @@ body {
 	box-shadow: unset;
 
 	a {
-		padding-left: 30px;
+		padding-left: 15px;
 			
 	&.is-active, &:hover {
 		background: rgba(0, 0, 0, 0.15) !important;
@@ -242,5 +246,9 @@ body {
 			color: #fff !important;}
 }
 
-form .button.is-static {
+.control .button.is-static {
 		width: 60px;}
+
+::-webkit-input-placeholder {
+	color: rgba(54, 54, 54, 0.4) !important;
+} 

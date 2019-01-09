@@ -128,6 +128,7 @@ class RestController extends AbstractController {
 				$list->setCompleted($list->getCompleted() - 1);}
 			$list->setTotal($list->getTotal() - 1);
 			unset($tasklist[$data['task']]);
+			$tasklist = array_values($tasklist);
 			$list->setTasklist($tasklist);
 			$entityManager->flush();
 			return new JsonResponse(true);}
