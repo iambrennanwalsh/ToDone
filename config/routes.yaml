@@ -92,3 +92,7 @@ ModList:
 ModTask:
     path: /api/modtask
     controller: App\Controller\RestController::modTask
+
+DeleteUser:
+    path: /api/deleteuser
+    controller: App\Controller\RestController::deleteUser

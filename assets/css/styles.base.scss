@@ -221,7 +221,12 @@ body {
 	
 	.navbar-brand .navbar-item {
 		padding-top: 0px;
-		padding-bottom: 0px;}
+		padding-bottom: 0px;
+		
+		&:hover {
+			background: #403f4c !important;
+		}
+	}
 	
 	.dropdown {
 		margin-top: 9px;

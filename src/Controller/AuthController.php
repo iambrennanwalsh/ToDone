@@ -35,11 +35,10 @@ class AuthController extends AbstractController {
 			$entityManager->persist($user);
 			$entityManager->flush();
 			
-			$verifier->email($user->getId());
-			
 			$token = new UsernamePasswordToken($user, $password, 'main', $user->getRoles());
 			$this->get('security.token_storage')->setToken($token);
 			$this->get('session')->set('_security_main', serialize($token));
+			$verifier->sendConfirmationEmail($user->getId());
 			
     	return $this->redirectToRoute('Lists');}		
 		
@@ -74,13 +73,18 @@ class AuthController extends AbstractController {
 				
 				$id = $user->getId();
 				$password = $user->getPassword();
-				$url = "<a href='/change?id=$id&hash=$password'>Click this link to reset your password.</a>";
+				$url = "https://todone.local/change?id=$id&hash=$password";
 				
 				$message = (new \Swift_Message('Forgot Password'))
 					->setSubject('Account Recovery')
 					->setFrom('videncrypt@gmail.com')
 					->setTo('videncrypt@gmail.com')
-					->setBody("$url", 'text/html');
+					->setBody($this->render(
+					'utilities/email/forgot.twig',
+					array(
+						'fname' => $user->getFname(),
+						'url' => $url)),
+			 	'text/html');
 				$mailer->send($message);
 				
 				$response = "Great! Now check that email for further instructions!";
@@ -119,7 +123,9 @@ class AuthController extends AbstractController {
 							->setSubject('Your password has been changed.')
 							->setFrom('videncrypt@gmail.com')
 							->setTo('videncrypt@gmail.com')
-							->setBody("If this wasn't you, then some shady stuffs goin down.", 'text/html');
+							->setBody($this->render(
+					'utilities/email/passwordChanged.twig'),
+			 	'text/html');
 						$mailer->send($message);
 						return $this->redirectToRoute('Login');
 				} else {$response = "Something wen't wrong.";}

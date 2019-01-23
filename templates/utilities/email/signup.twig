@@ -3,12 +3,17 @@
 {% block title %}Welcome to ToDone!{% endblock %}
 
 {% block content %}
-Hello {{ fname }}, thanks for signing up for ToDone! Let's start by confirming this email address. If you need help or have any questions, you may reply directly to this email! Monday thru Friday, I'll do my best to respond within 1 hour. If your email is recieved after 5pm PDT, I will respond first thing in the morning. Saturday and Sunday, give me up to 4 hours to respond. If your matter is urgent, write 'URGENT - ' as a prefix to your email's subject so I know to get back to you asap.
+<p>Hello {{ fname }}, thanks for signing up for ToDone! Let's get started by confirming your email address. At the bottom of this email, we've provided a link that will verify this email belongs to you.
+</p>
+<p>
+If you have any questions, you can reply directly to this email! I do my best to respond within 1 hour, Monday thru Friday.
+</p>
 
-Thanks,
-Brennan from VidEncrypt
+<p>Thanks,<br>
+ToDone Team
+</p>
 
---
-
+<p>
 <a href='{{ url }}'>Click this link to confirm your email</a>.
+</p>
 {% endblock %}

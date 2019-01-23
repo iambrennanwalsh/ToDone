@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Lists;
 use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class RestController extends AbstractController {
 	
@@ -38,7 +39,7 @@ class RestController extends AbstractController {
 				$user->setCountry($data['user']['country']);
 				$user->setGender($data['user']['gender']);
 			if ($data['newpass'] !== "") {
-				$user->setPassword($encoder->encodePassword($user, $data['newpass']));
+				$user->setPassword($passwordEncoder->encodePassword($user, $data['newpass']));
 			}
 				$entityManager = $this->getDoctrine()->getManager();
 				$entityManager->persist($user);
@@ -147,4 +148,31 @@ class RestController extends AbstractController {
 			$entityManager->flush();
 			return new JsonResponse('');}
 	}
+	
+	public function deleteUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, TokenStorageInterface $tokenStorage) {
+		$user = $this->getUser();
+		$data = json_decode($request->getContent(), true);
+		$do =  $data['do'];
+		
+		if ($do == 'check') {
+			$pass = $data['pass'];
+			if ($passwordEncoder->isPasswordValid($user, $pass)) {
+				return new JsonResponse(['status' => true]);}
+			else {
+				return new JsonResponse(['status' => false]);} }
+		
+		if ($do == 'delete') {
+			$lists = $this->getDoctrine()->getRepository(Lists::class)->findBy(array('userid' => $user->getId()));	
+			$entityManager = $this->getDoctrine()->getManager();
+			for ($i=0; $i<count($lists); $i++) {
+				$list = $lists[$i];
+				$entityManager->remove($list);
+			}
+			$this->get('session')->invalidate();
+			$entityManager->remove($user);
+			$entityManager->flush();
+			$tokenStorage->setToken(null);
+			return new JsonResponse(true);}
+	}
+				
 }

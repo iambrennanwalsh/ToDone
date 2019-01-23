@@ -20,31 +20,15 @@
 		<div class='m-top-30 box '>
 			<h3 class='is-size-4 m-bottom-20'>Close account.</h3>
 			<p class='has-text-dark'>Are you sure you want to close this account? All lists will be deleted with no way of being recovered. To close your account, enter your password below.</p>
-			<div class="m-top-30 field has-addons">
-				<p class="control">
-					<a class="button is-static">
-						<span class='fa fa-lock'></span>
-					</a>
-				</p>
-				<p class="control is-expanded">
-					<input class="input" type="password" placeholder="Enter the password for your account.">
-				</p>
-				<p class="control">
-					<a class="is-primary button">
-						Continue <span class='is-pulled-right fa fa-chevron-right m-right-0'></span>
-					</a>
-				</p>
-			</div>
+			<delete>
+			
+			</delete>
 		</div>
 	</div>
 	<div class='column is-3 m-top-20'>
 		<figure class="image is-1by1">
-			<img class='portrait' src="{{grav}}" alt="Placeholder image">
+			<a href="https://gravatar.com"><img class='portrait' src="{{grav}}" alt="Placeholder image"></a>
 		</figure>
-		<div class='content is-medium has-text-centered'>
-			<h2 class='m-top-20 m-bottom-10 is-size-4'>{{ app.user.fname }} {{ app.user.lname }}</h2>
-			<p class='tag is-primary'>{{ app.user.email }}</p>
-		</div>
 	</div>
 </div>
 

@@ -12,7 +12,7 @@
 
 <body class='dash {% block bodyClass %}{% endblock %}'>
 {% if app.user.confirmed != 1 %}
-	<section id="confirm" class='fixed has-background-grey-dark has-text-centered w-100'>
+	<section id="confirm" class='fixed has-background-black has-text-centered w-100'>
 		<div class="container">
 			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="/confirm?resend=true">Click here to resend it</a>.</p>
 		</div>
@@ -42,6 +42,7 @@
 							</div>
 							<div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
 								<div class="dropdown-content">
+									<a href="/" class="dropdown-item">Front</a>
 									<a href="/logout" class="dropdown-item">Logout</a>
 								</div>
 							</div>
@@ -69,6 +70,15 @@
 					<!--<li v-for="list in lists" data-listid="list.id"><a :href="'/list/' + list.id" v-text='list.name'></a></li>-->
 				</ul>
 			</aside>
+			<!--
+				<div id="animateWow" class="main column is-12 is-10-desktop is-offset-2-desktop h-100">
+				<div class="loadAnimation">
+      			<div class="line line-1"></div>
+      			<div class="line line-2"></div>
+      			<div class="line line-3"></div>
+				</div>
+    		</div>
+			-->
 			<div id="mainsec" class='main column is-12 is-10-desktop is-offset-2-desktop'>
 				{% block main %}
 				{% endblock %}
