@@ -1,41 +1,37 @@
 <template>
-<div>
-	<div v-bind:class="{'is-active': state}" class="modal">
-  <div v-on:click='stateChange' class="modal-background"></div>
-  <div class="modal-card">
-		<form id='newList' method='post'>
-    <header class="modal-card-head has-background-light">
-      <p class="modal-card-title" v-text='title'></p>
-      <button v-on:click='stateChange' class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body" v-html='content'>
-    </section>
-    	<footer class="modal-card-foot has-background-light">
-      		<button v-on:click='stateChange' v-text='button' class="is-primary button"></button>
-    		</footer>
-			</form>
-  	</div>
+	<div>
+		<div class="is-active modal" v-show="state">
+			<div @click.prevent='stateChange' class="modal-background"></div>
+			<div class="modal-card">
+				<form id='newList' method='post'>
+					<header class="modal-card-head has-background-light">
+						<p class="modal-card-title" v-text='title'></p>
+						<button @click.prevent='stateChange' class="delete"></button>
+					</header>
+					<section class="modal-card-body" v-html='content'>
+					</section>
+					<footer class="modal-card-foot has-background-light">
+						<button @click.prevent='stateChange' v-text='button' class="is-primary button"></button>
+					</footer>
+				</form>
+			</div>
+		</div>
 	</div>
-</div>
 </template>
 
 <script>
-export default {
-	props: {
-		title: String,
-		content: String,
-		state: Boolean,
-		button: String,
-	},
-	methods: {
-		stateChange: function(event) {
-			event.preventDefault();
-			if (this.state === true) {
-				this.state = false;
-			} else {
-				this.state = true;
-			}
+	export default {
+		props: {
+			title: String,
+			content: String,
+			state: Boolean,
+			button: String,
 		},
-	},
-}
+		methods: {
+			stateChange: function(event) {
+				this.state === true ? this.state = false : this.state = true;
+			},
+		},
+	}
+
 </script>

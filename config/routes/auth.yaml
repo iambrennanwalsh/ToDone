@@ -1,0 +1,21 @@
+#   Authentication
+# ----------------------------------#
+
+Signup:
+    path: /signup
+    controller: App\Controller\AuthController::signup
+
+Login:
+    path: /login
+    controller: App\Controller\AuthController::login
+
+Logout:
+    path: /logout
+
+Forgot:
+    path: /forgot
+    controller: App\Controller\AuthController::forgot
+
+Change:
+    path: /change
+    controller: App\Controller\AuthController::change

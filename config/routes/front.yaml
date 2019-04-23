@@ -1,0 +1,22 @@
+#   Frontend
+# ----------------------------------#
+
+Home:
+    path: /
+    controller: App\Controller\FrontController::home
+
+About:
+    path: /about
+    controller: App\Controller\FrontController::about
+
+Contact:
+    path: /contact
+    controller: App\Controller\FrontController::contact
+
+Terms:
+    path: /terms
+    controller: App\Controller\FrontController::terms
+
+Privacy:
+    path: /privacy
+    controller: App\Controller\FrontController::privacy

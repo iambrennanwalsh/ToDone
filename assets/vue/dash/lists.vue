@@ -101,6 +101,7 @@
 
 		data: function() {
 			return {
+				userid: '',
 				lists: '',
 				showDelModal: false,
 				showAddModal: false,
@@ -125,10 +126,8 @@
 		methods: {
 
 			deletelist: function() {
-				axios.post('/api/modlist', {
-					do: 'delete',
-					list: this.activeList[0]
-				}).then(this.$delete(this.lists, this.activeList[1]));
+				axios.delete('/api/lists/' + this.activeList[0].id)
+					.then(this.$delete(this.lists, this.activeList[1]));
 				let link = document.querySelector('#sidelists li[data-listid="' + this.activeList[0].id + '"]');
 				link.outerHTML = '';
 				this.closemodal();
@@ -137,10 +136,14 @@
 			addlist: function() {
 				this.attempted = true;
 				if (this.titleStatus !== true) {
-					axios.post('/api/modlist', {
-						do: 'add',
-						title: this.title,
-						desc: this.description
+					axios.post('/api/lists', {
+						name: this.title,
+						description: this.description,
+						created: new Date(),
+						modified: new Date(),
+						total: 0,
+						completed: 0,
+						userid: "/api/users/" + this.userid
 					}).then(response => {
 						this.lists.push(response.data);
 						this.closemodal();
@@ -155,11 +158,10 @@
 			editlist: function() {
 				this.attempted = true;
 				if (this.titleStatus !== true) {
-					axios.post('/api/modlist', {
-						do: 'edit',
-						title: this.title,
-						desc: this.description,
-						list: this.activeList[0].id
+					axios.put('/api/lists/' + this.activeList[0].id, {
+						name: this.title,
+						description: this.description,
+						modified: new Date()
 					}).then(response => {
 						this.activeList[0].name = this.title;
 						this.activeList[0].description = this.description;
@@ -198,17 +200,17 @@
 				this.description = '';
 			}
 		},
-
+		
 		created: function() {
-			axios.get('/api/getlist', {
-				params: {
-					do: 'lists'
-				}
-			}).then(response => {
-				this.lists = response.data;
-			});
-		}
-
+			axios.get('/api/users')
+				.then(response => {
+					this.userid = response.data[0].id;
+				});
+			axios.get('/api/lists')
+				.then(response => {
+					this.lists = response.data;
+				});
+			}
 	}
 
 </script>

@@ -10,7 +10,8 @@ new Vue({
 	components: {
 		'slider': slider,
 		'notice': notice,
-		'contact': contact},
+		'contact': contact
+	},
 	
 	el: "#front"
 	

@@ -52,19 +52,20 @@ class RestController extends AbstractController {
 	public function getList(Request $request) {
 		$user = $this->getUser();
 		$do = $request->query->get('do');
-
+		$normalizer = new ObjectNormalizer();
+		$encoder = new JsonEncoder();
+		
 		if ($do == 'list') {
-			$list = $request->query->get('list');
-			$list = explode('/', $list);
-			$list = array_pop($list);
-			$return =  $this->getDoctrine()->getRepository(Lists::class)->findBy(array('userid' => $user->getId(), 'id' => $list));}
+			$listid = $request->query->get('list');
+			$list = $this->getDoctrine()->getRepository(Lists::class)->find($listid);
+			$tasks =  $list->getTasks();
+			$return = $tasks;
+			$normalizer->setIgnoredAttributes(array('listsid'));}
 		
 		elseif($do == 'lists') {
-			$return = $this->getDoctrine()->getRepository(Lists::class)->findBy(array('userid' => $user->getId()));}
-
-		$normalizer = new ObjectNormalizer();
-		$normalizer->setIgnoredAttributes(array('userid'));
-		$encoder = new JsonEncoder();
+			$return = $user->getLists();
+			$normalizer->setIgnoredAttributes(array('userid', 'tasks'));}
+		
 		$serializer = new Serializer(array($normalizer), array($encoder));
 		$jsonContent = $serializer->serialize($return, 'json');		
 		return JsonResponse::fromJsonString($jsonContent);

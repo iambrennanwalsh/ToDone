@@ -1,5 +1,5 @@
 <template>
-<form id='contactform' method="post" v-on:submit.prevent="validateForm">
+	<form id='contactform' method="post" @submit.prevent="validateForm">
 		<div class="field is-horizontal">
 			<div class='field-label is-normal'>
   			<label class="label has-text-grey-dark">From<sup>*</sup></label>
@@ -12,7 +12,7 @@
           </span>
 					</div>
 					<div class='control is-expanded'>
-						<input v-model='fname' v-bind:class="{'is-primary': attempted && nameStatus}" name='fname' type='text' placeholder='Full Name' class='input'>
+						<input v-model='fname' :class="{'is-primary': attempted && nameStatus}" name='fname' type='text' placeholder='Full Name' class='input'>
 					</div>
 				</div>
 				<div class='field has-addons'>
@@ -22,7 +22,7 @@
           </span>
 					</div>
 					<div class='control is-expanded'>
-						<input v-model='email' v-bind:class="{'is-primary': attempted && emailStatus}" name='email' type='email' placeholder='Email' class='input'>
+						<input v-model='email' :class="{'is-primary': attempted && emailStatus}" name='email' type='email' placeholder='Email' class='input'>
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
           </span>
 					</div>
 					<div class='control is-expanded'>
-						<input v-model='subject' v-bind:class="{'is-primary': attempted && subjectStatus}" name='subject' type='text' placeholder='Subject' class='input'>
+						<input v-model='subject' :class="{'is-primary': attempted && subjectStatus}" name='subject' type='text' placeholder='Subject' class='input'>
   				</div>
 				</div>
 			</div>
@@ -51,17 +51,17 @@
 			<div class="field-body">
 				<div class="field">
 					<div class="control">
-						<textarea v-model='message' v-bind:class="{'is-primary': attempted && messageStatus}" name="message" placeholder="Message.." class="textarea"></textarea>
+						<textarea v-model='message' :class="{'is-primary': attempted && messageStatus}" name="message" placeholder="Message.." class="textarea"></textarea>
   				</div>
 				</div>
 			</div>
 		</div>
 		<div class="field is-pulled-right">
   		<div class="control">
-				<button v-on:submit.prevent="validateForm" type="submit" class="button is-primary">Send Message</button>
+				<button @submit.prevent="validateForm" type="submit" :class="{'is-loading': loadin}" class="button is-primary">Send Message</button>
   		</div>
 		</div>
-		<div v-bind:class='{show: show}' class='formsent notification is-success is-pulled-left'>Your message has been sent.</div>
+		<div :class='{show: show}' class='formsent notification is-success is-pulled-left'>Your message has been sent.</div>
 	</form>
 </template>
 
@@ -74,7 +74,8 @@ export default {
 				subject: "",
 				message: "",
 				attempted: false,
-				show: false
+				show: false,
+				loadin: false
 			}
 		},
 		computed: {
@@ -94,7 +95,10 @@ export default {
 		methods: {
 			validateForm: function(event) {
 				this.attempted = true;
-				if (this.nameStatus || this.emailStatus || this.subjectStatus || this.messageStatus) {} else {
+				this.loadin = true;
+				if (this.nameStatus || this.emailStatus || this.subjectStatus || this.messageStatus) {
+					this.loadin = false;
+				} else {
 					this.sendit(event)
 				}
 			},
@@ -110,6 +114,7 @@ export default {
 					this.subject = "";
 					this.message = "";
 					this.buttton = true;
+					this.loadin = false;
 				});
 				xhr.open("POST", "/contactform");
 				xhr.send(data);

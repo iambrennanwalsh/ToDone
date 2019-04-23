@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
+ * @ApiResource
  * @ORM\Entity(repositoryClass="App\Repository\ListsRepository")
  */
 class Lists
@@ -20,7 +24,7 @@ class Lists
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lists")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $userid;
+    public $userid;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,9 +57,13 @@ class Lists
     private $completed;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Tasks", mappedBy="listsid", cascade={"all"}, orphanRemoval=true)
      */
-    private $tasklist = [];
+    private $tasks;
+	
+		public function __construct() {
+			$this->tasks = new ArrayCollection();
+		}
 
     public function getId(): ?int
     {
@@ -146,15 +154,33 @@ class Lists
         return $this;
     }
 
-    public function getTasklist(): ?array
+    public function getTasks(): Array
     {
-        return $this->tasklist;
+				$temp = array();
+				foreach($this->tasks as $value) {
+					$temp[$value->getPosition()] = $value;
+				}
+        return $temp;
     }
 
-    public function setTasklist(?array $tasklist): self
+    public function addTasks(Tasks $task): self
     {
-        $this->tasklist = $tasklist;
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setUserid($this);
+        }
 
+        return $this;
+    }
+
+    public function removeTasks(Tasks $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            if ($task->getUserid() === $this) {
+                $task->setUserid(null);
+            }
+        }
         return $this;
     }
 }

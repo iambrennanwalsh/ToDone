@@ -26,7 +26,7 @@ class AuthController extends AbstractController {
     $form = $this->createForm(SignupType::class, $user);
     $form->handleRequest($request);	
 		
-    if($form->isSubmitted() && $form->isValid()){
+    if($form->isSubmitted() && $form->isValid()) {
 			
     	$password = $passwordEncoder->encodePassword($user, $user->getPassword());
 			$user->setPassword($password);

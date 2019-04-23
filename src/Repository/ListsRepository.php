@@ -12,12 +12,10 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Lists[]    findAll()
  * @method Lists[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ListsRepository extends ServiceEntityRepository
-{
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, Lists::class);
-    }
+class ListsRepository extends ServiceEntityRepository {
+	
+    public function __construct(RegistryInterface $registry) {
+        parent::__construct($registry, Lists::class); }
 
     // /**
     //  * @return Lists[] Returns an array of Lists objects

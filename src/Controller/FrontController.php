@@ -9,11 +9,10 @@ use App\Form\ContactType;
 class FrontController extends AbstractController {
 
 	public function home(Request $request) {
-		if(null !== $request->query->get('confirm') && false !== $request->query->get('confirm')) {
-			return $this->render('front/home.twig', [
-				'modal' => true,
-				'value'=> $request->query->get('confirm')]);}
-		
+		if($request->query->get('confirm') === 'true') {
+			$this->addFlash('email_success', '');
+		} elseif($request->query->get('confirm') === 'false') {
+			$this->addFlash('email_failed', '');}
 		return $this->render('front/home.twig');}
 	
 	public function about() {

@@ -3,6 +3,14 @@ Just another productivity app.
 
 --------
 
+## To Do
+✓ 1. Setup API Platform
+_ 2. Replace RestController by implementing API Platform.
+_ 3. Setup the dashboard.
+_ 4. Setup an admin panel.
+
+--------
+
 ## About
 ToDone! Is a learning experience. I was learning Vue.js and I wanted some real world experience applying it to a Symfony project. So I thought why not make something useful for myself and maybe others, I'll make a productivity app. The result is ToDone! 
 

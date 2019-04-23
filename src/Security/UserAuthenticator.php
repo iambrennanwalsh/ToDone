@@ -19,31 +19,31 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class UserAuthenticator extends AbstractFormLoginAuthenticator
-{
+class UserAuthenticator extends AbstractFormLoginAuthenticator {
+	
+	
     use TargetPathTrait;
 
+	
     private $entityManager;
     private $router;
     private $csrfTokenManager;
     private $passwordEncoder;
 
-    public function __construct(EntityManagerInterface $entityManager, RouterInterface $router, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
-    {
+	
+    public function __construct(EntityManagerInterface $entityManager, RouterInterface $router, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder) {
         $this->entityManager = $entityManager;
         $this->router = $router;
         $this->csrfTokenManager = $csrfTokenManager;
-        $this->passwordEncoder = $passwordEncoder;
-    }
+        $this->passwordEncoder = $passwordEncoder; }
 
-    public function supports(Request $request)
-    {
+	
+    public function supports(Request $request) {
         return 'Login' === $request->attributes->get('_route')
-            && $request->isMethod('POST');
-    }
+            && $request->isMethod('POST'); }
 
-    public function getCredentials(Request $request)
-    {
+	
+    public function getCredentials(Request $request) {
         $credentials = [
             'username' =>  $request->request->get('login')['username'],
             'password' =>  $request->request->get('login')['password'],
@@ -53,48 +53,35 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator
             Security::LAST_USERNAME,
             $credentials['username']
         );
+        return $credentials;}
+	
 
-        return $credentials;
-    }
-
-    public function getUser($credentials, UserProviderInterface $userProvider)
-    {
+    public function getUser($credentials, UserProviderInterface $userProvider) {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
-
         if (!$user) {
-					
 						$user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
-					
 						if (!$user) {
-            // fail authentication with a custom error
-            	throw new CustomUserMessageAuthenticationException('The user could not be found.');}
+            	throw new CustomUserMessageAuthenticationException('The user could not be found.');
+						}
         }
+        return $user;}
+	
 
-        return $user;
-    }
+    public function checkCredentials($credentials, UserInterface $user) {
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']); }
 
-    public function checkCredentials($credentials, UserInterface $user)
-    {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
-    }
-
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
+	
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey) {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
+        return new RedirectResponse($this->router->generate('Lists')); }
 
-        // For example : return new RedirectResponse($this->router->generate('some_route'));
-        return new RedirectResponse($this->router->generate('Lists'));
-    }
-
-    protected function getLoginUrl()
-    {
-        return $this->router->generate('Login');
-    }
+	
+    protected function getLoginUrl() {
+        return $this->router->generate('Login');  }
 }
