@@ -19,3 +19,7 @@ Forgot:
 Change:
     path: /change
     controller: App\Controller\AuthController::change
+
+Confirm:
+    path: /confirm
+    controller: App\Controller\AuthController::confirm

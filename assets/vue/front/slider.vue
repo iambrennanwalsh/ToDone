@@ -2,9 +2,6 @@
 	<div>
 		<h1 v-text='heading[current % heading.length]' class='title has-text-grey-dark'></h1>
 		<p v-text='paragraph[current % paragraph.length]' class='subtitle'></p>
-		<a href='/signup'>
-			<button class='button is-primary' type='button'>Sign up. You'll<span class='fa fa-heart'></span>our app.</button>
-		</a>
 	</div>
 </template>
 

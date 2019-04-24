@@ -13,32 +13,7 @@
 		<p class='subtitle'>Lets reset your password. Choose a new one, and you'll be redirected back to the login page. Note: this new password can be an old one you've used. If you're still having issues, use the contact page to get in touch.</p>
 	</div>
 	<div class='column is-6 is-offset-2'>
-	<change inline-template>
-{{ form_start(change) }}
-		<div class="field is-horizontal">
-			<div class='field-body'>
-				<div class='field'>
-					<div class="control has-icons-left">
-						{{ form_widget(change.password.first, {'attr': {'v-model': "ppass", 'v-bind:class': "{'is-primary': wasattempted && thePassStatus}" }}) }}
-						<span class="icon is-small is-left">
-      				<i class="fa fa-key"></i>
-    				</span>
-					</div>
-				</div>
-				<div class='field'>
-					<div class="control has-icons-left">
-						{{ form_widget(change.password.second, {'attr': {'v-model': "rrpass", 'v-on:blur': "validateTheForm", 'v-bind:class': "{'is-primary': wasattempted && therPassStatus}" }}) }}
-						<span class="icon is-small is-left">
-      				<i class="fa fa-key"></i>
-    				</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		{{ form_widget(change.submit, {'attr': {'v-on:click': "validateTheForm"}}) }}
-		<input type="hidden" value="{{id}}" name="id">
-	{{form_end(change)}}
-	</change>
+		<change id="{{id}}"></change>
 	</div>
 </div>
 

@@ -14,55 +14,51 @@
 	</div>
 	<div class='column is-6 is-offset-2'>
 		<login inline-template>
-			{{ form_start(login) }}
-	<div class="field is-horizontal">		
-		<div class='field-label is-normal'>
-			<label class="label has-text-light">Username/Email</label>
-		</div>
-		
-		
-		<div class='field-body'>
-				<div class='field has-addons'>
-					<div class="control">
-						<a class="button is-static">
-            <span class='fa fa-user'></span>
-          </a>
+			<form @submit="validateForm" method="post">
+				<div class="field is-horizontal">
+					<div class='field-label is-normal'>
+						<label class="label has-text-light">Username/Email</label>
 					</div>
-					<div class='control is-expanded'>
-						{{ form_widget(login.username, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attempted && userStatus}" }}) }}
-						
-					</div>
-				</div>
-		</div>
-	</div>
-		<div class="field is-horizontal">		
-		<div class='field-label is-normal'>
-			<label class="label has-text-light">Password</label>
-		</div>
-		<div class='field-body'>
-				<div class='field has-addons'>
-					<div class="control">
-						<a class="button is-static">
-            <span class='fa fa-lock'></span>
-          </a>
-					</div>
-					<div class='control is-expanded'>
-						{{ form_widget(login.password, {'attr': {'v-model': "pass", 'v-bind:class': "{'is-primary': attempted && passStatus}" }}) }}
+					<div class='field-body'>
+						<div class='field has-addons'>
+							<div class="control">
+								<a class="button is-static">
+									<span class='fa fa-user'></span>
+								</a>
+							</div>
+							<div class='control is-expanded'>
+								<input class="input" name="login" placeholder="Phone # or Email" v-model="user" v-bind:class="{'is-primary': attempted && userStatus}" type="text">
+							</div>
+						</div>
 					</div>
 				</div>
-		</div>
-	</div>
-	<a id="forgotmypass" class="has-text-info" href="/forgot">I forgot my password.</a>
-	{{ form_widget(login.login, {'attr': {'v-on:click': "validateForm"}}) }}
-	{% if error is defined%}
-			{% if error %}
-			<div class="show formsent notification is-primary is-pulled-left">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
-	{% endif %}
-	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			{{ form_end(login) }}
+				<div class="field is-horizontal">
+					<div class='field-label is-normal'>
+						<label class="label has-text-light">Password</label>
+					</div>
+					<div class='field-body'>
+						<div class='field has-addons'>
+							<div class="control">
+								<a class="button is-static">
+									<span class='fa fa-lock'></span>
+								</a>
+							</div>
+							<div class='control is-expanded'>
+								<input name="pass" class="input" placeholder="Password" v-model="pass" v-bind:class="{'is-primary': attempted && passStatus}" type="password">
+							</div>
+						</div>
+					</div>
+				</div>
+				<a id="forgotmypass" class="has-text-info" href="/forgot">I forgot my password.</a>
+				<button class="button is-primary is-pulled-right" type="submit" :click="validateForm">Login</button>
+				{% if error %}
+					<div class="show formsent notification is-primary is-pulled-left">
+					{{ error.messageKey|trans(error.messageData, 'security') }}
+					</div>
+				{% endif %}
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			</form>
 		</login>
 	</div>
 </div>
-
 {% endblock %}

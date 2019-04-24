@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="is-active modal" v-show="state">
+		<div class="is-active modal" v-show="stateVal">
 			<div @click.prevent='stateChange' class="modal-background"></div>
 			<div class="modal-card">
 				<form id='newList' method='post'>
@@ -21,6 +21,11 @@
 
 <script>
 	export default {
+		data() {
+			return {
+				stateVal: this.state
+			}
+		},
 		props: {
 			title: String,
 			content: String,
@@ -29,7 +34,7 @@
 		},
 		methods: {
 			stateChange: function(event) {
-				this.state === true ? this.state = false : this.state = true;
+				this.state === true ? this.stateVal = false : this.stateVal = true;
 			},
 		},
 	}

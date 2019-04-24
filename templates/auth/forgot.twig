@@ -13,24 +13,8 @@
 		<p class='subtitle'>Don't worry about it. We'll get it changed for you. Simply provide the email you used to sign up with, and we'll email you further instructions.</p>
 	</div>
 	<div class='column is-6 is-offset-2'>
-		<forgot inline-template>
-		{{ form_start(forgot) }}
-		<div class='field has-addons'>
-					<div class="control">
-						<span class="button is-static">
-            <span class='fa fa-envelope'></span>
-          </span>
-					</div>
-					<div class='control is-expanded'>
-						{{ form_widget(forgot.email, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attempted && userStatus}" }}) }}
-					</div>
-				</div>
-		{% if response != null %}
-				<div class="show formsent notification is-primary is-pulled-left m-left-0">{{ response }}</div>
-		{% endif %}
-			{{ form_widget(forgot.submit, {'attr': {'v-on:click': "validateForm"}}) }}
-		{{ form_end(forgot) }}
-		</forgot>
+		<forgot {% if response is defined %} response="{{response}}" {% endif %}>
+	</forgot>
 	</div>
 </div>
 

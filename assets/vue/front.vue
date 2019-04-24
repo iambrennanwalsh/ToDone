@@ -1,7 +1,7 @@
 <script>
-import notice from './front/notice.vue'
-import slider from './front/slider.vue'
-import contact from './front/contact.vue'
+import modal from './base/modal'
+import slider from './front/slider'
+import contact from './front/contact'
 
 export default {}	
 	
@@ -9,7 +9,7 @@ new Vue({
 	
 	components: {
 		'slider': slider,
-		'notice': notice,
+		'modal': modal,
 		'contact': contact
 	},
 	

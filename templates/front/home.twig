@@ -8,4 +8,13 @@
 {% set active = 'home' %}
 {% block main %}
 <slider class='has-text-centered'></slider>
+	{% if is_granted('ROLE_USER') %} 
+		<a href='/dashboard' class="has-text-centered is-block callToAction">
+			<button class='button is-primary' type='button'>Welcome {{ app.user.firstName }}. You'll<span class='fa fa-heart'></span>our app.</button>
+		</a>
+	{% else %}
+		<a href='/signup' class="has-text-centered is-block callToAction">
+			<button class='button is-primary' type='button'>Sign up. You'll<span class='fa fa-heart'></span>our app.</button>
+		</a>
+	{% endif %}
 {% endblock %}

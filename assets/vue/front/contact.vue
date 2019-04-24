@@ -116,7 +116,7 @@ export default {
 					this.buttton = true;
 					this.loadin = false;
 				});
-				xhr.open("POST", "/contactform");
+				xhr.open("POST", "/contact");
 				xhr.send(data);
 			}
 		}

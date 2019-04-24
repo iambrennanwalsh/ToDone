@@ -82,7 +82,7 @@ body {
 .input::placeholder, .textarea::placeholder {
 	 color: rgba(54, 54, 54, 1);}
 
-.input.is-primary, textarea.is-primary {
+.input.is-primary, .checkbox.is-primary, textarea.is-primary {
 	background: #f7c4b0;
 	border: unset;
 	

@@ -2,31 +2,35 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ApiResource(
- *     attributes={"access_control"="is_granted('ROLE_USER')"}
- * )
+ * A user.
+ * @ApiResource
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
-{
+class User implements UserInterface {
+	
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    public $id;
+    private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
-    private $username;
+    private $phone;
+	
+		/**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $email;
 
     /**
      * @ORM\Column(type="json")
@@ -40,19 +44,14 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $fname;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lname;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -63,196 +62,126 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $gender;
-
-    /**
+		
+		/**
      * @ORM\OneToMany(targetEntity="App\Entity\Lists", mappedBy="userid")
      */
     private $lists;
-
+		
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $confirmed;
 
-    public function __construct()
-    {
-        $this->lists = new ArrayCollection();
-				$this->confirmed = mt_rand(1000000000, 10000000000);
-    }
+	
+    public function __construct() {
+			$this->roles[] = 'ROLE_USER';
+			$this->lists = new ArrayCollection();
+			$this->confirmed = mt_rand(1000000000, 10000000000); }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	
+    public function getId(): int {
+        return $this->id; }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->username;
-    }
+	
+    public function getPhone(): string {
+        return $this->phone; }
 
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
+    public function setPhone(string $phone): self {
+        $this->phone = $phone;
+        return $this; }
+	
+	
+		public function getEmail(): string {
+        return $this->email; }
 
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getPassword(): string
-    {
-        return (string) $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
-    {
-        // not needed when using the "bcrypt" algorithm in security.yaml
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
+    public function setEmail(string $email): self {
         $this->email = $email;
+        return $this; }
 
-        return $this;
-    }
+	
+    public function getRoles(): array {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles); }
 
-    public function getFname(): ?string
-    {
-        return $this->fname;
-    }
+    public function setRoles(array $roles): self {
+        $this->roles = $roles;
+        return $this; }
 
-    public function setFname(string $fname): self
-    {
-        $this->fname = $fname;
+	
+    public function getPassword(): string {
+        return $this->password; }
 
-        return $this;
-    }
+    public function setPassword(string $password): self {
+        $this->password = $password;
+        return $this; }
 
-    public function getLname(): ?string
-    {
-        return $this->lname;
-    }
 
-    public function setLname(string $lname): self
-    {
-        $this->lname = $lname;
+    public function getFirstName(): string {
+        return $this->firstName; }
 
-        return $this;
-    }
+    public function setFirstName(string $firstName): self {
+        $this->firstName = $firstName;
+        return $this; }
+	
 
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
+    public function getLastName(): string {
+        return $this->lastName; }
 
-    public function setCountry(string $country): self
-    {
+    public function setLastName(string $lastName): self {
+        $this->lastName = $lastName;
+        return $this; }
+
+	
+    public function getCountry(): string {
+        return $this->country; }
+
+    public function setCountry(string $country): self {
         $this->country = $country;
+        return $this; }
 
-        return $this;
-    }
+	
+    public function getGender(): string {
+        return $this->gender; }
 
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    public function setGender(string $gender): self
-    {
+    public function setGender(string $gender): self {
         $this->gender = $gender;
+        return $this; }
+		
+		
+		
+    public function getLists(): Collection {
+        return $this->lists; }
 
-        return $this;
-    }
-
-    /**
-     * @return Collection|Lists[]
-     */
-    public function getLists(): Collection
-    {
-        return $this->lists;
-    }
-
-    public function addList(Lists $list): self
-    {
+    public function addList(Lists $list): self {
         if (!$this->lists->contains($list)) {
             $this->lists[] = $list;
-            $list->setUserid($this);
-        }
+            $list->setUserid($this); }
+        return $this; }
 
-        return $this;
-    }
-
-    public function removeList(Lists $list): self
-    {
+    public function removeList(Lists $list): self {
         if ($this->lists->contains($list)) {
             $this->lists->removeElement($list);
             // set the owning side to null (unless already changed)
             if ($list->getUserid() === $this) {
-                $list->setUserid(null);
-            }
-        }
+                $list->setUserid(null); } }
+        return $this; }
 
-        return $this;
-    }
+	
+    public function getConfirmed(): string {
+        return $this->confirmed; }
 
-    public function getConfirmed(): ?string
-    {
-        return $this->confirmed;
-    }
-
-    public function setConfirmed(string $confirmed): self
-    {
+    public function setConfirmed(string $confirmed): self {
         $this->confirmed = $confirmed;
+        return $this; }
+	
+	
+		public function getSalt() {}
 
-        return $this;
-    }
+    public function eraseCredentials() {}
+	
+		public function getUsername() {
+			return $this->email;
+		}
 }

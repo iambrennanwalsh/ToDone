@@ -14,7 +14,7 @@
 {% if app.user.confirmed != 1 %}
 	<section id="confirm" class='fixed has-background-black has-text-centered w-100'>
 		<div class="container">
-			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="/confirm?resend=true">Click here to resend it</a>.</p>
+			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="/confirm?resend=true&route={{app.request.get('_route')}}">Click here to resend it</a>.</p>
 		</div>
 	</section>
 {% endif %}
@@ -83,7 +83,7 @@
 				{% block main %}
 				{% endblock %}
 				{% if app.request.query.get('sent') is not empty %}
-				<notice state title="Sent." content="Check your email address, we've resent the confirmation email!" button="okay"></notice>
+				<modal state title="Sent." content="Check your email address, we've resent the confirmation email!" button="Okay"></modal>
 				{% endif %}
 			</div>
 		</div>

@@ -3,6 +3,7 @@
 	import List from './dash/list.vue';
 	import Profile from './dash/profile.vue';
 	import Delete from './dash/delete.vue';
+	import Modal from './base/modal';
 
 	export default {}
 
@@ -12,7 +13,8 @@
 			'lists': Lists,
 			'list': List,
 			'profile': Profile,
-			'delete': Delete
+			'delete': Delete,
+			'modal': Modal
 			},
 
 		el: "#dash",
