@@ -1,20 +1,19 @@
 {#
-@name: front.twig
-@description: Base template for the entire front portion of the site.
+# @name: front.twig
+# @description: Base template for the frontend of the site.
 #}
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<title>{% block title %}ToDone!{% endblock %}</title>
-	<meta name="description" content="{% block description %}To do lists Yay!{% endblock %}">
+	<title>ToDone! {% block title %}{% endblock %}</title>
+	<meta name="description" content="{% block description %}ToDone!{% endblock %}">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="images/favicon.png">
-	{% block assets %}
+{% block assets %}
 	<link rel="stylesheet" href="build/front.css">
-	{% endblock %}
+{% endblock %}
 </head>
 
 <body class='front {% block bodyClass %}{% endblock %}'>

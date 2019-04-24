@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -58,6 +59,7 @@ class Lists
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tasks", mappedBy="listsid", cascade={"all"}, orphanRemoval=true)
+		 * @ApiSubresource
      */
     private $tasks;
 	

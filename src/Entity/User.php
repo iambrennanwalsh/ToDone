@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -65,6 +66,7 @@ class User implements UserInterface {
 		
 		/**
      * @ORM\OneToMany(targetEntity="App\Entity\Lists", mappedBy="userid")
+		 * @ApiSubresource
      */
     private $lists;
 		
