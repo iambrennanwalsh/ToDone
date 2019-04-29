@@ -21,7 +21,6 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface {
 			
 				$route = $request->attributes->get('_route');
 			
-				// Authentication: Redirect to home if a logged in user attempts to access these 4 routes.	
 				if ($route === 'Login' || $route === 'Signup' || $route === 'Reset' || $route === 'Forgot') {
 						return new RedirectResponse($this->router->generate('Home'));
 				}

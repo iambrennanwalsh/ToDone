@@ -1,0 +1,13 @@
+{#
+@name: lists.twig
+@description: This template renders entrypoint of the dashboard, where users can find all of their created lists.
+@route: /dashboard/
+#}
+
+
+{% extends 'dash.twig' %}
+{% block bodyClass %}boards{% endblock %}
+{% set active = 'boards' %}
+{% block main %}
+<boards ref="boards" id="boards" class='column'></boards>
+{% endblock %}

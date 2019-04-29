@@ -1,0 +1,26 @@
+# Sends an email to email of the signed in user.
+mailer:
+    path: /api/mailer
+    methods:  ['POST']
+    defaults:
+     _controller: App\Controller\APIController::mailer
+     _api_resource_class: App\Entity\Users
+     _api_collection_operation_name: mailer
+
+# Checks if a password is equivelant to that of the signed in user.
+check_password:
+    path: /api/users/{id}/check
+    methods:  ['POST']
+    defaults:
+     _controller: App\Controller\APIController::check_password
+     _api_resource_class: App\Entity\Users
+     _api_collection_operation_name: check_password
+
+# Encodes a password.
+encrypt_password:
+    path: /api/encrypt
+    methods:  ['POST']
+    defaults:
+     _controller: App\Controller\APIController::encrypt_password
+     _api_resource_class: App\Entity\Users
+     _api_collection_operation_name: encrypt_password

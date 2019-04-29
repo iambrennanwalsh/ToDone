@@ -5,13 +5,12 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * @ApiResource(
- *     attributes={"access_control"="is_granted('ROLE_USER')"}
- * )
- * @ORM\Entity(repositoryClass="App\Repository\TasksRepository")
+ * @ApiResource
+ * @ORM\Entity(repositoryClass="App\Repository\CardsRepository")
  */
-class Tasks
+class Cards
 {
     /**
      * @ORM\Id()
@@ -21,10 +20,10 @@ class Tasks
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Lists", inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Lists", inversedBy="cards")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
-    public $listsid;
+    public $listid;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -46,14 +45,14 @@ class Tasks
         return $this->id;
     }
 
-    public function getListsid(): ?Lists
+    public function getListid(): ?Lists
     {
-        return $this->listsid;
+        return $this->listid;
     }
 
-    public function setListsid(?Lists $listid): self
+    public function setListid(?Lists $listid): self
     {
-        $this->listsid = $listid;
+        $this->listid = $listid;
 
         return $this;
     }

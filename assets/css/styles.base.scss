@@ -261,3 +261,12 @@ body {
 .modal-card-foot {
 	padding: 10px 15px;
 }
+
+.fade-enter-active, .fade-leave-active {
+	transition: 1s;
+    transition: opacity .5s
+}
+.fade-enter, .fade-leave-to {
+	transition: 1s;
+    opacity: 0
+}

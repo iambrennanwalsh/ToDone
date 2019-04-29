@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use App\Entity\User;
+use App\Entity\Users;
 use App\Security\UserRegistration;
 use App\Security\ForgottenPassword;
 use App\Security\EmailVerification;
@@ -28,7 +28,7 @@ class AuthController extends AbstractController {
 			
 			$verification->sendConfirmationEmail($user->getId());
 			
-			return $this->render('dash/lists.twig'); }	
+			return $this->render('dash/boards.twig'); }	
 		
 		return $this->render('auth/signup.twig');
 		

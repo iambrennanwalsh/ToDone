@@ -4,7 +4,7 @@ namespace App\Security;
 
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use App\Entity\User;
+use App\Entity\Users;
 
 class UserRegistration {
 	
@@ -17,7 +17,7 @@ class UserRegistration {
 	public function __construct(ManagerRegistry $registry, UserPasswordEncoderInterface $encoder) {
 		$this->registry = $registry->getManager();
 		$this->encoder = $encoder;
-		$this->user = new User();
+		$this->user = new Users();
 	}
 	
 	public function registerUser($info) {

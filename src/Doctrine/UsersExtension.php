@@ -5,11 +5,11 @@ namespace App\Doctrine;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
-use App\Entity\User;
+use App\Entity\Users;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Security\Core\Security;
 
-final class UserExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface {
+final class UsersExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface {
     private $security;
 
     public function __construct(Security $security)
@@ -29,7 +29,7 @@ final class UserExtension implements QueryCollectionExtensionInterface, QueryIte
 
     private function addWhere(QueryBuilder $queryBuilder, string $resourceClass): void
     {
-        if (User::class !== $resourceClass || $this->security->isGranted('ROLE_ADMIN') || null === $user = $this->security->getUser()) {
+        if (Users::class !== $resourceClass || $this->security->isGranted('ROLE_ADMIN') || null === $user = $this->security->getUser()) {
             return;
         }
 

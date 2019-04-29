@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\User;
+use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -55,9 +55,9 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException(); }
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['login']]);
+        $user = $this->entityManager->getRepository(Users::class)->findOneBy(['email' => $credentials['login']]);
         if (!$user) {
-						$user = $this->entityManager->getRepository(User::class)->findOneBy(['phone' => $credentials['login']]);
+						$user = $this->entityManager->getRepository(Users::class)->findOneBy(['phone' => $credentials['login']]);
 						if(!$user) {
             		throw new CustomUserMessageAuthenticationException('User could not be found.'); } }
         return $user; }
@@ -70,7 +70,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey) {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath); }
-        return new RedirectResponse($this->router->generate('Lists'));}
+        return new RedirectResponse($this->router->generate('Boards'));}
 
 	
     protected function getLoginUrl() {

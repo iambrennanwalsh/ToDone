@@ -3,7 +3,7 @@
 namespace App\Security;
 
 use Twig\Environment;
-use App\Entity\User;
+use App\Entity\Users;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -52,7 +52,7 @@ class EmailVerification {
 	
 	public function confirmEmail($id, $hash) {
 		
-		$user = $this->doctrine->getRepository(User::class)->find($id);
+		$user = $this->doctrine->getRepository(Users::class)->find($id);
 		
 		$confirm = $user->getConfirmed();
 		

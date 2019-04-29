@@ -11,13 +11,6 @@
 // Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Assistant');
 
-body,
-button,
-input,
-select,
-textarea {
-	font-family:'Assistant', sans-serif; }
-
 // Font Awesome CSS
 @import '~font-awesome/css/font-awesome.css';
 
@@ -51,14 +44,7 @@ $menu-item-hover-color: $light;
 $menu-item-active-color: $light;
 $menu-label-color: $light;
 
-// Bulma
-@import "~bulma/sass/utilities/_all";
-@import "~bulma/sass/base/_all";
-@import "~bulma/sass/elements/_all";
-@import "~bulma/sass/components/_all";
-@import "~bulma/sass/grid/_all";
-@import "~bulma/sass/layout/_all";
-
+@import "~bulma/bulma";
 
 /* Sitewide Custom Stylesheet
 ------------------------------------------------*/

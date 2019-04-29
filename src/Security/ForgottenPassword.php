@@ -3,7 +3,7 @@
 namespace App\Security;
 
 use Twig\Environment;
-use App\Entity\User;
+use App\Entity\Users;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 	
@@ -27,7 +27,7 @@ class ForgottenPassword {
 	
 	public function checkUser($info) {
 		
-		$repo = $this->doctrine->getRepository(User::class);
+		$repo = $this->doctrine->getRepository(Users::class);
 		$email = $repo->findOneBy(array('email' => $info));
 		$phone = $repo->findOneBy(array('phone' => $info));
 		if ($email || $phone) {
@@ -81,7 +81,7 @@ class ForgottenPassword {
 		
 		if ($id) {
 			
-			$this->user = $this->doctrine->getRepository(User::class)->find($id);
+			$this->user = $this->doctrine->getRepository(Users::class)->find($id);
 			
 			if($this->user && $pass == $this->user->getPassword()) {
 			
@@ -97,7 +97,7 @@ class ForgottenPassword {
 	
 	public function changePassword($id, $pass, $confirm) {
 		
-		$this->user = $this->doctrine->getRepository(User::class)->find($id);
+		$this->user = $this->doctrine->getRepository(Users::class)->find($id);
 			
 		if($this->user) {
 			

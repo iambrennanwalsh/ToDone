@@ -63,11 +63,11 @@
 
 .main {
 		
-	#lists .wrapem {
+	#boards .wrapem {
 
 	flex-wrap: wrap;
 	
-	.list {
+	.board {
 		margin-bottom: 0px !important;
 		margin-top: 20px !important;
 		border-bottom: 5px solid #EB5E28;
@@ -85,7 +85,7 @@
 		
 		}}
 
-	#list {
+	#board {
 		
 		border: 1px solid #bbb !important;
 		padding: 0;
@@ -217,7 +217,7 @@ body {
 
 @include mobile {
 	
-	.list {
+	.board {
 		width: 100% !important;
 		margin-left: 0px !important;
 		margin-bottom: 30px;
@@ -251,6 +251,40 @@ body {
 	&.opensesame {
 			left: 0px;
 			transition: .5s;}
+	}
+	
+}
+
+.input.is-success {
+	background: lightgreen;
+	border-color: #dbdbdb;
+} 
+
+.updateinfo {
+	position: relative;
+	
+	> span {
+		opacity: 1;
+		transition: opacity .25s;
+	}
+	
+	> i {
+		position: absolute;
+		opacity: 0;
+		transition: opacity .25s;
+	}
+}
+
+.updateinfo.checker {
+	
+	> span {
+		opacity: 0;
+	}
+	
+	> i {
+		opacity: 1;
+		color: #fff;
+		font-size: 18px;
 	}
 	
 }

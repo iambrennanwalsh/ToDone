@@ -30,3 +30,7 @@ services:
         arguments:
             - !service { class: PDO, factory: 'database_connection:getWrappedConnection' }
             - { lock_mode: 1 }
+
+    App\Doctrine\UpdateSubscriber:
+         tags:
+            - { name: doctrine.event_subscriber, connection: default }

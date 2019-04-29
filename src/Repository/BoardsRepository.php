@@ -2,23 +2,23 @@
 
 namespace App\Repository;
 
-use App\Entity\Tasks;
+use App\Entity\Boards;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Tasks|null find($id, $lockMode = null, $lockVersion = null)
- * @method Tasks|null findOneBy(array $criteria, array $orderBy = null)
- * @method Tasks[]    findAll()
- * @method Tasks[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Boards|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Boards|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Boards[]    findAll()
+ * @method Boards[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TasksRepository extends ServiceEntityRepository {
+class BoardsRepository extends ServiceEntityRepository {
 	
     public function __construct(RegistryInterface $registry) {
-        parent::__construct($registry, Tasks::class); }
+        parent::__construct($registry, Boards::class); }
 
     // /**
-    //  * @return Tasks[] Returns an array of Tasks objects
+    //  * @return Boards[] Returns an array of Boards objects
     //  */
     /*
     public function findByExampleField($value)
@@ -35,7 +35,7 @@ class TasksRepository extends ServiceEntityRepository {
     */
 
     /*
-    public function findOneBySomeField($value): ?Tasks
+    public function findOneBySomeField($value): ?Boards
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

@@ -8,13 +8,29 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
+use App\Controller\APIController;
+use App\Doctrine\UpdateSubscriber;
+	
 /**
  * A user.
- * @ApiResource
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ApiResource(
+ *			collectionOperations={
+ *						"get"={"method"="GET"},
+ *						"post"={"method"="POST"}
+ *      },
+ *     	itemOperations={
+ *						"get"={"method"="GET"},
+ *						"put"={"method"="PUT"},
+ *						"delete"={"method"="DELETE"},
+ *            "check_password"={"route_name"="check_password"},
+ *            "encrypt_password"={"route_name"="encrypt_password"},
+ *            "mailer"={"route_name"="mailer"}
+ *			}
+ * )
+ * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class User implements UserInterface {
+	
+class Users implements UserInterface {
 	
     /**
      * @ORM\Id()
@@ -65,10 +81,10 @@ class User implements UserInterface {
     private $gender;
 		
 		/**
-     * @ORM\OneToMany(targetEntity="App\Entity\Lists", mappedBy="userid")
+     * @ORM\OneToMany(targetEntity="App\Entity\Boards", mappedBy="userid", cascade={"all"}, orphanRemoval=true)
 		 * @ApiSubresource
      */
-    private $lists;
+    private $boards;
 		
     /**
      * @ORM\Column(type="string", length=255)
@@ -153,21 +169,21 @@ class User implements UserInterface {
 		
 		
 		
-    public function getLists(): Collection {
-        return $this->lists; }
+    public function getBoards(): Collection {
+        return $this->boards; }
 
-    public function addList(Lists $list): self {
-        if (!$this->lists->contains($list)) {
-            $this->lists[] = $list;
-            $list->setUserid($this); }
+    public function addList(Boards $board): self {
+        if (!$this->boards->contains($board)) {
+            $this->boards[] = $board;
+            $board->setUserid($this); }
         return $this; }
 
-    public function removeList(Lists $list): self {
-        if ($this->lists->contains($list)) {
-            $this->lists->removeElement($list);
+    public function removeBoard(Boards $board): self {
+        if ($this->boards->contains($board)) {
+            $this->boards->removeElement($board);
             // set the owning side to null (unless already changed)
-            if ($list->getUserid() === $this) {
-                $list->setUserid(null); } }
+            if ($board->getUserid() === $this) {
+                $board->setUserid(null); } }
         return $this; }
 
 	
@@ -186,4 +202,6 @@ class User implements UserInterface {
 		public function getUsername() {
 			return $this->email;
 		}
+		
+		
 }

@@ -1,40 +1,39 @@
 <template>
-<div>
-	<form v-on:submit.prevent="validateForm" class="m-top-30 field has-addons">
-		<p class="control">
-			<a class="button is-static">
-				<span class='fa fa-lock'></span>
-			</a>
-		</p>
-		<p class="control is-expanded">
-			<input v-model="pass" v-bind:class="{'is-primary': passStatus && attempted}" class="input" type="password" placeholder="Enter the password for your account.">
-		</p>
-		<p class="control">
-			<button v-on:submit.prevent="validateForm" :class="{'is-loading': loader}" class="is-primary button" type="submit">
-				Continue <span class='is-pulled-right fa fa-chevron-right m-right-0'></span>
-			</button>
-		</p>
-	</form>
-	<transition name='fade'>
-			<modal v-on:confirm="confirmModal" v-on:closemodal="closeModal" v-show="showModal" closebutton v-bind:loadin="loader">
-				<span slot="title">Confirm account deletion.</span>
-				<div slot="content">
-					Last oppurtunity. You can not recover any lost information if you proceed. We are sorry to see you go. Are you sure?
-				</div>
-				<span slot="confirm">Close Account</span>
-				<span slot="close">Nevermind</span>
-			</modal>
-		</transition>
-		<p v-show="showError" class="has-text-primary m-top-20">Oh no. That password was incorrect! Try again.</p>
-</div>
+	<div>
+		<form v-on:submit.prevent="validate" class="m-top-30 field has-addons">
+			<p class="control">
+				<a class="button is-static">
+					<span class='fa fa-lock'></span>
+				</a>
+			</p>
+			<p class="control is-expanded">
+				<input v-model="pass" v-bind:class="{'is-primary': passStatus && attempted || incorrect }" class="input" type="password" placeholder="Enter the password for your account.">
+			</p>
+			<p class="control">
+				<button v-on:submit.prevent="validate" :class="{'is-loading': loader}" class="is-primary button" type="submit">
+					Continue <span class='is-pulled-right fa fa-chevron-right m-right-0'></span>
+				</button>
+			</p>
+		</form>
+		<modal ref="delete" title="Confirm account deletion." confirmbutton closebutton confirmtext="Close Account">
+			<span slot="content">
+				Last oppurtunity. You can not recover any lost information if you proceed. We are sorry to see you go. Are you sure?
+			</span>
+		</modal>
+		<modal ref="info" title="Check your email." closebutton>
+			<span slot="content">
+				We sent you an email containing an account deletion confirmation link. See the email for more info.
+			</span>
+		</modal>
+	</div>
 </template>
 
 
 <script>
-	import Modal from './modal.vue';
-	
+	import Modal from './modal';
+
 	export default {
-		
+
 		components: {
 			'modal': Modal
 		},
@@ -42,52 +41,55 @@
 		data: function() {
 			return {
 				pass: '',
-				attempted: false, 
+				attempted: false,
 				loader: false,
-				showModal: false,
-				showError: false} },
-		
+				incorrect: false
+			}
+		},
+
 		computed: {
-			passStatus: function() {
-				return this.pass.length < 5 || this.pass.length > 30 } },
-		
+			passStatus() {
+				return this.pass.length < 5 || this.pass.length > 30
+			}
+		},
+
 		methods: {
-			
-			validateForm: function(event) {
+
+			validate() {
 				this.attempted = true;
-				if (this.passStatus == true) {
-					event.preventDefault();} 
+				if (this.passStatus == true) return false;
 				else {
-					this.showError = false;
 					this.loader = true;
-					this.checkPass();} },
-			
-			checkPass: function() {
-				axios.post('/api/deleteuser', {
-					pass: this.pass,
-					do: 'check'
+					this.checkPass();
+				}
+			},
+
+			checkPass() {
+				axios.post('/api/users/' + this.$root.user[0].id + '/check', {
+					password: this.pass
 				}).then(response => {
-					if (response.data.status == true) {
-						this.showModal = true;}
+					if (response.data.status) this.$refs.delete.open();
 					else {
-						this.showError = true;
-						this.passStatus = '';}
-					this.loader = false;
-				});},
-	
-			closeModal: function() {
-				this.showModal = false;
-				this.pass = '';
-				this.attempted = false;},
-			
-			confirmModal: function() {
-				this.loader = true;
-				axios.post('/api/deleteuser', {
-					do: 'delete'
-				}).then(response => {
-						window.location = '/'
+						this.loader = false;
+						this.incorrect = true;}
 				});
+			},
+
+			confirm() {
+				this.loader = true;
+				this.$refs.delete.close();
+				axios.post('/dashboard/profile', {context: "close"})
+					.then(response => {
+						this.$refs.info.open();
+				});
+			},
+			
+			clear() {
+				this.pass = "";
+				this.loader = "";
+				this.attempted = "";
 			}
 		}
 	}
+
 </script>

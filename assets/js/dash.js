@@ -11,9 +11,3 @@ require('./base.js');
 
 // Dashboard Vue Components (dash.vue);
 require('../vue/dash.vue');
-
-/*
-setTimeout(function(){
-  document.getElementById('animateWow').style.display = "none"; 
-}, 1500);
-*/

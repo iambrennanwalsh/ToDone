@@ -4,16 +4,21 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Lists;
+use App\Entity\Boards;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Security\CloseAccount;
+
 
 class DashController extends AbstractController {
 	
-	public function lists() {
-		$user = $this->getUser();
-		$lists = $user->getLists();
-		return $this->render('dash/lists.twig', ['lists' => $lists]);
+	
+	public function boards() {
+		
+		return $this->render('dash/boards.twig');
+		
 	}
+	
 	
 	public function list($slug) {
 		$list = $this->getDoctrine()->getRepository(Lists::class)->find($slug);
@@ -23,10 +28,17 @@ class DashController extends AbstractController {
 		]);
 	}
 	
-	public function profile(Request $request) {
-		if ($request->request->get('pass') !== null) {
-			return $this->redirectToRoute('Close', array('pass' => $request->request->get('pass')));}
-		$user = $this->getUser();
-		$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->getEmail() ) ) ) . "?s=500";
-		return $this->render('dash/profile.twig', ['grav' => $grav_url]);}
+	
+	public function profile(Request $request, CloseAccount $close) {
+		
+		if ($request->isMethod('post')) {
+			$close->email();
+			return new JsonResponse(true);
+		}
+		
+		$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->getUser()->getEmail() ) ) ) . "?s=500";
+		return $this->render('dash/profile.twig', ['grav' => $grav_url]);
+
+	}
+	
 }

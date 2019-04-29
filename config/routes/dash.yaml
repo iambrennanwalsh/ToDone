@@ -1,13 +1,13 @@
 #   Dashboard
 # ----------------------------------#
 
-Lists:
+Boards:
     path: /dashboard
-    controller: App\Controller\DashController::lists
+    controller: App\Controller\DashController::boards
 
-List:
-    path: list/{slug}
-    controller: App\Controller\DashController::list
+Board:
+    path: board/{slug}
+    controller: App\Controller\DashController::board
 
 Profile:
     path: /dashboard/profile

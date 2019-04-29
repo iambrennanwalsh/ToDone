@@ -22,10 +22,10 @@ class Lists
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lists")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Boards", inversedBy="lists")
      * @ORM\JoinColumn(nullable=false)
      */
-    public $userid;
+    public $boardid;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,35 +33,15 @@ class Lists
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $description;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $created;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $modified;
-
-    /**
      * @ORM\Column(type="integer")
      */
-    private $total;
+    private $position;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $completed;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Tasks", mappedBy="listsid", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Cards", mappedBy="cardid", cascade={"all"}, orphanRemoval=true)
 		 * @ApiSubresource
      */
-    private $tasks;
+    private $cards;
 	
 		public function __construct() {
 			$this->tasks = new ArrayCollection();
@@ -72,19 +52,19 @@ class Lists
         return $this->id;
     }
 
-    public function getUserid(): ?User
+    public function getBoardid(): ?Boards
     {
-        return $this->userid;
+        return $this->boardid;
     }
 
-    public function setUserid(?User $userid): self
+    public function setBoardid(?Boards $boardid): self
     {
-        $this->userid = $userid;
+        $this->boardid = $boardid;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -96,91 +76,43 @@ class Lists
         return $this;
     }
 
-    public function getDescription(): ?string
+	 	public function getPosition(): int
     {
-        return $this->description;
+        return $this->position;
     }
-
-    public function setDescription(string $description): self
+	
+    public function setPosition(int $position): self
     {
-        $this->description = $description;
+        $this->position = $position;
 
         return $this;
     }
 
-    public function getCreated(): ?string
-    {
-        return $this->created;
-    }
-
-    public function setCreated(string $created): self
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    public function getModified(): ?string
-    {
-        return $this->modified;
-    }
-
-    public function setModified(string $modified): self
-    {
-        $this->modified = $modified;
-
-        return $this;
-    }
-
-    public function getTotal(): ?int
-    {
-        return $this->total;
-    }
-
-    public function setTotal(int $total): self
-    {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    public function getCompleted(): ?int
-    {
-        return $this->completed;
-    }
-
-    public function setCompleted(int $completed): self
-    {
-        $this->completed = $completed;
-
-        return $this;
-    }
-
-    public function getTasks(): Array
+    public function getCards(): Array
     {
 				$temp = array();
-				foreach($this->tasks as $value) {
+				foreach($this->cards as $value) {
 					$temp[$value->getPosition()] = $value;
 				}
         return $temp;
     }
 
-    public function addTasks(Tasks $task): self
+    public function addCards(Cards $card): self
     {
-        if (!$this->tasks->contains($task)) {
-            $this->tasks[] = $task;
-            $task->setUserid($this);
+        if (!$this->cards->contains($card)) {
+            $this->cards[] = $card;
+            $task->setListid($this);
         }
 
         return $this;
     }
 
-    public function removeTasks(Tasks $task): self
+    public function removeCards(Cards $card): self
     {
-        if ($this->tasks->contains($task)) {
-            $this->tasks->removeElement($task);
-            if ($task->getUserid() === $this) {
-                $task->setUserid(null);
+        if ($this->cards->contains($card)) {
+            $this->cards->removeElement($card);
+            if ($card->getListid() === $this) {
+                $card->setListid(null);
             }
         }
         return $this;

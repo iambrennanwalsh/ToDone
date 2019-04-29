@@ -11,19 +11,19 @@
 </head>
 
 <body class='dash {% block bodyClass %}{% endblock %}'>
-{% if app.user.confirmed != 1 %}
+	{% if app.user.confirmed != 1 %}
 	<section id="confirm" class='fixed has-background-black has-text-centered w-100'>
 		<div class="container">
 			<p class='has-text-light'>Please confirm your email. We've emailed a confirmation link to {{app.user.email}}. <a class='has-text-primary' href="/confirm?resend=true&route={{app.request.get('_route')}}">Click here to resend it</a>.</p>
 		</div>
 	</section>
-{% endif %}
+	{% endif %}
 	<section id='topbar'>
 		<nav class="navbar has-background-grey-dark fixed w-100	{% if app.user.confirmed != 1 %}confirm	{% endif %}">
 			<div class='container is-fluid'>
 				<div class="navbar-brand">
 					<a class="navbar-item p-top-0 p-bottom-0" href="/dashboard/">
-           	<span class='has-text-weight-bold has-text-info is-size-3'>to<span class='has-text-primary'>done</span></span>
+						<span class='has-text-weight-bold has-text-info is-size-3'>to<span class='has-text-primary'>done</span></span>
 					</a>
 					<a role="button" class="navbar-burger burger has-text-primary" data-target="sidebar">
 						<span aria-hidden="true"></span>
@@ -59,31 +59,18 @@
 					Navigation
 				</p>
 				<ul class="menu-list">
-					<li><a href='/dashboard' class='{% if active == "lists" %}is-active{% endif %}'>Lists</a></li>
+					<li><a href='/dashboard' class='{% if active == "boards" %}is-active{% endif %}'>Boards</a></li>
 					<li><a href='/dashboard/profile' class='{% if active == "profile" %}is-active{% endif %}'>Profile</a></li>
 				</ul>
-				<p class="menu-label">Your Lists</p>
-				<ul id='sidelists' class="menu-list">
-					{% for list in app.user.lists %}
-					<li data-listid="{{ list.id }}"><a href='/list/{{ list.id }}' class='{% if active == list.id %}is-active{% endif %}'>{{ list.name }}</a></li>
-					{% endfor %}
-					<!--<li v-for="list in lists" data-listid="list.id"><a :href="'/list/' + list.id" v-text='list.name'></a></li>-->
-				</ul>
+				<p class="menu-label">Your Boards</p>
+				<sidebar id='sidelists' class="menu-list" active="{{active}}">
+				</sidebar>
 			</aside>
-			<!--
-				<div id="animateWow" class="main column is-12 is-10-desktop is-offset-2-desktop h-100">
-				<div class="loadAnimation">
-      			<div class="line line-1"></div>
-      			<div class="line line-2"></div>
-      			<div class="line line-3"></div>
-				</div>
-    		</div>
-			-->
 			<div id="mainsec" class='main column is-12 is-10-desktop is-offset-2-desktop'>
 				{% block main %}
 				{% endblock %}
 				{% if app.request.query.get('sent') is not empty %}
-				<modal state title="Sent." content="Check your email address, we've resent the confirmation email!" button="Okay"></modal>
+					<notice state content="Check your email address, we've resent the confirmation email!" title="Sent." button="Close"></notice>
 				{% endif %}
 			</div>
 		</div>

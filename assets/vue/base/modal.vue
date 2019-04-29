@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<transition name="fade">
 		<div class="is-active modal" v-show="stateVal">
 			<div @click.prevent='stateChange' class="modal-background"></div>
 			<div class="modal-card">
@@ -16,7 +16,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
@@ -40,3 +40,17 @@
 	}
 
 </script>
+
+<style scoped>
+	
+   .fade-enter-active {
+        transition: opacity .25s;
+    }
+    .fade-leave-active {
+        opacity: 0;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+	
+</style>
