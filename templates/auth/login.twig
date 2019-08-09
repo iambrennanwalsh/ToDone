@@ -13,7 +13,7 @@
 		<p class='subtitle'>You may login using either your username or email along with the password you created at signup.</p>
 	</div>
 	<div class='column is-6 is-offset-2'>
-		<login inline-template>
+		<login-component inline-template>
 			<form @submit="validateForm" method="post">
 				<div class="field is-horizontal">
 					<div class='field-label is-normal'>
@@ -49,16 +49,25 @@
 						</div>
 					</div>
 				</div>
-				<a id="forgotmypass" class="has-text-info" href="/forgot">I forgot my password.</a>
-				<button class="button is-primary is-pulled-right" type="submit" :click="validateForm">Login</button>
-				{% if error %}
-					<div class="show formsent notification is-primary is-pulled-left">
-					{{ error.messageKey|trans(error.messageData, 'security') }}
-					</div>
-				{% endif %}
+				<a class="forgotmypass has-text-info" href="/forgot">I forgot my password.</a>
+				<button class="button is-primary is-pulled-right" type="submit" @submit="validateForm">Login</button>
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 			</form>
-		</login>
+		</login-component>
+		<div class="column oauthbuttons">
+			<a href="/oauth/facebook/">
+				<button class="fb button is-large">
+					<i class="fa fa-facebook-square"></i>
+					<span>Login with <b>Facebook</b></span>
+				</button>
+			</a>
+			<a href="/oauth/github">
+				<button class="github button is-large">
+					<i class="fa fa-github-alt"></i>
+					<span>Login with <b>Github</b></span>
+				</button>
+			</a>
+		</div>
 	</div>
 </div>
 {% endblock %}

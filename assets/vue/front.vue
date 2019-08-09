@@ -1,19 +1,17 @@
 <script>
-import modal from './base/modal'
-import slider from './front/slider'
-import contact from './front/contact'
+import message from "./base/message.vue";
+import slider from "./front/slider";
+import contact from "./front/contact";
 
-export default {}	
-	
+export default {};
+
 new Vue({
-	
-	components: {
-		'slider': slider,
-		'modal': modal,
-		'contact': contact
-	},
-	
-	el: "#front"
-	
-})
+  components: {
+    "slider-component": slider,
+    "message-component": message,
+    "contact-component": contact
+  },
+
+  el: "#vue"
+});
 </script>

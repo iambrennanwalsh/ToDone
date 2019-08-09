@@ -1,0 +1,10 @@
+App\Entity\Card: 
+    attributes:
+        order: {position: ASC}
+    collectionOperations:
+        get: ~
+        post: ~
+    itemOperations: 
+        get: ~
+        put: ~
+        delete: ~

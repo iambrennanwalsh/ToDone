@@ -2,11 +2,53 @@
 * @name:          styles.auth.scss
 * @description:   This stylesheet is for any custom scss required for the front portion of the site.
 */
-.signup {
-	.formsent ul {
-			background-color: #EB5E28;
-			color: #fff;
-			padding: 5px 10px;
-			margin-bottom: 5px;
-		border-radius: 6px;}
+
+.forgotmypass {
+  clear: both;
+}
+
+.login .oauthbuttons {
+  margin-top: 40px;
+}
+
+.oauthbuttons {
+  padding: 0;
+  position: absolute;
+  right: 0;
+
+  button {
+    width: 220px;
+    color: #fff !important;
+    float: right;
+    padding: 8px 0px;
+    font-size: 14px !important;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    border: 0px;
+    margin-bottom: 7px;
+    clear: both;
+    justify-content: unset;
+    height: unset;
+
+    &.fb {
+      background: #3b5998;
+    }
+
+    &.github {
+      background: #6e5494;
+    }
+
+    i {
+      margin-right: 15px;
+      margin-left: 15px;
+      font-size: 25px;
+
+      &::after {
+        content: "|";
+        margin-left: 9px;
+        color: #fff;
+        font-size: 12px;
+      }
+    }
+  }
 }

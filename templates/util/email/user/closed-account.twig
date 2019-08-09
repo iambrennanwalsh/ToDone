@@ -1,0 +1,12 @@
+{% extends 'util/email/email.twig' %} 
+
+{% block title %}You've closed your ToDone.io account.{% endblock %}
+
+{% block main %}
+<p>Hello {{ user.firstName }}, we're sorry to see you're leaving us. This is a simple confirmation, letting you know, your information has been removed from our servers. </p>
+<p>
+Thanks,<br>
+ToDone Team
+</p>
+<hr>
+{% endblock %}

@@ -16,8 +16,8 @@ Forgot:
     path: /forgot
     controller: App\Controller\AuthController::forgot
 
-Change:
-    path: /change
+Reset:
+    path: /reset
     controller: App\Controller\AuthController::change
 
 Confirm:

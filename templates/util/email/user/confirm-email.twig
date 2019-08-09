@@ -1,0 +1,13 @@
+{% extends 'util/email/email.twig' %} 
+
+{% block title %}Confirm your email.{% endblock %}
+
+{% block main %}
+<p>Hello {{ user.firstName }}, thanks for signing up for ToDone! Let's get started by confirming your email address. At the bottom of this email, we've provided a link that will verify this email belongs to you. If you have any questions, you can reply directly to this email! I do my best to respond within 1 hour, Monday thru Friday.
+</p>
+<p>Thanks,<br>
+ToDone Team
+</p>
+<hr>
+<p><a href='https://todone.local/confirm?id={{ user.id }}&hash={{user.password|url_encode}}'>Click this link to confirm your email</a>.</p>
+{% endblock %}

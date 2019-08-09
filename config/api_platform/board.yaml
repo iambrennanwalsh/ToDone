@@ -1,0 +1,4 @@
+App\Entity\Board: 
+    subresource: 
+        resourceClass: App\Entity\Lists
+        collection: true

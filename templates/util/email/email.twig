@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    
+    @import url('https://fonts.googleapis.com/css?family=Assistant');
+    
+    body {
+      font-family: "Assistant", sans-serif;
+      margin: 0px; 
+      padding: 0px; 
+      width: 100%;
+      line-height: 1.25;
+    }
+    #header {
+      width: 100%; 
+      padding: 30px 0px; 
+      text-align: center;
+      background-color: #403f4c;
+      margin-bottom: 0px;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0px 0px 3px rgba(0,0,0,0.3) inset;
+    }
+    #header > h1 {
+      font-size: 30px;
+    }
+    .logo {
+      color: #f14e32;
+    }
+    .logo > span {
+      color: #309db6;
+    }
+    .title {
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(to right, #f14e32, #f3634a); 
+      color: #fff;
+      padding: 30px 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-weight: 400;
+      box-shadow: 0px 2px 3px rgba(0,0,0,0.3);
+    }
+    #main > div {
+      padding: 20px 30px;
+      color: #555; 
+      font-size: 16px;
+    }
+    footer {
+      text-align: center;
+      width: 100%; 
+      padding-top: 5px; 
+      padding-bottom: 5px; 
+      background: #403f4c; 
+      box-shadow: 0px -2px 3px rgba(0,0,0,0.3);
+    }
+    footer > p {
+      color: #fff; 
+      font-size: 14px;
+    }
+    a {
+      color: #f14e32;
+      text-decoration: none;
+    }
+    i {
+      color: #999;
+    }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-width: 0;
+      border-top: 1px solid #ddd;
+    }
+    th {
+      text-align: left;
+      font-weight: 400;
+      background: #fafafa;
+    }
+    td {
+      text-align: center;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    table, tr {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <h1><span class="logo"><span>to</span>done!</span></h1>
+  </header>
+  <main id="main">
+    <h2 class="title">{% block title %}{% endblock %}</h2>
+    <div>{% block main %}{% endblock %}</div>
+  </main>
+  <footer>
+    <p>© {{"now"|date("Y")}} • <span class="logo"><span>to</span>done!</span></p>
+  </footer>
+</body>
+</html>

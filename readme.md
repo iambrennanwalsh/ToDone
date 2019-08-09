@@ -1,174 +1,69 @@
-# ToDone!
-Just another productivity app.
+<div align="center">
+<a href="https://github.com/iambrennanwalsh/ToDone">
+<img src="https://raw.githubusercontent.com/iambrennanwalsh/ToDone/development/public/images/logo.png?token=AJWECM5ED4JV4HOHMLHMDCS5K3GOW" alt="Logo" height="30">
+</a>
+<h3 align="center">ToDone!</h3>
+<p align="center">
+An awesome new productivity app!
+<br />
+<a href="https://todone.local">View Site</a> 
+. 
+<a href="https://github.com/iambrennanwalsh/ToDone/issues">Report Bug</a>
+</p>
+</div>
 
---------
+
+## Table of Contents
+
+* [About ToDone!](#about-todone-)
+* [Technology](#technology)
+* [To Do](#to-do)
+
+## About ToDone!
+
+[![ToDone! Screen Shot][product-screenshot]](https://todone.local)
+
+ToDone! was a learning experience. This app represents my first steps in full stack web development. It's been refactored and embellished on quite a bit, but the end result is a simple app, which properly introduced me to the fundamentals of web application development.
+
+The app itself is a productivity application. The core concept of Trello seemed like an easy enough project to emulate. So I worked on it for a bit. Set it aside for a few months. Came back to it. Set it aside. And finally I uploaded what I considered a "finished" product.
+
+Some of the features:
+* Fully functional authentication system (Login, Logout, Register, Forgot My Password, Reset Password, Confirm Your Email).
+* User profile system with users able to update their account info, and even delete their account.
+* Dashboard system where users can create an unlimited amount of boards.
+* Each Board can hold any number of rearangeable lists.
+* Each list can hold any number of rearangeable cards, which can move from list to list.
+
+I first began work on this application a long time ago. I have since moved on to bigger projects, and don't think I will be updating this application anymore in the future. Theres work to be done on it, but I don't see the point in working on it. This app was an introduction for myself to web application development. It served it purpose. Now it serves as a proud member of my portfolio as well as a demo application for any students of Symfony 4 and Vue.js.
+
+## Technology
+At it's core, ToDone! is a Symfony 4 and Vue.js application. But as is often the case with modern web dev, an extensive variety of dependencies have found themselves mixed in. The following is a somewhat complete list of these dependencies.
+
+**Backend Dependencies**
+* [Symfony 4](https://symfony.com) - Core application framework.
+* [Doctrine ORM](https://doctrine-project.com) - Database management.
+* [Twig](https://twig.symfony.com) - Templating.
+* [Api Platform](https://api-platform.com/) - Rest API abstraction.
+* [Composer](https://getcomposer.org/) - Dependency manager for PHP. 
+
+**Frontend Dependencies**
+* [Vue.js](https://vuejs.org) - Front end application framework.
+* [Bulma](https://bulma.io) - CSS framework.
+* [Sass](https://sass-lang.com) - Syntactically awesome style sheets.
+* [Webpack](https://webpack.js.org) - Dependency bundler.
+* [Babel](https://babeljs.io) - JavaScript compiler.
+* [npm](https://npmjs.com) - Dependency manager for javascript.
+* [Font Awesome](https://npmjs.com) - Awesomely simple web icons.
+
+**Deployment**
+* [Nginx](https://nginx.com) - Web server.
+* [Heroku](https://heroku.com) - Application hosting, and deployment.
+* [Github](https://github.com) - GIT version control hosting.
 
 ## To Do
-✓ 1. Setup API Platform
-_ 2. Replace RestController by implementing API Platform.
-_ 3. Setup the dashboard.
-_ 4. Setup an admin panel.
 
---------
+- [ ] Organize css code.
+- [ ] Redo the dashboard css and make ux more user friendly (esspecially on mobile).
+- [ ] Impliment an in-browser cacheing solution to reduce ajax requests sent to server.
 
-## About
-ToDone! Is a learning experience. I was learning Vue.js and I wanted some real world experience applying it to a Symfony project. So I thought why not make something useful for myself and maybe others, I'll make a productivity app. The result is ToDone! 
-
---------
-
-ToDone! provides users with the ability to create simple lists, where they can check off tasks. Not exactly complex, but it's a strong boilerplate for future expansion, and ideas.
-
-ToDo utilizes the following technologies..
-
-**Symfony 4**: Server Side PHP Framework
-**Vue.js**: Client Side JavaScript Framework
-**Bulma**: CSS Framework
-**Webpack**: Build Tool
-**Sass**: CSS Preprocessing
-**NPM**: Frontend Dependencies
-**Composer**: Server Side Dependencies
-**Twig**: Templating
-
---------
-
-## Sections
-I've split ToDone! into multiple 'sections' simply to better organize the idea and code. These sections are **Frontend**, **Authentication**, **Dashboard**, and **Utility**. Lets break them down.
-
---------
-
-**1. Frontend**:
-- The public facing section of the site. The home page, about us, contact page, plus terms and conditions and privacy policy are all part of the frontend section.
-
-**2. Authentication**:
-- The authentication section of ToDone! handles all of the user authenticating. That is the signing in, signing up, and signing out of our users. 
-
-**3. Dashboard**:
-- The dashboard is the the app. It's where users will create and edit their lists, and alter their profile information.
-
-**4. Utility**:
-- While the utility section isn't accesible, it's very important. This section contains all of the ajax code, modals, as well as the email templates.
-
---------
-
-## Assets
-Here I cover the proper development procedure for our assets. 
-
---------
-
-ToDone! has three sets of assets..
-
-**1. SCSS**
-**2. JavaScript**
-**3. Vue.js**
-
-For each of these sets of assets, you'll find a folder within the /assets directory. If you look inside these folders you'll see the following structure.
-
-- front._ 
-- /front/
-- auth._
-- /auth/
-- dash.js
-- /dash/
-- base._
-
-ToDone! uses webpack to compile all of our assets and dependencies into bundled files. Webpack takes all of the scss, js, and vue files and then builds one css and js file per site section(front, auth, dash). It takes 3 entry points (within /assets/js)..
-
-- front.js 
-- auth.js
-- dash.js
-
-These are the starting points for webpack, and so these files import all of the dependency that each site section needs.
-
-
-For example the front.js file looks like this..
-
-require('../css/front.scss'); 
-require('./base.js');
-require('../vue/front.vue');
-require('./front/scripts.front.js');
-
-Starting from the 1st line..
-
-**1. require('../css/front.scss');**
-- This is the front.scss file within the /assets/css folder. This Scss file then imports all of it's own scss dependencies following the same logic as the javascript side does. 
-
-**2. require('./base.js');**
-- Base.js contains all of the sitewide javascript dependencies. Any js that is implemented across all sections should go in here. 
-
-**3. require('../vue/front.vue');**
-- This is the front.vue file within the /assets/vue folder. This .vue file then imports all of it's own dependencies following the same logic as the javascript side does. 
-
-**4. require('./front/scripts.front.js');**
-- script.front.js is where you would put all of your js that is specific to the front end of the site. It is only loaded in front.js. Auth.js loads in scripts.auth.js.
-
-To run webpack and bundle our assets open your command line and cd into the root. Then run the following command.
-
-**npm run webpack**
-
-That will bundle the files. You'll find these bundled files within the /public/build folder. This is within the web root and so accessible via the browser, unlike /assets.
-
-In public/build you'll now find..
-
-- front.js 
-- front.css
-- auth.js
-- auth.css
-- dash.js
-- dash.css
-
---------
-
-## Deployment
-An overview of the proper deployment guidelines.
-
---------
-
-We run ToDone! on **Heroku**. Heroku makes the deployment process a breeze.  Before I explain,  you have to first understand the diffrrent enviroments ToDone! exists in..
-
-**Development**
-- This is where I build the app. The local enviroment. My mac. 
-
-**Staging**
-- The staging enviroment is for testing how the app performs on a  production server. The staging and production enviroments are nearly identical. So It allows us to test how the production app will perform before we deploy it to production. 
-
-**Production**
-- The live, published enviroment. We deploy to  production once we've tested the staging  enviroment thoroughly.
-
-So heres how the deployment process works..
-
-### Github + Heroku
-
-Our apps git repository is made up of 3 main branches. Development, Staging, and Production. The development branch is pretty much always checked out. 
-
-Once our development enviroment is ready for staging. We stage and commit all new file changes, and run **git push origin staging**. 
-
-This will update the staging branch on github. Heres where it gets cool..
-
-Heroku is connected to both the staging and production branches on github. When it detects a new commit, it automatically pulls the repository into the connected enviroment. 
-
-So basically deploying is as easy as running **git push origin production**. Or as easy as clicking a button in GitKraken. :).
-
---------
-
-## Templating
-
---------
-
-ToDone!'s templates are built using Twig with a little bit of Vue.js sprinkled around.
-
-The templating system follows the asset system for the most part. Three top level templates, front.twig, auth.twig, and dash.twig provide the building blocks that front/contact.twig, and auth/login.twig expand on.
-
-All forms have are built with a form class in Symfony. This simplifies the error output, and server side validation. Speaking of validation. All forms go through extensive client side and server side validation. Users are sneaky, no tricks get through,
-
-Vue.js provides a nice later of simple reactivity to our twig templating so we use alot of Vue components within our twig templates.
-
---------
-
-## Routing
-
---------
-
-Our routing is handled by Symfony, and I think it will stay that way. I may implement Vue routing just for the experience of it, but I feel as though that destorys all the Crud I've built.
-
-
-
+[product-screenshot]: public/images/screenshot.png

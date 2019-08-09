@@ -1,0 +1,11 @@
+{#
+@name:          lists.twig
+@description:   Template for the overview page.
+#}
+
+{% extends 'dash.twig' %}
+{% block bodyClass %}{% endblock %}
+{% set active = board.id %}
+{% block main %}
+<board ref='board' boardid="{{board.id}}"></board>
+{% endblock %}

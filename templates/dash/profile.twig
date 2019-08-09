@@ -13,19 +13,17 @@
 			<h1 class='title'>Profile</h1>
 			<p class='subtitle has-text-dark'>You may edit your account information below.</p>
 		</div>
-			<profile></profile>
+        <profile-component></profile-component>
 		<hr class='m-top-50 m-bottom-50'>
-		<div class='m-top-30 box '>
+		<div class='m-top-30 m-bottom-30 box'>
 			<h3 class='is-size-4 m-bottom-20'>Close account.</h3>
 			<p class='has-text-dark'>Are you sure you want to close this account? All lists will be deleted with no way of being recovered. To close your account, enter your password below.</p>
-			<delete>
-			
-			</delete>
+			<delete-component></delete-component>
 		</div>
 	</div>
 	<div class='column is-3 m-top-20'>
 		<figure class="image is-1by1">
-			<a href="https://gravatar.com"><img class='portrait' src="{{grav}}" alt="Placeholder image"></a>
+			<a href="https://gravatar.com"><img class='portrait' src="{{ app.user.gravatar }}" alt="Gravatar Profile Picture"></a>
 		</figure>
 	</div>
 </div>

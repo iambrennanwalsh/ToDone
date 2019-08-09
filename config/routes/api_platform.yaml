@@ -2,3 +2,11 @@ api_platform:
     resource: .
     type: api_platform
     prefix: /api
+
+check_password:
+    path: /api/users/{id}/check
+    methods:  ['POST']
+    defaults:
+     _controller: App\Controller\APIController::check_password
+     _api_resource_class: App\Entity\User
+     _api_collection_operation_name: check_password

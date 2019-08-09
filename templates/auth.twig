@@ -12,11 +12,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="images/favicon.png">
   {% block assets %}
-			<link rel="stylesheet" href="build/auth.css">
+			<link rel="stylesheet" href="{{ asset('/assets/auth.css') }}">
 	{% endblock %}
 </head>
 <body class='auth {% block bodyClass %}{% endblock %}'>
-<section class="hero is-light is-fullheight">
+<section id="vue" class="hero is-light is-fullheight">
   <div class="hero-head">
     <nav class="navbar fixed w-100">
       <div class="container">
@@ -35,12 +35,12 @@
             <a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
             <a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
             <a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
-						<a href="/login" class="respond navbar-item {% if active == 'login' %}is-active{% endif %}">Login</a>
-		        <a href="/signup" class="respond navbar-item {% if active == 'signup' %}is-active{% endif %}">Signup</a>
-	          <hr class="respond m-top-0 m-bottom-0">
-						<div class="dropdown is-right m-left-15 is-hoverable">
+            <a href="/login" class="respond navbar-item {% if active == 'login' %}is-active{% endif %}">Login</a>
+            <a href="/signup" class="respond navbar-item {% if active == 'signup' %}is-active{% endif %}">Signup</a>
+            <hr class="respond m-top-0 m-bottom-0">
+            <div class="dropdown is-right m-left-15 is-hoverable">
               <div class="dropdown-trigger">
-                <button class="button is-primary is-inverted" @click="showDropdown">
+                <button class="button is-primary">
                   <span class="icon"><i class="fa fa-user-plus"></i></span>
                   <span>Login</span>
                 </button>
@@ -59,25 +59,32 @@
     </nav>
   </div>	
 	<div class="hero-body">
-    <div id="auth" class="container">
-			{% block main %}
-			{% endblock %}
+      <div id="auth" class="container">
+        {% block main %}
+        {% endblock %}
+      </div>
     </div>
-  </div>
 	<div class="hero-foot">
     <nav class="tabs is-boxed is-fullwidth">
       <div class="container">
         <ul>
-          <li class="is-active"><a class='has-background-grey-dark' href='https://www.brennanwal.sh'>Made with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
+          <li class="is-active"><a class='has-background-grey-dark has-text-white' href='https://www.brennanwal.sh'>Made with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
           <li><a href='/privacy'>Privacy</a></li>
           <li><a href='/terms'>Terms</a></li>
         </ul>
       </div>
     </nav>
   </div>
+  {% for label, messages in app.flashes(['success', 'danger', 'warning', 'info']) %}
+    {% for message in messages %}
+      <message-component classtype="is-{{ label }}" value="{{message}}"></message-component>
+    {% endfor %}
+  {% endfor %}
+  <message-component></message-component>
 </section>
 {% block scripts %}
-	<script src="build/auth.js"></script>
+    <script src="{{ asset('/assets/runtime.js') }}"></script>  
+	<script src="{{ asset('/assets/auth.js') }}"></script>
 {% endblock %}
 </body>	
 </html>

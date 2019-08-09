@@ -13,8 +13,27 @@
 		<p class='subtitle'>Don't worry about it. We'll get it changed for you. Simply provide the email you used to sign up with, and we'll email you further instructions.</p>
 	</div>
 	<div class='column is-6 is-offset-2'>
-		<forgot {% if response is defined %} response="{{response}}" {% endif %}>
-	</forgot>
+      <forgot-component inline-template>
+		{{ form_start(form, {'attr': {'novalidate': 'true', '@submit': 'validateForm'}}) }}
+        <div class="field is-horizontal">
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(form.user, {'attr': {'v-model': "user", 'v-bind:class': "{'is-primary': attempted && userStatus}", 'placeholder': 'Phone # or Email Address', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+							<i class="fa fa-user-circle"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>	
+        <div class="field is-pulled-right">
+  		  <div class="control">
+            <button class="button is-primary" type="submit" @submit="validateForm">Reset My Password</button>
+  		  </div>
+		</div>
+		{{ form_end(form) }}
+		</forgot-component>
 	</div>
 </div>
 

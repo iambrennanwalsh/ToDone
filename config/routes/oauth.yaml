@@ -1,0 +1,15 @@
+Facebook:
+    path: /oauth/facebook
+    controller: App\Controller\OauthController::facebookConnect
+
+Facebook_Check:
+    path: /oauth/facebook/check
+    controller: App\Controller\OauthController::facebookCheck
+
+Github:
+    path: /oauth/github
+    controller: App\Controller\OauthController::githubConnect
+
+Github_Check:
+    path: /oauth/github/check
+    controller: App\Controller\OauthController::githubCheck

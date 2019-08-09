@@ -1,0 +1,48 @@
+{#
+@name: change.twig
+@description: The template for the change page.
+#}
+
+{% extends 'auth.twig' %}
+{% block bodyClass %}change{% endblock %}
+{% set active = 'login' %}
+{% block main %}
+<div class='columns'>
+	<div class='headingbox column is-4'>
+		<h1 class="title has-text-grey-dark">Change Password</h1>
+		<p class='subtitle'>Lets reset your password. Choose a new one, and you'll be redirected back to the login page. Note: this new password can be an old one you've used. If you're still having issues, use the contact page to get in touch.</p>
+	</div>
+	<div class='column is-6 is-offset-2'>
+		<reset-component inline-template>
+          {{ form_start(form, {'attr': {'novalidate': 'true', 'v-on:submit': "validate"}}) }}
+          <div class="field is-horizontal">
+			<div class='field-body'>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(form.password.first, {'attr': {'v-model': "pass", 'v-bind:class': "{'is-primary': attempted && passStatus}", 'placeholder': 'Password', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-key"></i>
+    				</span>
+					</div>
+				</div>
+				<div class='field'>
+					<div class="control has-icons-left">
+						{{ form_widget(form.password.second, {'attr': {'v-model': "rpass",'v-on:blur': "validate", 'v-bind:class': "{'is-primary': attempted && rpassStatus}", 'placeholder': 'Repeat Password', 'class': 'input' }}) }}
+						<span class="icon is-small is-left">
+      				<i class="fa fa-key"></i>
+    				</span>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="field is-pulled-right">
+  		<div class="control">
+          <button class="button is-primary" type="submit" @submit="validate">Reset My Password</button>
+  		</div>
+		</div>
+          {{form_end(form)}}
+	</reset-component>
+	</div>
+</div>
+
+{% endblock %}

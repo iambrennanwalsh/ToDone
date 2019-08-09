@@ -3,44 +3,60 @@
 * @description:   This stylesheet is for any custom scss required for the front portion of the site.
 */
 
-.button {
-	&.is-primary.is-inverted:hover {
-	background-color: #fff !important;}}
-@include desktop {
-.terms, .privacy, .about {
-	
-	.scrollbox {
-		max-height: 400px;
-		overflow-y: scroll;
-		overflow-x: hidden;
-		background:
-			linear-gradient(141deg, #f0efe7 0%, #f0efe7 100%), 
-			linear-gradient(141deg, #f0efe7 0%, #f0efe7 100%) 0 100%, 
-			radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
-			radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
-		background-repeat: no-repeat;
-		background-size: 100% 14px;
-		background-attachment: local, local, scroll, scroll;
-		background-position-x: right;}	
-}
+.button.is-primary.is-inverted:hover {
+  background-color: #fff !important;
 }
 
-.terms, .privacy {
-	#front {
-	p, li {
-			margin-bottom: 20px;}
-		
-		li {
-			padding-left: 30px;}
-	}
+@include desktop {
+  .terms .scrollbox,
+  .privacy .scrollbox,
+  .about .scrollbox {
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: linear-gradient(141deg, #f0efe7 0%, #f0efe7 100%),
+      linear-gradient(141deg, #f0efe7 0%, #f0efe7 100%) 0 100%,
+      radial-gradient(
+        farthest-side at 50% 0,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      ),
+      radial-gradient(
+          farthest-side at 50% 100%,
+          rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0)
+        )
+        0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 14px;
+    background-attachment: local, local, scroll, scroll;
+    background-position-x: right;
+  }
 }
+
+.terms,
+.privacy {
+  #front {
+    p,
+    li {
+      margin-bottom: 20px;
+    }
+    li {
+      padding-left: 30px;
+    }
+  }
+}
+
 .hero {
-	.hero-body {
-		a {
-			color: #309db6 !important;}}}
+  .hero-body {
+    a {
+      color: #309db6 !important;
+    }
+  }
+}
 
 .home {
-	.callToAction {
-		margin-top: 20px;
-	}
+  .callToAction {
+    margin-top: 20px;
+  }
 }

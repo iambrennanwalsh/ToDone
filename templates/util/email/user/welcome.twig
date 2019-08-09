@@ -1,0 +1,11 @@
+{% extends 'util/email/email.twig' %}
+
+{% block title %}Welcome to ToDone!{% endblock %}
+
+{% block main %}
+  <p>Hi {{ user.firstName }}, welcome to ToDone. Thank you for joining our community. This is a courtesy email, confirming that you've succesfully been registered.</p>
+<p> Thanks,<br>
+ToDone Team
+</p>
+  <hr>
+{% endblock %}

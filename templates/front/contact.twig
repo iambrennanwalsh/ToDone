@@ -14,7 +14,71 @@
 		<p>Alternatively, you may email me directly at <a href='mailto:mail@brennanwal.sh'>mail@brennanwal.sh</a>.</p>
 	</div>
 	<div class='column is-7 is-offset-1'>
-	<contact></contact>
+	  <contact-component inline-template>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'id': 'contactform', '@submit.prevent': 'validateForm'}}) }}
+		    <div class="field is-horizontal">
+		       <div class='field-label is-normal'>
+                 <label class="label has-text-grey-dark">From<sup>*</sup></label>
+              </div>
+              <div class='field-body'>
+                <div class='field has-addons'>
+                  <div class="control">
+                    <span class="button is-static">
+                      <span class='fa fa-user'></span>
+                    </span>
+                  </div>
+                  <div class='control is-expanded'>
+                    {{ form_widget(form.name, {'attr': {'v-model': 'fname', 'class': 'input', ':class': "{'is-primary': attempted && nameStatus}", 'placeholder': 'Full Name'}}) }}
+                  </div>
+                </div>
+                <div class='field has-addons'>
+                  <div class="control">
+                    <span class="button is-static">
+                      <span class='fa fa-envelope'></span>
+                    </span>
+                  </div>
+                  <div class='control is-expanded'>
+                    {{ form_widget(form.email, {'attr': {'v-model': 'email', 'class': 'input', ':class': "{'is-primary': attempted && emailStatus}", 'placeholder': 'Email'}}) }}
+                  </div>
+                </div>
+              </div>
+            </div>			
+            <div class="field is-horizontal">
+              <div class='field-label is-normal'>
+                <label class="label has-text-grey-dark">Subject<sup>*</sup></label>
+              </div>
+              <div class='field-body'>
+                <div class='field has-addons'>
+                  <div class="control">
+                    <span class="button is-static">
+                      <span class='fa fa-chevron-right'></span>
+                    </span>
+                  </div>
+                  <div class='control is-expanded'>
+                    {{ form_widget(form.subject, {'attr': {'v-model': 'subject', 'class': 'input', ':class': "{'is-primary': attempted && subjectStatus}", 'placeholder': 'Subject'}}) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field is-horizontal">
+              <div class='field-label is-normal has-text-light'>
+                <label class="label has-text-grey-dark">Message<sup>*</sup></label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    {{ form_widget(form.message, {'attr': {'v-model': 'message', 'class': 'input', ':class': "{'is-primary': attempted && messageStatus}", 'placeholder': 'Message..'}}) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field is-pulled-right">
+              <div class="control">
+                <button @submit.prevent="validateForm" type="submit" :class="{'is-loading': load}" class="button is-primary">Send Message</button>
+              </div>
+            </div>
+          {{ form_end(form) }}
+      </contact-component>
 	</div>
 </div>
 {% endblock %}

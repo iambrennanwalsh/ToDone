@@ -1,0 +1,11 @@
+App\Entity\User: 
+    subresource: 
+        resourceClass: App\Entity\Board
+        collection: true
+    itemOperations: 
+        get: ~
+        put: ~
+        delete: ~
+        check_password: ~
+        encrypt_password: ~
+        mailer: ~

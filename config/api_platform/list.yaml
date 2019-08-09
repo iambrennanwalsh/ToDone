@@ -1,0 +1,6 @@
+App\Entity\Lists:
+    attributes:
+        order: {position: ASC}
+    subresource: 
+        resourceClass: App\Entity\Card
+        collection: true

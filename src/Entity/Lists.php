@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use App\Entity\Card;
+use App\Entity\Board;
 
 /**
- * @ApiResource
- * @ORM\Entity(repositoryClass="App\Repository\ListsRepository")
+ * @ApiResource(attributes={"order"={"position": "ASC"}})
+ * @ORM\Entity()
  */
 class Lists
 {
@@ -22,10 +24,10 @@ class Lists
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Boards", inversedBy="lists")
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="lists")
      * @ORM\JoinColumn(nullable=false)
      */
-    public $boardid;
+    public $boardId;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -38,29 +40,29 @@ class Lists
     private $position;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Cards", mappedBy="cardid", cascade={"all"}, orphanRemoval=true)
-		 * @ApiSubresource
+     * @ORM\OneToMany(targetEntity="Card", mappedBy="listId", cascade={"all"}, orphanRemoval=true)
+     * @ApiSubresource
      */
     private $cards;
-	
-		public function __construct() {
-			$this->tasks = new ArrayCollection();
-		}
+
+    public function __construct()
+    {
+        $this->cards = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getBoardid(): ?Boards
+    public function getBoardId(): Board
     {
-        return $this->boardid;
+        return $this->boardId;
     }
 
-    public function setBoardid(?Boards $boardid): self
+    public function setBoardId(Board $boardId): self
     {
-        $this->boardid = $boardid;
-
+        $this->boardId = $boardId;
         return $this;
     }
 
@@ -72,47 +74,40 @@ class Lists
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
-	 	public function getPosition(): int
+    public function getPosition(): int
     {
         return $this->position;
     }
-	
+
     public function setPosition(int $position): self
     {
         $this->position = $position;
-
         return $this;
     }
 
-    public function getCards(): Array
+    public function getCards(): Collection
     {
-				$temp = array();
-				foreach($this->cards as $value) {
-					$temp[$value->getPosition()] = $value;
-				}
-        return $temp;
+        return $this->cards;
     }
 
-    public function addCards(Cards $card): self
+    public function addCards(Card $card): self
     {
         if (!$this->cards->contains($card)) {
             $this->cards[] = $card;
-            $task->setListid($this);
+            $card->setListId($this);
         }
-
         return $this;
     }
 
-    public function removeCards(Cards $card): self
+    public function removeCards(Card $card): self
     {
         if ($this->cards->contains($card)) {
             $this->cards->removeElement($card);
-            if ($card->getListid() === $this) {
-                $card->setListid(null);
+            if ($card->getListId() === $this) {
+                $card->setListId(null);
             }
         }
         return $this;

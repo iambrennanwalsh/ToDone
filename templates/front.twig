@@ -5,15 +5,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>ToDone! {% block title %}{% endblock %}</title>
-	<meta name="description" content="{% block description %}ToDone!{% endblock %}">
+	 <title>ToDone! {% block title %}An organization and productivity app.{% endblock %}</title>
+	<meta name="description" content="{% block description %}ToDone! is an organization and productivity application similar to Trello.{% endblock %}">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="images/favicon.png">
-{% block assets %}
-	<link rel="stylesheet" href="build/front.css">
-{% endblock %}
+	{% block assets %}
+	<link rel="stylesheet" href="{{ asset('/assets/front.css') }}">
+	{% endblock %}
 </head>
 
 <body class='front {% block bodyClass %}{% endblock %}'>
@@ -46,14 +47,14 @@
 							{% if is_granted('ROLE_USER') %}
 							<div class="dropdown is-right m-left-15 is-hoverable">
 								<div class="dropdown-trigger">
-									<button class="button is-primary" @click="showDropdown">
+									<button class="button is-primary">
 										<span class="icon"><i class="fa fa-user"></i></span>
 										<span>{{ app.user.username }}</span>
 									</button>
 								</div>
 								<div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
 									<div class="dropdown-content">
-										<a href="/dashboard" class="dropdown-item">Dashboard</a>
+										<a href="/boards" class="dropdown-item">Dashboard</a>
 										<hr class="dropdown-divider">
 										<a href="/logout" class="dropdown-item">Logout</a>
 									</div>
@@ -62,7 +63,7 @@
 							{% else %}
 							<div class="dropdown is-right m-left-15 is-hoverable">
 								<div class="dropdown-trigger">
-									<button class="button is-primary is-inverted" @click="showDropdown">
+									<button class="button is-primary">
 										<span class="icon"><i class="fa fa-user-plus"></i></span>
 										<span>Login</span>
 									</button>
@@ -85,28 +86,29 @@
 			<div id="front" class="container">
 				{% block main %}
 				{% endblock %}
-				{% for message in app.flashes('email_success') %}
-				<modal state title="Your email has been confirmed!" content="Thanks! We've verified your email, and your'e now ready to get doin'. Have fun!" button="Coolio"></modal>
-				{% endfor %}
-				{% for message in app.flashes('email_failed') %}
-				<modal state title="Something didn't match up!" content="We weren't able to verify your email address using that link. <br><br>This may be a problem on our end. Go ahead and try it again, and if you are still seeing this error, go ahead and request a new email. <br><br> If it still won't verify, hold tight this is probably a problem on our end. We probably already know, and will fix it soon, but it doesn't hurt to <a href='/contact'>contact us</a>. <br><br> We apologize and thank you for your patience." button="Yall suck"></modal>
-				{% endfor %}
 			</div>
 		</div>
 		<div class="hero-foot">
 			<nav class="tabs is-boxed is-fullwidth">
 				<div class="container">
 					<ul>
-						<li class="is-active"><a href='https://www.brennanwal.sh' class='has-background-grey-dark'>Built with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
+						<li class="is-active"><a href='https://www.brennanwal.sh' class='has-background-grey-dark has-text-white'>Built with <span class='fa fa-heart has-text-primary'></span>by Brennan Walsh</a> </li>
 						<li><a href='/privacy'>Privacy</a></li>
 						<li><a href='/terms'>Terms</a></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
+        {% for label, messages in app.flashes(['success', 'danger', 'warning', 'info']) %}
+          {% for message in messages %}
+            <message-component classtype="is-{{ label }}" value="{{message}}"></message-component>
+          {% endfor %}
+        {% endfor %}
+        <message-component></message-component>
 	</section>
 	{% block scripts %}
-	<script src="build/front.js"></script>
+    <script src="{{ asset('/assets/runtime.js') }}"></script>  
+	<script src="{{ asset('/assets/front.js') }}"></script>
 	{% endblock %}
 </body>
 
