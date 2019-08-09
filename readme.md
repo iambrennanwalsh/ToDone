@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://github.com/iambrennanwalsh/ToDone">
-<img src="https://raw.githubusercontent.com/iambrennanwalsh/ToDone/development/public/images/logo.png?token=AJWECM5ED4JV4HOHMLHMDCS5K3GOW" alt="Logo" height="30">
+  <img src="https://todone-stage.herokuapp.com/images/logo.png" alt="Logo" height="30">
 </a>
 <h3 align="center">ToDone!</h3>
 <p align="center">
