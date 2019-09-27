@@ -46,12 +46,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.message {
-  position: fixed;
-  z-index: 2;
-  bottom: 7%;
-  right: 10%;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-}
-</style>

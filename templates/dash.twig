@@ -26,11 +26,7 @@
 					<a class="navbar-item p-top-0 p-bottom-0" href="/boards/">
 						<span class='has-text-weight-bold has-text-info is-size-3'>to<span class='has-text-primary'>done</span></span>
 					</a>
-					<a role="button" class="navbar-burger burger has-text-primary" data-target="sidebar">
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-					</a>
+					<burger-component></burger-component>
 				</div>
 				<div class="navbar-menu">
 					<div class="navbar-end">
@@ -44,6 +40,7 @@
 							<div class="dropdown-menu p-top-0" id="dropdown-menu2" role="menu">
 								<div class="dropdown-content">
 									<a href="/" class="dropdown-item">Front</a>
+                                    <hr class="dropdown-divider">
 									<a href="/logout" class="dropdown-item">Logout</a>
 								</div>
 							</div>
@@ -63,8 +60,16 @@
 					<li><a href='/profile' class='{% if active == "profile" %}is-active{% endif %}'>Profile</a></li>
 				</ul>
 				<p class="menu-label"><span @click.prevent="$refs.create.open()" class="createbutton has-text-primary is-pulled-left m-left-15"><i class="fa fa-plus m-left-0 m-right-5"></i> Board</span> Your Boards</p>
-				<sidebar id='sidelists' class="menu-list" active="{{active}}">
-				</sidebar>
+                  <ul id="sidelists" class="menu-list">
+                    <li v-for="board in boards" :data-listid="board.id">
+                      <a
+                         :class="{ 'is-active': {{ active }} == board.id }"
+                         :href="'/board/' + board.slug"
+                         v-text="board.name"
+                        >
+                      </a>
+                    </li>
+                </ul>
 			</aside>
 			<div id="main" class='main column is-12 is-10-desktop is-offset-2-desktop'>
 				{% block main %}

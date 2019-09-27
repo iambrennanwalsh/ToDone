@@ -3,10 +3,6 @@
 * @description:   This stylesheet is for any custom scss required for the front portion of the site.
 */
 
-.button.is-primary.is-inverted:hover {
-  background-color: #fff !important;
-}
-
 @include desktop {
   .terms .scrollbox,
   .privacy .scrollbox,

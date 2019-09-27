@@ -8,6 +8,7 @@ use App\Entity\Board;
 
 class DashController extends AbstractController
 {
+  
     public function boards()
     {
         return $this->render('dash/boards.twig');

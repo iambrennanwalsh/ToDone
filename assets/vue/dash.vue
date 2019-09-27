@@ -2,9 +2,7 @@
 import CreateModal from "./dash/modals/create-modal";
 import DeleteModal from "./dash/modals/delete-modal";
 import EditModal from "./dash/modals/edit-modal";
-import Notice from "./base/modal";
 import Message from "./base/message";
-import Sidebar from "./dash/sidebar";
 import Boards from "./dash/boards";
 import Board from "./dash/board";
 import Profile from "./dash/profile";
@@ -19,8 +17,6 @@ new Vue({
     "create-modal": CreateModal,
     "delete-modal": DeleteModal,
     "edit-modal": EditModal,
-    notice: Notice,
-    sidebar: Sidebar,
     boards: Boards,
     board: Board,
     "profile-component": Profile,
@@ -32,7 +28,8 @@ new Vue({
   data() {
     return {
       boards: "",
-      user: ""
+      user: "",
+      nav: false
     };
   },
 

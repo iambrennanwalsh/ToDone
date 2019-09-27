@@ -26,19 +26,19 @@
 						<a href='/' class="navbar-item active">
 							<span class='has-text-weight-bold has-text-info is-size-3'>to<span class='has-text-primary'>done</span></span>
 						</a>
-						<span id="burger" class="navbar-burger burger has-text-primary" data-target="frontNav">
+						<span id="burger" @click="show" class="navbar-burger burger has-text-primary" data-target="frontNav">
 							<span></span>
 							<span></span>
 							<span></span>
 						</span>
 					</div>
-					<div id="frontNav" class="navbar-menu has-background-grey-dark has-text-grey">
+					<div id="frontNav" class="navbar-menu mobilemenu has-background-grey-dark has-text-grey">
 						<div class="navbar-end">
 							<a href='/' class="navbar-item {% if active == 'home' %}is-active{% endif %}">Home</a>
 							<a href='/about' class="navbar-item {% if active == 'about' %}is-active{% endif %}">About</a>
 							<a href='/contact' class="navbar-item {% if active == 'contact' %}is-active{% endif %}">Contact</a>
 							{% if is_granted('ROLE_USER') %}
-							<a href="/dashboard" class="respond navbar-item">Dashboard</a>
+							<a href="/boards" class="respond navbar-item">Dashboard</a>
 							<a href="/logout" class="respond navbar-item">Log out</a>
 							{% else %}
 							<a href="/login" class="respond navbar-item">Login</a>

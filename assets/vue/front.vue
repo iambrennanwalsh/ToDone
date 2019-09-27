@@ -12,6 +12,17 @@ new Vue({
     "contact-component": contact
   },
 
-  el: "#vue"
+  el: "#vue",
+  
+  data() {
+    return {
+      nav: false
+    }
+  },
+  methods: {
+    show() {
+      document.querySelector(".mobilemenu").classList.toggle("show"); 
+    }
+  }
 });
 </script>

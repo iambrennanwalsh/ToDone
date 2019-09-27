@@ -1,5 +1,6 @@
 .env
-/public/build/
+/public/assets/
+/public/fonts/
 /var/
 /vendor/
 /node_modules/

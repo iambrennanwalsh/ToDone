@@ -14,12 +14,12 @@
     "symfony/flex": "^1.1",
     "symfony/form": "4.*",
     "symfony/framework-bundle": "4.*",
+    "symfony/monolog-bundle": "^3.3",
     "symfony/security-bundle": "4.*",
     "symfony/swiftmailer-bundle": "^3.1",
     "symfony/translation": "4.*",
     "symfony/twig-bundle": "4.*",
-    "symfony/yaml": "4.*",
-    "symfony/monolog-bundle": "^3.3"
+    "symfony/yaml": "4.*"
   },
   "require-dev": {
     "symfony/debug-pack": "*",
@@ -59,10 +59,6 @@
     ],
     "post-update-cmd": [
       "@auto-scripts"
-    ],
-    "prettier": [
-      "prettier '{src/**,.}/*.php' --write",
-      "prettier '{assets/**,.}/*.{css,scss,vue,js}' --write"
     ]
   },
   "conflict": {

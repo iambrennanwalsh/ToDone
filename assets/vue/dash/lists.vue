@@ -1,7 +1,7 @@
 <template>
   <draggable v-model="lists" @end="sort">
     <div class="lixx column is-4" v-for="(list, index) in lists" :key="list.id">
-      <div class="list column is-12 animated fadeInUp">
+      <div class="list column is-12 animated fadeInUp" @animationend="animateit">
         <header>
           <p
             v-text="list.name"
@@ -144,6 +144,9 @@ export default {
           position: index
         });
       });
+    },
+    animateit(event) {
+      event.target.classList.remove('animated');
     }
   },
 

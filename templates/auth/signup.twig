@@ -142,10 +142,8 @@
           <button class="button is-primary" type="submit" @submit="validateForm">Signup</button>
   		</div>
 		</div>
-		{{ form_end(form) }}
-		</signup-component>
         {% if not oauth %}
-        <div class="column oauthbuttons">
+        <div class="column oauthbuttons is-pulled-right">
 			<a href="/oauth/facebook/">
 				<button class="fb button is-large">
 					<i class="fa fa-facebook-square"></i>
@@ -160,6 +158,8 @@
 			</a>
 		</div>
           {% endif %}
+		{{ form_end(form) }}
+		</signup-component>
 	</div>
 </div>
 {% endblock %}

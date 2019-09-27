@@ -3,18 +3,14 @@
 * @description:   This stylesheet imports the required scss files for the front portion of the site. This file is imported from front.js.
 */
 
-
-#confirm {
-  padding: 4px;
-  font-size: 0.9rem;
-}
+/* Navbar
+----------------------------------------------------------------------*/
 
 #topbar {
   height: 52px;
 
   .navbar {
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-    background-color: #503d39;
 
     &.confirm {
       box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2),
@@ -28,81 +24,12 @@
   }
 }
 
-.dash {
-  @include tablet {
-    overflow-y: hidden;
-  }
-
-  &.profile .main {
-    overflow-y: scroll;
-  }
-}
-
-#sidebar {
-  box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.2) inset;
-  position: fixed;
-  left: 0px;
-  padding-left: 15px;
-  transition: 0.5s;
-  z-index: 10;
-  border-left: 7px solid #403f4c;
-
-  .menu-label {
-    text-align: right;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #403f4c;
-    margin-top: 30px;
-    padding-right: 15px;
-    color: #999;
-  }
-
-  .menu-list {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  li > a {
-    margin-top: 10px;
-  }
-
-  .hoverable {
-    visibility: hidden;
-    transition: all 0s 0.2s ease-in;
-  }
-
-  &:hover .hoverable {
-    visibility: visible;
-    transition: all 0s 0.2s ease-in;
-  }
-}
+/* Board
+----------------------------------------------------------------------*/
 
 .main {
   position: relative;
   height: 100vh;
-
-  .no-boards {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 150px;
-    text-align: center;
-
-    span {
-      font-size: 48px;
-      color: #999;
-      margin-bottom: 20px;
-      @include desktop {
-        font-size: 64px;
-      }
-    }
-
-    p {
-      color: #999;
-      font-size: 24px;
-      @include desktop {
-        font-size: 36px;
-      }
-    }
-  }
 
   #lists {
     @include tablet {
@@ -115,6 +42,103 @@
     }
 
     .list {
+      padding: 0;
+      background: #f1f1f1;
+      border-radius: 3px;
+      margin: 0;
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+
+      li {
+        border-bottom: 1px solid #ddd;
+        padding-left: 17px !important;
+        cursor: pointer;
+        position: relative;
+
+        &.greenit {
+          background: #e0fae0 !important;
+        }
+
+        label {
+          display: block;
+          padding: 10px 10px 10px 0px !important;
+          cursor: pointer;
+
+          .taskname {
+            pointer-events: none;
+            vertical-align: middle;
+            width: 70%;
+            display: inline-block;
+
+            &.underline {
+              text-decoration: line-through;
+            }
+          }
+
+          .check {
+            background: #fff;
+            height: 25px;
+            width: 25px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1) inset;
+            font-size: 0.95em;
+            color: #fff;
+            vertical-align: middle;
+            border-radius: 5px;
+            pointer-events: none;
+            margin-right: 0px;
+
+            &.fa-check {
+              background: lightgreen;
+            }
+
+            &::before {
+              position: relative;
+              top: 4px;
+              left: 4px;
+            }
+          }
+        }
+
+        .delete {
+          right: 30px;
+          top: 40%;
+          opacity: 0;
+          margin-top: 0px;
+          position: absolute;
+        }
+
+        .is-loading {
+          position: relative;
+          pointer-events: none;
+          opacity: 0.5;
+          border-color: #ccc;
+
+          &:after {
+            @include loader;
+            position: absolute;
+            top: -32px;
+            left: -30px;
+            width: 1.5em;
+            height: 1.5em;
+            border-width: 0.25em;
+          }
+        }
+
+        &:hover .delete {
+          opacity: 1;
+          transition: all 0.2s 0s ease;
+        }
+      }
+
+      form {
+        input {
+          border-bottom-left-radius: 3px;
+        }
+
+        button {
+          border-top-right-radius: 0px;
+        }
+      }
 
       header {
         padding: 15px 30px;
@@ -164,7 +188,7 @@
           }
         }
       }
-      
+
       .list-group {
         padding: 0;
         max-height: 338px;
@@ -185,171 +209,33 @@
         transition: 0.2s;
       }
     }
-
-    .emptylist {
-      padding: 30px;
-      text-align: center;
-
-      .fa {
-        font-size: 36px;
-        color: #555;
-      }
-    }
   }
 }
 
-.main {
-  #boards .wrapem {
-    flex-wrap: wrap;
+/* Boards
+----------------------------------------------------------------------*/
 
-    .board {
-      margin-bottom: 0px !important;
-      margin-top: 20px !important;
-      border-bottom: 5px solid #eb5e28;
-      background: #fff !important;
-      height: 100%;
-      width: 32%;
-      box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.3);
+#boards .wrapem {
+  flex-wrap: wrap;
 
-      &:nth-child(3n) {
-        margin-left: 0px;
-      }
+  .board {
+    margin-bottom: 0px !important;
+    margin-top: 20px !important;
+    border-bottom: 5px solid #eb5e28;
+    background: #fff !important;
+    height: 100%;
+    width: 32%;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.3);
 
-      &:nth-child(3n + 3),
-      &:nth-child(3n + 2) {
-        margin-left: 2%;
-      }
+    &:nth-child(3n) {
+      margin-left: 0px;
+    }
+
+    &:nth-child(3n + 3),
+    &:nth-child(3n + 2) {
+      margin-left: 2%;
     }
   }
-
-  .list {
-    padding: 0;
-    background: #f1f1f1;
-    border-radius: 3px;
-    margin: 0;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-
-    li {
-      border-bottom: 1px solid #ddd;
-      padding-left: 17px !important;
-      cursor: pointer;
-      position: relative;
-
-      label {
-        display: block;
-        padding: 10px 10px 10px 0px !important;
-        cursor: pointer;
-
-        .taskname {
-          pointer-events: none;
-          vertical-align: middle;
-          width: 70%;
-          display: inline-block;
-        }
-
-        .check {
-          background: #fff;
-          height: 25px;
-          width: 25px;
-          border: 1px solid #ddd;
-          box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1) inset;
-          font-size: 0.95em;
-          color: #fff;
-          vertical-align: middle;
-          border-radius: 5px;
-          pointer-events: none;
-          margin-right: 0px;
-
-          &.fa-check {
-            background: lightgreen;
-          }
-
-          &::before {
-            position: relative;
-            top: 4px;
-            left: 4px;
-          }
-        }
-      }
-
-      .delete {
-        right: 30px;
-        top: 40%;
-        opacity: 0;
-        margin-top: 0px;
-        position: absolute;
-      }
-
-      .is-loading {
-        position: relative;
-        pointer-events: none;
-        opacity: 0.5;
-        border-color: #ccc;
-
-        &:after {
-          @include loader;
-          position: absolute;
-          top: -32px;
-          left: -30px;
-          width: 1.5em;
-          height: 1.5em;
-          border-width: 0.25em;
-        }
-      }
-
-      &:hover .delete {
-        opacity: 1;
-        transition: all 0.2s 0s ease;
-      }
-    }
-
-    form {
-      input {
-        border-bottom-left-radius: 3px;
-      }
-
-      button {
-        border-top-right-radius: 0px;
-      }
-    }
-  }
-}
-
-.tag {
-  padding: 3px 10px !important;
-  display: inline !important;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to
-
-/* .fade-leave-active below version 2.1.8 */
-	 {
-  opacity: 0;
-}
-
-.outermodal {
-  z-index: 40;
-  position: fixed;
-}
-
-.underline {
-  text-decoration: line-through;
-}
-
-.greenit {
-  background: #e0fae0 !important;
-}
-
-body {
-  height: 100vh;
-  //background-image: linear-gradient(141deg, #dedeca 0%, #EFF0EB 71%, #fafbf9 100%);
-  background: #f0efe7 !important;
 }
 
 .editbutton {
@@ -362,17 +248,22 @@ body {
   }
 }
 
-.progress {
-  height: 11px;
+/* Layout
+----------------------------------------------------------------------*/
+
+.dash {
+  @include tablet {
+    overflow-y: hidden;
+  }
+
+  &.profile .main {
+    overflow-y: scroll;
+  }
 }
 
-.profile label {
-  font-size: 14px !important;
-}
-
-.portrait {
-  border-radius: 3px;
-  border: 3px solid #503d39;
+body {
+  height: 100vh;
+  background: #f0efe7 !important;
 }
 
 @include mobile {
@@ -380,14 +271,6 @@ body {
     width: 100% !important;
     margin-left: 0px !important;
     margin-bottom: 30px;
-  }
-
-  .modal-card {
-    width: 90%;
-  }
-
-  #sidebar {
-    box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -403,20 +286,16 @@ body {
   }
 }
 
-@include touch {
-  #sidebar {
-    left: -100%;
+/* Profile
+----------------------------------------------------------------------*/
 
-    &.opensesame {
-      left: 0px;
-      transition: 0.5s;
-    }
-  }
+.profile label {
+  font-size: 14px !important;
 }
 
-.input.is-success {
-  background: lightgreen;
-  border-color: #dbdbdb;
+.portrait {
+  border-radius: 3px;
+  border: 3px solid #503d39;
 }
 
 .updateinfo {
@@ -432,21 +311,58 @@ body {
     opacity: 0;
     transition: opacity 0.25s;
   }
+
+  &.checker {
+    > span {
+      opacity: 0;
+    }
+
+    > i {
+      opacity: 1;
+      color: #fff;
+      font-size: 18px;
+    }
+  }
 }
 
-.updateinfo.checker {
-  > span {
-    opacity: 0;
-  }
-
-  > i {
-    opacity: 1;
-    color: #fff;
-    font-size: 18px;
-  }
-}
+/* Sidebar
+----------------------------------------------------------------------*/
 
 #sidebar {
+  left: -100%;
+  @include desktop {
+    left: 0px;
+  }
+  box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0px;
+  padding-left: 15px;
+  transition: 0.5s;
+  z-index: 10;
+  border-left: 7px solid #403f4c;
+
+  &.show {
+    left: 0px;
+  }
+
+  .menu-label {
+    text-align: right;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #403f4c;
+    margin-top: 30px;
+    padding-right: 15px;
+    color: #999;
+  }
+
+  .menu-list {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  li > a {
+    margin-top: 10px;
+  }
+
   .createbutton {
     transition: 0.25s;
     cursor: pointer;
@@ -460,77 +376,5 @@ body {
       opacity: 1;
       transition: 0.25s;
     }
-  }
-}
-
-/*
-.loadone #animateWow {
-	position: absolute;
-	background: rgba(50,50,50,.999);
-	left: 0px;
-	z-index: 10;
-	animation: fadeout .5s 1s ease;
-	animation-fill-mode: forwards;
-
-		
-	.loadAnimation {		
-	height: 60px;
-	margin: 75px;
-	position: fixed;
-	top: 40%;
-	transform: translate(0%, -50%);
-	left: 50%;
-
-		
-		.line {
-        width: 8px;
-        position: absolute;
-        border-radius: 3px;
-        bottom: 0;
-        background: linear-gradient(to bottom, #f14e32, #f04426);
-    }
-
-
-	.line-1 {
-		left: 0;
-		animation: line-grow 0.5s ease alternate infinite;}
-	
-  .line-2 {
-  	left: 15px;
-  	animation: line-grow 0.5s 0.2s ease alternate infinite;}
-
-	.line-3 {
-		left: 30px;
-		animation: line-grow 0.5s 0.4s ease alternate infinite;}
-	}
-}
-
-*/
-
-.fadein {
-  animation-name: fadein;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-.fadeout {
-  animation-name: fadeout;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeout {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }

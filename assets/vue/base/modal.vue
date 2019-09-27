@@ -73,17 +73,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.fade-enter-active {
-  transition: opacity 0.25s;
-}
-
-.fade-leave-active {
-  opacity: 0;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

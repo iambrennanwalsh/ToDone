@@ -6,10 +6,11 @@ use Twig\Environment;
 
 /**
  * This abstract class instantiates the concrete Mailer class that
- * extends this class. In the dev enviroment the email recipent is
- * defined globally within the dev swiftmailer.yaml config file.
- * The global from email address is defined in services.yaml, and
- * passed as an argument into this class.
+ * extends this class. The global FROM and default TO email addresses
+ * are defined within services.yaml as parameters. These parameters
+ * along with the APP_ENV enviroment variable are passed in via
+ * service arguments. If the APP_ENV variable is set to 'dev', the setTo()
+ * setter function is disabled.
  *
  * @author Brennan Walsh
  * @email mail@brennanwal.sh
