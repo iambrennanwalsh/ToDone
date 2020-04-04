@@ -1,12 +1,12 @@
 <div align="center">
 <a href="https://github.com/iambrennanwalsh/ToDone">
-  <img src="https://todone-stage.herokuapp.com/images/logo.png" alt="Logo" height="30">
+  <img src="https://todone-staging.herokuapp.com/images/logo.png" alt="Logo" height="30">
 </a>
 <h3 align="center">ToDone!</h3>
 <p align="center">
 An awesome new productivity app!
 <br />
-<a href="https://todone.local">View Site</a> 
+<a href="https://todone-staging.herokuapp.com">View Site</a> 
 . 
 <a href="https://github.com/iambrennanwalsh/ToDone/issues">Report Bug</a>
 </p>
